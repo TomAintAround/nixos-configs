@@ -1,7 +1,4 @@
-{ pkgs, ... }:
-let
-    secrets = import ../../secrets.nix;
-in {
+{ secrets, pkgs, ... }: {
     users.users.tomm = {
         name = "tomm";
         description = secrets.names.tomm;

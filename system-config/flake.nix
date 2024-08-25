@@ -15,7 +15,8 @@
     outputs = inputs:
     let
         system = "x86_64-linux";
-        specialArgs = { inherit inputs; };
+	secrets = import ./secrets.nix;
+        specialArgs = { inherit inputs secrets; };
 
         nixosSys = inputs.nixpkgs.lib.nixosSystem;
 

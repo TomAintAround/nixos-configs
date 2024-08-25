@@ -1,6 +1,4 @@
-let
-    secrets = import ../../secrets.nix;
-in {
+{ secrets, ... }: {
     users.users.root = {
         name = "root";
         hashedPassword = secrets.passwords.root;
