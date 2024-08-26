@@ -15,5 +15,8 @@
         # Paths
         GOPATH = "${config.xdg.dataHome}/go";
         WINEPREFIX = "${config.xdg.dataHome}/wine";
+
+	# Fixes Firefox crashing
+	MOZ_ENABLE_WAYLAND = 0;
     };
 }
