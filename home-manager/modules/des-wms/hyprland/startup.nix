@@ -28,9 +28,6 @@
 	    # Auto-mount Disks
 	    "${pkgs.dunst}/bin/udiskie"
 
-	    # Plugin Manager
-	    "${pkgs.hyprland}/bin/hyprpm reload -n"
-
 	    # Screensharing
 	    "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
 

@@ -14,8 +14,6 @@ in {
 	    "SUPER, Y, layoutmsg, removemaster"
 	    "SUPER, F, fullscreen, 0"
 	    "SUPER, M, fullscreen, 1"
-	    "SUPER, R, exec, ${pkgs.hyprland}/bin/hyprpm reload -n"
-	    "SUPER, U, exec, ${pkgs.hyprland}/bin/hyprpm update -n"
 	    (let
 		changeLayout = pkgs.writeShellScriptBin "changeLayout.bash" ''
 		    ###################################################################################################################
