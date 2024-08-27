@@ -41,7 +41,7 @@ in {
 	    "SUPER, Return, exec, ${pkgs.alacritty}/bin/alacritty"
 	    "SUPER, C, exec, ${pkgs.clipman}/bin/clipman pick -t rofi -T'-theme ${config.xdg.configHome}/rofi/clipboard.rasi'"
 	    "SUPER, Space, exec, ${pkgs.rofi}/bin/rofi -show drun -modi drun,window -theme ~/.config/rofi/launcher.rasi -show-icons -icon-theme Papirus-Dark"
-	    "SUPER, F1, exec, ${pkgs.firefox}/bin/firefox -p"
+	    "SUPER, F1, exec, ${pkgs.firefox}/bin/firefox"
 	    "SUPER, F2, exec, ${pkgs.vesktop}/bin/vesktop"
 	    "SUPER, F3, exec, ${pkgs.obsidian}/bin/obsidian"
 	    "SUPER, F4, exec, ${pkgs.thunderbird}/bin/thunderbird"
