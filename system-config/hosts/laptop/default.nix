@@ -1,7 +1,7 @@
 { modulesPath, pkgs, ... }: {
     imports =
         [ (modulesPath + "/installer/scan/not-detected.nix")
-            ( imports ./disko.nix { device = "/dev/nvme0n1"; } )
+            ( import ./disko.nix { device = "/dev/nvme0n1"; } )
             ../../modules/base.nix
             ../../modules/boot/impermanence.nix
             ../../modules/des-wms/hyprland.nix
