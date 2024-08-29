@@ -19,6 +19,7 @@
         ./fzf.nix
 	./gaming.nix
         ./git.nix
+	./kdeconnect.nix
         ./locales.nix
         ./music.nix
 	./openrgb.nix
