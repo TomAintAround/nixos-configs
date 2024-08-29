@@ -7,7 +7,18 @@
         hashedPassword = secrets.passwords.tomm;
         home = "/home/tomm";
         shell = pkgs.fish;
-        extraGroups = [ "wheel" "openrazer" "networkmanager" "scanner" "lp" "kvm" "input" "libvirtd" "gamemode" ];
+        extraGroups = [
+	    "wheel"
+	    "openrazer"
+	    "networkmanager"
+	    "scanner"
+	    "lp"
+	    "kvm"
+	    "input"
+	    "libvirtd"
+	    "gamemode"
+	    "docker"
+	];
     };
 
     programs.fish.enable = true;

@@ -28,16 +28,17 @@
     environment.persistence."/persist/system" = {
         hideMounts = true;
         directories = [
-            "/etc/nixos"
-            "/etc/NetworkManager/system-connections"
             "/etc/libvirt"
-            "/var/log"
+            "/etc/NetworkManager/system-connections"
+            "/etc/nixos"
             "/var/lib/bluetooth"
-            "/var/lib/fprint"
+	    "/var/lib/docker"
             "/var/lib/flatpak"
+            "/var/lib/fprint"
+            "/var/lib/libvirt"
             "/var/lib/nixos"
             "/var/lib/systemd/coredump"
-            "/var/lib/libvirt"
+            "/var/log"
             {
                 directory = "/var/lib/colord";
                 user = "colord";
