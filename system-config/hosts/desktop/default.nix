@@ -32,6 +32,7 @@
             ../../modules/users/root.nix
             ../../modules/users/tomm.nix
             ../../modules/virt
+	    ../../modules/docker.nix
         ];
 
     networking.hostName = "desktop";
