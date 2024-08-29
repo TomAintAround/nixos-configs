@@ -30,7 +30,7 @@ $ rm -rI /mnt/etc/nixos/
 $ cp -r system-config /mnt/etc/nixos
 ```
 
-4. Add a `secrets.nix` file to `/etc/nixos/` with the following format. If you actually tried to understand this configuration, you might already know what it does. Of course, this step might not apply if you change your user configurations. If you don't want passwords to be stored in files, make sure to remove `users.mutableUsers = false;` [here](https://github.com/TomAintAround/nixos-configs/blob/main/system-config/modules/base.nix).
+4. Add a `secrets.nix` file to `/etc/nixos/` with the following format. If you actually tried to understand this configuration, you might already know what it does. Of course, this step might not apply if you change your user configurations. If you don't want passwords to be stored in files, make sure to remove `users.mutableUsers = false;` [here](https://github.com/TomAintAround/nixos-configs/blob/main/system-config/modules/base.nix). If you don't know how to create hashed password, [look here](https://jasonmurray.org/posts/2020/clipasswd/)
 ```nix
 {
     passwords = {
