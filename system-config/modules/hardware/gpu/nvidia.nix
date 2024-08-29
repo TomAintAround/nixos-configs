@@ -12,6 +12,7 @@
             modesetting.enable = true;
             powerManagement.enable = true;
             package = config.boot.kernelPackages.nvidiaPackages.stable;
+	    open = false;
         };
         graphics.extraPackages = with pkgs; [ nvidia-vaapi-driver ];
     };
