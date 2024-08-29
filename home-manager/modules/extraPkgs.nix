@@ -15,6 +15,7 @@
         nurl # Query data from a Github repo
         obsidian
         p7zip
+	popsicle
         ripdrag # Drag-and-drop for the terminal
         ripgrep # Grep but better
         stremio
