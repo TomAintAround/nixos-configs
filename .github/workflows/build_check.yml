@@ -20,6 +20,11 @@ jobs:
             access-tokens = github.com=${{ secrets.NIX_TOKEN }}
             experimental-features = nix-command flakes
 
+      - name: Generate secrets.nix
+        run: |
+          echo "{ passwords = { root = \"This_is_irrelevant\"; tomm = \"Only_needed_to_make_this_test_work\"; }; names.tomm = \"blablalba\"; }" > system-config/secrets.nix
+          echo "{ email = \"idk\"; }" > home-manager/secrets.nix
+
       - name: Build system configuration
         run: nix flake check ./system-config
 
