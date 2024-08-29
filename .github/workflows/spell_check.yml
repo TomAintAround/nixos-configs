@@ -1,0 +1,17 @@
+name: Spell Check
+
+on: [push, pull_request]
+
+jobs:
+  misspell:
+    name: Run Spell Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check spell
+        uses: reviewdog/action-misspell@v1
+        with:
+          github_token: ${{ secrets.SPELL_TOKEN }}
+          locale: "US"
