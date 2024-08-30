@@ -46,7 +46,7 @@ in {
 	    "SUPER, F3, exec, ${pkgs.obsidian}/bin/obsidian"
 	    "SUPER, F4, exec, ${pkgs.thunderbird}/bin/thunderbird"
 	    "SUPER, F5, exec, ${pkgs.newsflash}/bin/io.gitlab.news_flash.NewsFlash"
-	    "${if config.gaming.enable then "SUPER, F6, exec, ${pkgs.lutris}/bin/lutris" else ""}"
+            "${if config.gaming.enable then "SUPER, F6, exec, ${pkgs.lutris}/bin/lutris" else "SUPER, F6, exec,"}"
 	    "SUPER, F10, exec, ${pkgs.hyprpicker}/bin/hyprpicker -a"
 	    "SUPER, F11, exec, ${pkgs.alacritty}/bin/alacritty --class music -e ncmpcpp"
 	    "SUPER, F12, exec, ${pkgs.alacritty}/bin/alacritty --class btop -e btop"
