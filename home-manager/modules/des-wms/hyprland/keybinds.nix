@@ -46,7 +46,7 @@ in {
 	    "SUPER, F3, exec, ${pkgs.obsidian}/bin/obsidian"
 	    "SUPER, F4, exec, ${pkgs.thunderbird}/bin/thunderbird"
 	    "SUPER, F5, exec, ${pkgs.newsflash}/bin/io.gitlab.news_flash.NewsFlash"
-            "${if config.gaming.enable then "SUPER, F6, exec, ${pkgs.lutris}/bin/lutris" else "SUPER, F6, exec,"}"
+	    "${if config.gaming.enable then "SUPER, F6, exec, ${pkgs.lutris}/bin/lutris" else "SUPER, F6, exec,"}"
 	    "SUPER, F10, exec, ${pkgs.hyprpicker}/bin/hyprpicker -a"
 	    "SUPER, F11, exec, ${pkgs.alacritty}/bin/alacritty --class music -e ncmpcpp"
 	    "SUPER, F12, exec, ${pkgs.alacritty}/bin/alacritty --class btop -e btop"
@@ -70,17 +70,18 @@ in {
 	]
 	++
 	(builtins.concatLists (builtins.genList (
-	    n: let
+	    i: let
 		split = "${if (builtins.elem split-monitor-workspaces cfg.plugins) then "split-" else ""}";
-		ws = let
-		    c = (n + 1) / 10;
-		in
-		    builtins.toString (n + 1 - (c * 10));
+		ws = i + 1;
 	    in [
-		"SUPER, ${ws}, ${split}workspace, ${ws}"
-		"SUPER SHIFT, ${ws}, ${split}movetoworkspace, ${ws}"
-	    ]) 
-	(if (builtins.elem split-monitor-workspaces cfg.plugins) then (cfg.numOfWorkspaces / 2) else cfg.numOfWorkspaces) ))
+		"SUPER, code:1${toString i}, ${split}workspace, ${toString ws}"
+		"SUPER SHIFT, code:1${toString i}, ${split}movetoworkspace, ${toString ws}"
+	    ]
+	) (
+	    if (builtins.elem split-monitor-workspaces cfg.plugins)
+	    then (cfg.numOfWorkspaces / 2)
+	    else (cfg.numOfWorkspaces))
+	)) 
 	++
 	# I know what you're thinking: "What the hell am I reading? What kind of spaguetti mess is this?".
 	# You think this sucks? THEN MAKE IT BETTER YOURSELF AND MAKE A PULL REQUEST. Let's see if you can
@@ -152,6 +153,8 @@ in {
 	bindel = [
 	    ",XF86AudioRaiseVolume, exec, ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
 	    ",XF86AudioLowerVolume, exec, ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+	    ",XF86MonBrightnessUp, exec, brightnessctl set +1%"
+	    ",XF86MonBrightnessDown, exec, brightnessctl set 1%-"
 	];
 	bindl = [
 	    ",XF86AudioMute, exec, ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
