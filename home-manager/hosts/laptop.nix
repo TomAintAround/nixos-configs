@@ -12,7 +12,7 @@
             vrr = false;
             x = 0;
             y = 0;
-            scale = 1;
+            scale = 1.25;
             enable = true;
         }
         {
@@ -23,5 +23,5 @@
 
     brightness.enable = true;
     gaming.enable = false;
-    openrgb.false = false;
+    openrgb.enable = false;
 }

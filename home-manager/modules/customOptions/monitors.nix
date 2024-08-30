@@ -51,9 +51,9 @@ in {
 		};
 
 		scale = mkOption {
-		    type = types.int;
+		    type = types.float;
 		    description = "Scale of the monitor";
-		    default = 1;
+		    default = 1.0;
 		};
 
 		enable = mkOption {
