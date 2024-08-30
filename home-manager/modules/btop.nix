@@ -5,6 +5,7 @@
             cudaSupport = true;
             rocmSupport = true;
         };
+
         settings = {
             theme_background = true;
             truecolor = true;
@@ -18,7 +19,7 @@
             graph_symbol_mem = "default";
             graph_symbol_net = "default";
             graph_symbol_proc = "default";
-            shown_boxes = "gpu0 cpu mem net proc";
+            shown_boxes = "";
             update_ms = 100;
             proc_sorting = "cpu direct";
             proc_reversed = false;
