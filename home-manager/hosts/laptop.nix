@@ -5,7 +5,7 @@
 
     monitors = [
         {
-            name = "I have no idea. I haven't installed NixOs on my latptop yet and so I don't know the name of the monitor";
+            name = "eDP-1";
             width = 1920;
             height = 1080;
             refreshRate = 60;
