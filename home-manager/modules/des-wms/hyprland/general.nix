@@ -61,8 +61,13 @@
 	    follow_mouse = 1;
 	};
 
+	#touchpad = {
+	#    scroll_factor = 0.5;
+	#};
+
 	gestures = {
 	    workspace_swipe = true;
+	    workspace_swipe_distance = 200;
 	};
 
 	misc = {
