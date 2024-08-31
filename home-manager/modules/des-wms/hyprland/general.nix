@@ -59,11 +59,12 @@
 	    kb_layout = "pt,es";
 	    numlock_by_default = true;
 	    follow_mouse = 1;
-	};
 
-	#touchpad = {
-	#    scroll_factor = 0.5;
-	#};
+	    touchpad = {
+		natural_scroll = true;
+		scroll_factor = 0.50;
+	    };
+	};
 
 	gestures = {
 	    workspace_swipe = true;
