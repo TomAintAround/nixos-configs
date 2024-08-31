@@ -28,6 +28,7 @@
 		#!/usr/bin/env bash
 
 		selected=$(cat $XDG_DATA_HOME/scripts/wallpaper/wallpaper-set)
+		selected="''${selected:-1}"
 		wallpapersDir="$XDG_PICTURES_DIR"/Wallpapers
 
 		mode() {
