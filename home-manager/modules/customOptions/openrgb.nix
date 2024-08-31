@@ -4,7 +4,7 @@ let
 in {
     options.openrgb.enable = mkOption {
 	type = types.bool;
-	description = "Installs OpenRGB plugins";
+	description = "Enables OpenRGB related settings";
 	default = false;
     };
 }
