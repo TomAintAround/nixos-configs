@@ -1,4 +1,4 @@
-{ pkgs, config, ... }: {
+{ pkgs, config, lib, ... }: {
     services.dunst = {
         enable = true;
         settings = {
@@ -98,5 +98,9 @@
 		#default_icon = "/path/to/icon";
             };
         };
+    };
+
+    systemd.user.services."dunst" = {
+	Service.ExecStart = lib.mkForce "${pkgs.dunst}/bin/dunst --config ~/.config/dunst/dunstrc";
     };
 }

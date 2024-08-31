@@ -23,7 +23,7 @@
 	    "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
 
 	    # Notification Daemon
-	    "${pkgs.dunst}/bin/dunst --config ~/.config/dunst/dunstrc"
+	    "${pkgs.systemd}/bin/systemctl --user start dunst.service"
 
 	    # Screensharing
 	    "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
