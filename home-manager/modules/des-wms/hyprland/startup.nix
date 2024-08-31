@@ -25,9 +25,6 @@
 	    # Notification Daemon
 	    "${pkgs.dunst}/bin/dunst --config ~/.config/dunst/dunstrc"
 
-	    # Auto-mount Disks
-	    "${pkgs.dunst}/bin/udiskie"
-
 	    # Screensharing
 	    "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
 
