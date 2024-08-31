@@ -46,10 +46,6 @@
 
 	    # Easyeffects
 	    "${pkgs.systemd}/bin/systemctl --user start easyeffects.service"
-
-	    # KDE connect
-	    "${pkgs.systemd}/bin/systemctl --user start kdeconnect.service"
-	    "${pkgs.systemd}/bin/systemctl --user start kdeconnect-indicator.service"
 	];
     };
 }
