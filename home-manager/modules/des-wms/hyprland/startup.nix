@@ -41,8 +41,8 @@
 	    "${pkgs.wl-clipboard}/bin/wl-paste -t text --watch clipman store --no-persist"
 
 	    # Software for Peripherals
-	    "${pkgs.polychromatic}/bin/polychromatic-tray-applet"
-	    "${pkgs.openrgb}/bin/openrgb --startminimized"
+	    "${if config.openrazer.enable then "${pkgs.polychromatic}/bin/polychromatic-tray-applet}" else "echo no"}"
+	    "${if config.openrgb.enable then "${pkgs.openrgb}/bin/openrgb --startminimized" else "echo no"}"
 
 	    # Easyeffects
 	    "${pkgs.systemd}/bin/systemctl --user start easyeffects.service"
