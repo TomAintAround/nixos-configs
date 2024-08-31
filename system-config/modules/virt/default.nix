@@ -15,7 +15,7 @@
             ovmf = {
                 enable = true;
                 packages = [(pkgs.OVMF.override {
-		secureBoot = true;
+		    secureBoot = true;
 		    tpmSupport = true;
 		}).fd];
             };
