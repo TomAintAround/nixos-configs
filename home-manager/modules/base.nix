@@ -3,6 +3,7 @@
 	./customOptions/brightness.nix
 	./customOptions/gaming.nix
         ./customOptions/monitors.nix
+	./customOptions/openrazer.nix
 	./customOptions/openrgb.nix
         ./des-wms/hyprland
         ./fish
