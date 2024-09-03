@@ -153,8 +153,8 @@ in {
 	bindel = [
 	    ",XF86AudioRaiseVolume, exec, ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
 	    ",XF86AudioLowerVolume, exec, ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-	    ",XF86MonBrightnessUp, exec, brightnessctl set +1%"
-	    ",XF86MonBrightnessDown, exec, brightnessctl set 1%-"
+	    ",XF86MonBrightnessUp, exec, brightnessctl set +2%"
+	    ",XF86MonBrightnessDown, exec, brightnessctl set 2%-"
 	];
 	bindl = [
 	    ",XF86AudioMute, exec, ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
