@@ -39,10 +39,10 @@
             delta = {
                 enable = true;
 		options = {
-			line-numbers = true;
-			side-by-side = true;
-			navigate = true;
-			true-color = "always";
+		    line-numbers = true;
+		    side-by-side = true;
+		    navigate = true;
+		    true-color = "always";
 		};
             };
         };
