@@ -15,5 +15,9 @@
         # Paths
         GOPATH = "${config.xdg.dataHome}/go";
         WINEPREFIX = "${config.xdg.dataHome}/wine";
+
+	# Wayland fixes
+        ELECTRON_OZONE_PLATFORM_HINT = "auto";
+        NIXOS_OZONE_WL = 1;
     };
 }
