@@ -1,6 +1,6 @@
 { pkgs, ... }: {
     home.packages = with pkgs; [
-	act
+        act
         brave
         cpu-x
         eza
