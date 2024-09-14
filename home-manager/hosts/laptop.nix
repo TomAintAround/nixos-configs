@@ -12,7 +12,7 @@
             vrr = false;
             x = 0;
             y = 0;
-            scale = 1.25;
+            scale = 1.0;
             enable = true;
         }
         {
