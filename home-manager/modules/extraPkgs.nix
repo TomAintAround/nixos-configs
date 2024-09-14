@@ -26,6 +26,7 @@
         vesktop
         virt-manager
         vlc
+	vscode
         wget
         zip
     ];
