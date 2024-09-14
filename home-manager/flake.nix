@@ -34,14 +34,13 @@
         };
     };
 
-    outputs = inputs:
-    let
+    outputs = inputs: let
     	username = "tomm";
     	gitUsername = "TomAintAround";
     	email = let
-	    secrets = import ./secrets.nix;
-	in
-	    secrets.email;
+            secrets = import ./secrets.nix;
+        in
+            secrets.email;
     	userVars = { inherit username gitUsername email; };
 
         system = "x86_64-linux";
