@@ -12,7 +12,7 @@
             modesetting.enable = true;
             powerManagement.enable = true;
             package = config.boot.kernelPackages.nvidiaPackages.stable;
-	    open = false;
+            open = false;
         };
         graphics.extraPackages = with pkgs; [ nvidia-vaapi-driver ];
     };
@@ -23,6 +23,6 @@
         LIBVA_DRIVER_NAME = "nvidia";
         GBM_BACKEND = "nvidia-drm";
         __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-	NVD_BACKEND = "direct";
+        NVD_BACKEND = "direct";
     };
 }

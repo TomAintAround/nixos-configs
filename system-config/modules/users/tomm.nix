@@ -8,17 +8,17 @@
         home = "/home/tomm";
         shell = pkgs.fish;
         extraGroups = [
-	    "wheel"
-	    "openrazer"
-	    "networkmanager"
-	    "scanner"
-	    "lp"
-	    "kvm"
-	    "input"
-	    "libvirtd"
-	    "gamemode"
-	    "docker"
-	];
+            "wheel"
+            "openrazer"
+            "networkmanager"
+            "scanner"
+            "lp"
+            "kvm"
+            "input"
+            "libvirtd"
+            "gamemode"
+            "docker"
+        ];
     };
 
     programs.fish.enable = true;

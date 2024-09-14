@@ -12,10 +12,9 @@
         impermanence.url = "github:nix-community/impermanence";
     };
 
-    outputs = inputs:
-    let
+    outputs = inputs: let
         system = "x86_64-linux";
-	secrets = import ./secrets.nix;
+        secrets = import ./secrets.nix;
         specialArgs = { inherit inputs secrets; };
 
         nixosSys = inputs.nixpkgs.lib.nixosSystem;
@@ -26,9 +25,9 @@
         nixosConfigurations = {
             desktop = nixosSys {
                 inherit system specialArgs;
-		modules =
-		disko ++
-		impermanence ++ [
+                modules =
+                disko ++
+                impermanence ++ [
                     ./hosts/desktop
                 ];
             };

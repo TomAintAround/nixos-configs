@@ -17,9 +17,9 @@
                             type = "filesystem";
                             format = "vfat";
                             mountpoint = "/boot";
-			    mountOptions = [
-				"defaults"
-			    ];
+                            mountOptions = [
+                                "defaults"
+                            ];
                         };
                     };
 
@@ -37,30 +37,30 @@
                         name = "root";
                         size = "60G";
                         content = {
-			    type = "luks";
-			    name = "cryptedroot";
-			    settings.allowDiscards = true;
+                            type = "luks";
+                            name = "cryptedroot";
+                            settings.allowDiscards = true;
                             passwordFile = "/tmp/secret.key";
-			    content = {
-				type = "btrfs";
-				extraArgs = [ "-f" ];
-				subvolumes = {
-				    "@" = {
-					mountpoint = "/";
-					mountOptions = [ "compress=zstd" "noatime" ];
-				    };
+                            content = {
+                                type = "btrfs";
+                                extraArgs = [ "-f" ];
+                                subvolumes = {
+                                    "@" = {
+                                        mountpoint = "/";
+                                        mountOptions = [ "compress=zstd" "noatime" ];
+                                    };
 
-				    "@nix" = {
-					mountpoint = "/nix";
-					mountOptions = [ "compress=zstd" "noatime" ];
-				    };
+                                    "@nix" = {
+                                        mountpoint = "/nix";
+                                        mountOptions = [ "compress=zstd" "noatime" ];
+                                    };
 
-				    "@persist" = {
+                                    "@persist" = {
                                         mountpoint = "/persist";
                                         mountOptions = [ "compress=zstd" "noatime" ];
-				    };
-				};
-			    };
+                                    };
+                                };
+                            };
                         };
                     };
 
@@ -68,20 +68,20 @@
                         name = "home";
                         size = "100%";
                         content = {
-			    type = "luks";
-			    name = "cryptedhome";
-			    settings.allowDiscards = true;
+                            type = "luks";
+                            name = "cryptedhome";
+                            settings.allowDiscards = true;
                             passwordFile = "/tmp/secret.key";
-			    content = {
-				type = "btrfs";
-				extraArgs = [ "-f" ];
-				subvolumes = {
-				    "@home" = {
-					mountpoint = "/home";
-					mountOptions = [ "compress=zstd" "noatime" ];
-				    };
-				};
-			    };
+                            content = {
+                                type = "btrfs";
+                                extraArgs = [ "-f" ];
+                                subvolumes = {
+                                    "@home" = {
+                                        mountpoint = "/home";
+                                        mountOptions = [ "compress=zstd" "noatime" ];
+                                    };
+                                };
+                            };
                         };
                     };
                 };

@@ -23,10 +23,10 @@
         # Done Plugin
         set -a __done_exclude '^pgrep'
 
-	# Tmux
-	for sessions in (${pkgs.tmux}/bin/tmux list-sessions | command grep -v "(attached)\|keep" | sed 's/:.*$//')
-	    ${pkgs.tmux}/bin/tmux kill-session -t "$sessions"
-	end
+        # Tmux
+        for sessions in (${pkgs.tmux}/bin/tmux list-sessions | command grep -v "(attached)\|keep" | sed 's/:.*$//')
+            ${pkgs.tmux}/bin/tmux kill-session -t "$sessions"
+        end
 
         if not set -q TMUX
             ${pkgs.tmux}/bin/tmux list-sessions | command grep -v "(attached)" &>/dev/null

@@ -6,20 +6,20 @@
 
             window.padding = {
                 x = 5;
-		y = 5;
+                y = 5;
             };
 
             font = {
                 size = 13.0;
-		normal.family = "JetBrains Mono Nerd Font";
+                normal.family = "JetBrains Mono Nerd Font";
             };
 
             cursor = {
                 vi_mode_style = "None";
-		style = {
-		    blinking = "Never";
-		    shape = "Beam";
-		};
+                style = {
+                    blinking = "Never";
+                    shape = "Beam";
+                };
             };
         };
     };

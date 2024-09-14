@@ -6,7 +6,7 @@
             Unit.Description = "Deletes 14+ day old trash";
 
             serviceConfig = {
-		Type = "oneshot";
+                Type = "oneshot";
                 ExecStart = "${pkgs.trash-cli}/bin/trash-empty 14";
             };
         };
@@ -15,9 +15,9 @@
             Unit.Description = "Automatically deletes 14+ day old trash";
 
             timerConfig = {
-		OnCalendar = "daily";
-		Persistent = true;
-		Unit = "trash-cli.service";
+                OnCalendar = "daily";
+                Persistent = true;
+                Unit = "trash-cli.service";
             };
 
             Install.WantedBy = [ "timers.target" ];

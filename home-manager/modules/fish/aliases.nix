@@ -9,10 +9,10 @@
             flatclean = {
                 description = "Removes orphaned flatpaks";
                 body = ''
-		    ${pkgs.flatpak}/bin/flatpak uninstall --unused | grep -E 'Nothing unused to uninstall|Nada sin usar que desinstalar' >/dev/null
-		    and printf '\n\\033[31;1m[ ERROR]\\033[0m Nothing to uninstall\n'
-		    or ${pkgs.flatpak}/bin/flatpak uninstall --unused $argv
-		'';
+                    ${pkgs.flatpak}/bin/flatpak uninstall --unused | grep -E 'Nothing unused to uninstall|Nada sin usar que desinstalar' >/dev/null
+                    and printf '\n\\033[31;1m[ ERROR]\\033[0m Nothing to uninstall\n'
+                    or ${pkgs.flatpak}/bin/flatpak uninstall --unused $argv
+                '';
             };
 
             flatcountapp = {
@@ -46,7 +46,7 @@
             };
 
             flatrem = {
-		description = "Uninstalls a flatpak";
+                description = "Uninstalls a flatpak";
                 body = "${pkgs.flatpak}/bin/flatpak uninstall $argv";
             };
 

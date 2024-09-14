@@ -7,11 +7,11 @@ in {
 
     gtk = {
         theme = {
-	    name = "catppuccin-${flavor}-${accent}-standard";
-	    package = pkgs.catppuccin-gtk.override {
-		accents = [ accent ];
-		variant = flavor;
-	    };
+            name = "catppuccin-${flavor}-${accent}-standard";
+            package = pkgs.catppuccin-gtk.override {
+                accents = [ accent ];
+                variant = flavor;
+            };
         };
 
         catppuccin.icon = {
@@ -135,53 +135,53 @@ in {
             enable = true;
             inherit flavor;
             extraConfig = ''
-		set -g @catppuccin_window_left_separator ""
-		set -g @catppuccin_window_right_separator " "
-		set -g @catppuccin_window_middle_separator " "
-		set -g @catppuccin_window_number_position "right"
+                set -g @catppuccin_window_left_separator ""
+                set -g @catppuccin_window_right_separator " "
+                set -g @catppuccin_window_middle_separator " "
+                set -g @catppuccin_window_number_position "right"
 
-		set -g @catppuccin_window_default_fill "number"
-		set -g @catppuccin_window_default_text "#W"
+                set -g @catppuccin_window_default_fill "number"
+                set -g @catppuccin_window_default_text "#W"
 
-		set -g @catppuccin_window_current_fill "number"
-		set -g @catppuccin_window_current_text "#W"
+                set -g @catppuccin_window_current_fill "number"
+                set -g @catppuccin_window_current_text "#W"
 
-		set -g @catppuccin_status_modules_right "user host directory application session"
-		set -g @catppuccin_status_left_separator  " "
-		set -g @catppuccin_status_right_separator ""
-		set -g @catppuccin_status_fill "icon"
-		set -g @catppuccin_status_connect_separator "no"
+                set -g @catppuccin_status_modules_right "user host directory application session"
+                set -g @catppuccin_status_left_separator  " "
+                set -g @catppuccin_status_right_separator ""
+                set -g @catppuccin_status_fill "icon"
+                set -g @catppuccin_status_connect_separator "no"
 
-		set -g @catppuccin_directory_text "#{pane_current_path}"
-		set -g @catppuccin_user_color "#f38ba8"
-		set -g @catppuccin_host_color "#eba0ac"
-		set -g @catppuccin_application_color "#f9e2af"
-		set -g @catppuccin_directory_color "#fab387"
+                set -g @catppuccin_directory_text "#{pane_current_path}"
+                set -g @catppuccin_user_color "#f38ba8"
+                set -g @catppuccin_host_color "#eba0ac"
+                set -g @catppuccin_application_color "#f9e2af"
+                set -g @catppuccin_directory_color "#fab387"
             '';
         };
     };
 
     services.dunst.catppuccin = {
-	enable = true;
-	inherit flavor;
+        enable = true;
+        inherit flavor;
     };
 
 
     wayland.windowManager.hyprland.settings = lib.mkIf config.wayland.windowManager.hyprland.enable {
-	source = [ "${config.catppuccin.sources.hyprland}/themes/${flavor}.conf" ];
+        source = [ "${config.catppuccin.sources.hyprland}/themes/${flavor}.conf" ];
 
-	general = {
-	    "col.inactive_border" = "\$base \$overlay0 45deg";
-	    "col.active_border" = "\$sky \$blue 45deg";
-	};
+        general = {
+            "col.inactive_border" = "\$base \$overlay0 45deg";
+            "col.active_border" = "\$sky \$blue 45deg";
+        };
 
-	plugin.hyprbars = {
-	    bar_color = "\$crust";
-	    "col.text" = "\$text";
-	    hyprbars-button = [
-		"\$red, 15, , hyprctl dispatch killactive"
-		"\$yellow, 15, , hyprctl dispatch fullscreen 1"
-	    ];
-	};
+        plugin.hyprbars = {
+            bar_color = "\$crust";
+            "col.text" = "\$text";
+            hyprbars-button = [
+                "\$red, 15, , hyprctl dispatch killactive"
+                "\$yellow, 15, , hyprctl dispatch fullscreen 1"
+            ];
+        };
     };
 }

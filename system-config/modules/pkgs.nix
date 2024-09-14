@@ -10,9 +10,9 @@
     };
 
     programs = {
-	nix-ld.enable = true;
-	appimage.enable = true;
-	gamemode.enable = true;
+        nix-ld.enable = true;
+        appimage.enable = true;
+        gamemode.enable = true;
     };
     
     services.flatpak.enable = true;

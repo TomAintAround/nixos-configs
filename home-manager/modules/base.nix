@@ -1,10 +1,10 @@
 { config, lib, userVars, ... }: {
     imports = [
-	./customOptions/brightness.nix
-	./customOptions/gaming.nix
+        ./customOptions/brightness.nix
+        ./customOptions/gaming.nix
         ./customOptions/monitors.nix
-	./customOptions/openrazer.nix
-	./customOptions/openrgb.nix
+        ./customOptions/openrazer.nix
+        ./customOptions/openrgb.nix
         ./des-wms/hyprland
         ./fish
         ./lf
@@ -18,13 +18,13 @@
         ./fd.nix
         ./firefox.nix
         ./fzf.nix
-	./gaming.nix
+        ./gaming.nix
         ./git.nix
-	./kdeconnect.nix
+        ./kdeconnect.nix
         ./locales.nix
         ./music.nix
-	./openrgb.nix
-	./scripts.nix
+        ./openrgb.nix
+        ./scripts.nix
         ./tmux.nix
         ./trash-cli.nix
         ./udiskie.nix

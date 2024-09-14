@@ -6,18 +6,18 @@
         ../trash-cli.nix
         ../zoxide.nix
 
-	./commands.nix
-	./keybindings.nix
-	./opener.nix
-	./previewer.nix
-	./settings.nix
+        ./commands.nix
+        ./keybindings.nix
+        ./opener.nix
+        ./previewer.nix
+        ./settings.nix
     ];
 
     home = {
         packages = with pkgs; [
             atool
             exiftool
-	    eza
+            eza
             ffmpeg
             ffmpegthumbnailer
             file
@@ -33,12 +33,12 @@
     };
 
     xdg.configFile = {
-	"lf/colors".source = ./colors;
-	"lf/icons".source = ./icons;
+        "lf/colors".source = ./colors;
+        "lf/icons".source = ./icons;
     };
 
     programs.lf = {
-	enable = true;
-	extraConfig = "on-cd";
+        enable = true;
+        extraConfig = "on-cd";
     };
 }

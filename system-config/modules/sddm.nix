@@ -2,8 +2,8 @@
     services = {
         displayManager = {
             sddm = {
-		enable = true;
-		autoNumlock = true;
+                enable = true;
+                autoNumlock = true;
             };
         };
     };

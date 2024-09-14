@@ -10,11 +10,11 @@ if [[ $OBJECT == "win11" ]]; then
         "prepare")
             systemctl start libvirt-nosleep@"$OBJECT" 2>&1 | tee -a /var/log/libvirt/custom_hooks.log
             /var/lib/libvirt/bin/vfio-startup.sh 2>&1 | tee -a /var/log/libvirt/custom_hooks.log
-            ;;
+        ;;
 
         "release")
             systemctl stop libvirt-nosleep@"$OBJECT" 2>&1 | tee -a /var/log/libvirt/custom_hooks.log
             /var/lib/libvirt/bin/vfio-teardown.sh 2>&1 | tee -a /var/log/libvirt/custom_hooks.log
-            ;;
+        ;;
     esac
 fi

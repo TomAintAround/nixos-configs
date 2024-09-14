@@ -6,8 +6,8 @@
             opencl.enable = true;
             initrd.enable = lib.mkDefault true;
             amdvlk = {
-		enable = true;
-		support32Bit.enable = true;
+                enable = true;
+                support32Bit.enable = true;
             };
         };
     };

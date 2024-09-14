@@ -6,7 +6,7 @@
         eza
         gimp
         imagemagick
-	jq
+        jq
         killall
         libreoffice
         neovim
@@ -15,7 +15,7 @@
         nurl # Query data from a Github repo
         obsidian
         p7zip
-	popsicle
+        popsicle
         ripdrag # Drag-and-drop for the terminal
         ripgrep # Grep but better
         stremio
@@ -26,7 +26,7 @@
         vesktop
         virt-manager
         vlc
-	vscode
+        vscode
         wget
         zip
     ];

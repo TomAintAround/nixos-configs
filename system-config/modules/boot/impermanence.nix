@@ -32,7 +32,7 @@
             "/etc/NetworkManager/system-connections"
             "/etc/nixos"
             "/var/lib/bluetooth"
-	    "/var/lib/docker"
+            "/var/lib/docker"
             "/var/lib/flatpak"
             "/var/lib/fprint"
             "/var/lib/libvirt"
