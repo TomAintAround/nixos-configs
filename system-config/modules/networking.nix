@@ -14,9 +14,9 @@
         };
         networkmanager.enable = true;
 
-        nameservers = [
-            "194.242.2.4" #base.dns.mullvad.net
-        ];
+        #nameservers = [
+        #    "194.242.2.4" #base.dns.mullvad.net
+        #];
     };
 
     services.resolved = {
