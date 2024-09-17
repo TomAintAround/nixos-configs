@@ -1,6 +1,7 @@
 { pkgs, ... }: {
     home.packages = with pkgs; [
         act
+        arduino-ide
         brave
         cpu-x
         eza
