@@ -73,8 +73,6 @@
 
         shellAliases = {
             "cat" = "${pkgs.bat}/bin/bat --paging=never $argv";
-            "grep" = "command ${pkgs.bat-extras.batgrep}/bin/batgrep $argv";
-            "ip" = "command ip -color $argv";
             "less" = "${pkgs.bat}/bin/bat --paging=always $argv";
             "lf" = "cd \"$($XDG_CONFIG_HOME/home-manager/modules/lf/lfimg -print-last-dir $argv)\"";
             "ls" = "${pkgs.eza}/bin/eza --git --icons=always --long --all --group --header --links --color=always --no-quotes --smart-group --group-directories-first --time-style='+%H:%m %d/%m/%y'";
