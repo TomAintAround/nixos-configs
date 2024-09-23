@@ -1,6 +1,7 @@
 { pkgs, ... }: {
     home.packages = with pkgs; [
         act
+        arduino-ide
         brave
         cpu-x
         eza
@@ -26,6 +27,7 @@
         vesktop
         virt-manager
         vlc
+        vscode
         wget
         zip
     ];
