@@ -14,9 +14,11 @@
         };
         networkmanager.enable = true;
 
-        #nameservers = [
+        nameservers = [
         #    "194.242.2.4" #base.dns.mullvad.net
-        #];
+            "1.1.1.1" # Cloudfare
+            "1.0.0.1"
+        ];
     };
 
     services.resolved = {
