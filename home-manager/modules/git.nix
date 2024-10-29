@@ -27,7 +27,8 @@
                 ps = "push -u";
                 rb = "rebase";
                 rv = "revert";
-                s = "status";
+                st = "status";
+                sw = "switch";
             };
             extraConfig = {
                 merge.conflictstyle = "diff3";
