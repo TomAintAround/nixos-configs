@@ -2,12 +2,14 @@
     hyprbars = inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars;
     split-monitor-workspaces = inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces;
     hyprfocus = inputs.hyprfocus.packages.${pkgs.system}.hyprfocus;
+    hypr-dynamic-cursors = inputs.hypr-dynamic-cursors.packages.${pkgs.system}.hypr-dynamic-cursors;
 in {
     wayland.windowManager.hyprland = {
         plugins = [
             hyprbars
             split-monitor-workspaces
             hyprfocus
+            hypr-dynamic-cursors
         ];
 
         settings.plugin = {
@@ -45,6 +47,16 @@ in {
                 bar_precedence_over_border = true;
                 bar_padding = 7;
                 bar_button_padding = 7;
+            };
+
+            dynamic-cursors = {
+                enabled = true;
+                mode = "tilt";
+                threshold = 2;
+                tilt = {
+                    limit = 5000;
+                    function = "negative_quadratic";
+                };
             };
 
             split-monitor-workspaces.count = let
