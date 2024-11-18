@@ -21,13 +21,15 @@
             rounding = 10;
             shadow_range = 15;
             shadow_render_power = 2;
-            "col.shadow" = "rgba(00000080)";
-            shadow_offset = "7 7";
             dim_inactive = false;
             dim_strength = 0.1;
             blur = {
                 size = 7;
                 passes = 2;
+            };
+            shadow = {
+                color = "rgba(00000080)";
+                offset = "7 7";
             };
         };
 
