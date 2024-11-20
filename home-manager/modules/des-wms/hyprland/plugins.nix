@@ -6,10 +6,10 @@
 in {
     wayland.windowManager.hyprland = {
         plugins = [
-            hyprbars
+            #hyprbars
             split-monitor-workspaces
             hyprfocus
-            hypr-dynamic-cursors
+            #hypr-dynamic-cursors
         ];
 
         settings.plugin = {
