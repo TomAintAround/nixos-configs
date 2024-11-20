@@ -66,7 +66,7 @@
                 set -f
                 mkdir $1
                 cp -r $fx $1
-                ${pkgs.zip}/bin/zip -r $1.zip $1
+                ${pkgs.zip}/bin/zip -9 -r $1.zip $1
                 rm -rf $1
                 ${pkgs.lf}/bin/lf -remote "send $id unselect"
             }}
