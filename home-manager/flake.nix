@@ -16,7 +16,12 @@
 
         catppuccin.url = "github:catppuccin/nix";
 
-        hyprland.url = "git+https://github.com/hyprwm/Hyprland?rev=9a09eac79b85c846e3a865a9078a3f8ff65a9259&submodules=1";
+        hyprland = {
+            type = "github";
+            owner = "hyprwm";
+            repo = "Hyprland";
+            rev = "500d2a3580388afc8b620b0a3624147faa34f98b";
+        };
 
         hyprland-plugins = {
             url = "github:hyprwm/hyprland-plugins";

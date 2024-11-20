@@ -7,7 +7,7 @@
     programs.hyprland = {
         enable = true;
         package = pkgs.hyprland.overrideAttrs {
-            version = "0.42.0";
+            version = "0.45.1";
         };
         xwayland.enable = true;
     };
