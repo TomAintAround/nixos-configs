@@ -15,12 +15,11 @@
             layout = "master";
             resize_on_border = true;
             allow_tearing = true;
+            snap.enabled = true;
         };
 
         decoration = {
             rounding = 10;
-            shadow_range = 15;
-            shadow_render_power = 2;
             dim_inactive = false;
             dim_strength = 0.1;
             blur = {
@@ -29,6 +28,8 @@
             };
             shadow = {
                 color = "rgba(00000080)";
+                range = 15;
+                render_power = 2;
                 offset = "7 7";
             };
         };
