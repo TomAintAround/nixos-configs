@@ -14,6 +14,7 @@
             y = 0;
             scale = 1.0;
             enable = true;
+            default = false;
         }
         {
             name = "DVI-D-1";
@@ -25,6 +26,7 @@
             y = 0;
             scale = 1.0;
             enable = true;
+            default = true;
         }
         {
             name = "Unknown-1";

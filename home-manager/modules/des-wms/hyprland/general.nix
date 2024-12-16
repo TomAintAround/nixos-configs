@@ -86,6 +86,9 @@
 
         cursor = {
             no_hardware_cursors = true;
+            default_monitor = let
+                monitor = builtins.elemAt (builtins.filter (m: m.default) config.monitors) 0;
+            in monitor.name;
         };
 
         master = {

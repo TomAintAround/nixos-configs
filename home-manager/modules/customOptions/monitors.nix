@@ -61,6 +61,11 @@ in {
                     description = "Whether the monitor is enabled or not";
                     default = true;
                 };
+                default = mkOption {
+                    type = types.bool;
+                    description = "Whether the monitor is the default or not";
+                    default = false;
+                };
             };
         });
         description = "List of monitors, with the corresponding name, resolution, coordinates and refresh rate";
