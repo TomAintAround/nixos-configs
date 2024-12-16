@@ -18,4 +18,5 @@
     services.flatpak.enable = true;
 
     xdg.portal.enable = lib.mkIf config.services.flatpak.enable (lib.mkForce true);
+    xdg.portal.extraPortals = lib.mkIf config.services.flatpak.enable (lib.mkForce [ pkgs.xdg-desktop-portal-gtk ]);
 }
