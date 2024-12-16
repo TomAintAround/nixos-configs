@@ -41,7 +41,6 @@
                 "winIn, 0.7, 1.1, 0.1, 1.1"
                 "winOut, 0.35, -0.3, 0.25, 1"
                 "liner, 1, 1, 1, 1"
-                "fade, 0, 0.7, 0.3, 1"
             ];
             animation = [
                 "windowsIn, 1, 3, winIn, slide"
