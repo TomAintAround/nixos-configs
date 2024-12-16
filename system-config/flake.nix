@@ -10,6 +10,13 @@
         };
         
         impermanence.url = "github:nix-community/impermanence";
+
+        hyprland = {
+            type = "github";
+            owner = "hyprwm";
+            repo = "Hyprland";
+            rev = "4520b30d498daca8079365bdb909a8dea38e8d55"; # v0.44.1
+        };
     };
 
     outputs = inputs: let

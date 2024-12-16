@@ -1,7 +1,4 @@
-{ pkgs, config, inputs, lib, ... }: let
-    cfg = config.wayland.windowManager.hyprland;
-    split-monitor-workspaces = inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces;
-in {
+{ pkgs, config, lib, inputs, ... }: {
     wayland.windowManager.hyprland.settings = {
         bind = [
             # Hyprland keybinds
@@ -68,19 +65,23 @@ in {
             "SUPER, mouse_up, workspace, e-1"
         ]
         ++
-        (builtins.concatLists (builtins.genList (
-            i: let
-                split = "${if (builtins.elem split-monitor-workspaces cfg.plugins) then "split-" else ""}";
-                ws = i + 1;
-            in [
-                "SUPER, code:1${toString i}, ${split}workspace, ${toString ws}"
-                "SUPER SHIFT, code:1${toString i}, ${split}movetoworkspace, ${toString ws}"
-            ]
-        ) (
-            if (builtins.elem split-monitor-workspaces cfg.plugins)
-                then (cfg.numOfWorkspaces / 2)
-            else (cfg.numOfWorkspaces))
-        )) 
+        (let
+            cfg = config.wayland.windowManager.hyprland;
+            splitPluginInstalled = builtins.elem inputs.hyprsplit.packages.${pkgs.system}.hyprsplit cfg.plugins;
+        in
+            builtins.concatLists (builtins.genList (
+                i: let
+                    split = "${if splitPluginInstalled then "split:" else ""}";
+                    ws = i + 1;
+                in [
+                    "SUPER, code:1${toString i}, ${split}workspace, ${toString ws}"
+                    "SUPER SHIFT, code:1${toString i}, ${split}movetoworkspace, ${toString ws}"
+                ]
+            ) (
+                if splitPluginInstalled then (cfg.numOfWorkspaces / 2)
+                else (cfg.numOfWorkspaces))
+            )
+        ) 
         ++
         # I know what you're thinking: "What the hell am I reading? What kind of spaguetti mess is this?".
         # You think this sucks? THEN MAKE IT BETTER YOURSELF AND MAKE A PULL REQUEST. Let's see if you can

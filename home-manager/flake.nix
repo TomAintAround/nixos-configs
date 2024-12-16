@@ -20,7 +20,7 @@
             type = "github";
             owner = "hyprwm";
             repo = "Hyprland";
-            rev = "500d2a3580388afc8b620b0a3624147faa34f98b";
+            rev = "4520b30d498daca8079365bdb909a8dea38e8d55"; # v0.44.1
         };
 
         hyprland-plugins = {
@@ -28,8 +28,8 @@
             inputs.hyprland.follows = "hyprland";
         };
 
-        split-monitor-workspaces = {
-            url = "github:Duckonaut/split-monitor-workspaces";
+        hyprsplit = {
+            url = "github:shezdy/hyprsplit";
             inputs.hyprland.follows = "hyprland";
         };
 

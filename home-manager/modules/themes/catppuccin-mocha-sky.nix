@@ -135,18 +135,17 @@ in {
             enable = true;
             inherit flavor;
             extraConfig = ''
-                set -g @catppuccin_window_left_separator ""
-                set -g @catppuccin_window_right_separator " "
-                set -g @catppuccin_window_middle_separator " "
-                set -g @catppuccin_window_number_position "right"
+                set -g @catppuccin_flavor "mocha"
+                set -g @catppuccin_window_status_style "rounded"
+                set -g status-left ""
+                set -g status-left-length 100
 
-                set -g @catppuccin_window_default_fill "number"
-                set -g @catppuccin_window_default_text "#W"
-
-                set -g @catppuccin_window_current_fill "number"
-                set -g @catppuccin_window_current_text "#W"
-
-                set -g @catppuccin_status_modules_right "user host directory application session"
+                set -g status-right-length 100
+                set -g status-right "#{E:@catppuccin_status_user}"
+                set -ag status-right "#{E:@catppuccin_status_host}"
+                set -ag status-right "#{E:@catppuccin_status_directory}"
+                set -ag status-right "#{E:@catppuccin_status_application}"
+                set -ag status-right "#{E:@catppuccin_status_session}"
                 set -g @catppuccin_status_left_separator  " "
                 set -g @catppuccin_status_right_separator ""
                 set -g @catppuccin_status_fill "icon"

@@ -48,14 +48,13 @@
             }
 
             wayland() {
+                mode "$1"
                 if [[ $(ps -ef | grep swww-daemon | sed '/grep/d' | cat -s) ]]; then
-                    mode "$1"
                     printf "\033[0;32m[INFO]\033[0m Selecting wallpaper $new.jpg\n"
                     ${pkgs.swww}/bin/swww img $wallpapersDir/"$new".jpg --transition-step 150 --transition-type wipe --transition-bezier .33,1,.67,1
                 else
-                    mode "$1"
                     printf "\033[0;32m[INFO]\033[0m Initializing SWWW and selecting wallpaper $new.jpg\n"
-                    ${pkgs.swww}/bin/swww init
+                    ${pkgs.swww}/bin/swww-daemon &
                     ${pkgs.swww}/bin/swww img $wallpapersDir/"$new".jpg
                 fi
             }
