@@ -49,7 +49,6 @@
                 "windowsMove, 1, 5, win, slide"
                 "layersIn, 1, 3, winIn, slide"
                 "layersOut, 1, 5, winIn, slide"
-                "fade, 0, 3, fade"
                 "border, 1, 4, liner"
                 "borderangle, 1, 30, liner, loop"
                 "workspaces, 1, 5, win, slidevert"
