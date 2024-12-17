@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-    home.packages = with pkgs; [
-        hyprpicker # Color picker
-    ];
+	home.packages = with pkgs; [
+		hyprpicker # Color picker
+	];
 }

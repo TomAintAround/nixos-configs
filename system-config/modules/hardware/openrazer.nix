@@ -1,8 +1,8 @@
 { pkgs, ... }: {
-    hardware.openrazer.enable = true;
+	hardware.openrazer.enable = true;
 
-    environment.systemPackages = with pkgs; [
-        openrazer-daemon
-        polychromatic
-    ];
+	environment.systemPackages = with pkgs; [
+		openrazer-daemon
+		polychromatic
+	];
 }

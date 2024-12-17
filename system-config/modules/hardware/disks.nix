@@ -1,6 +1,6 @@
 {
-    services.udisks2 = {
-        enable = true;
-        settings."mount_options.conf".defaults.umask = "0022";
-    };
+	services.udisks2 = {
+		enable = true;
+		settings."mount_options.conf".defaults.umask = "0022";
+	};
 }
