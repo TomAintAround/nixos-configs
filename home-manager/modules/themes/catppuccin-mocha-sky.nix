@@ -13,10 +13,93 @@ in {
 				variant = flavor;
 			};
 		};
+	};
 
-		catppuccin.icon = {
+	catppuccin = {
+		alacritty = {
+			enable = true;
+			inherit flavor;
+		};
+
+		bat = {
+			enable = true;
+			inherit flavor;
+		};
+
+		btop = {
+			enable = true;
+			inherit flavor;
+		};
+
+		delta = {
+			enable = true;
+			inherit flavor;
+		};
+
+		dunst = {
+			enable = true;
+			inherit flavor;
+			prefix = "99";
+		};
+
+		fish = {
+			enable = true;
+			inherit flavor;
+		};
+
+		fzf = {
 			enable = true;
 			inherit accent flavor;
+		};
+
+		gtk.icon = {
+			enable = true;
+			inherit accent flavor;
+		};
+
+		kvantum = {
+			enable = true;
+			apply = true;
+			inherit accent flavor;
+		};
+
+		mpv = {
+			enable = false;
+			accent = "mauve";
+			inherit flavor;
+		};
+
+		obs = {
+			enable = false;
+			inherit flavor;
+		};
+
+		tmux = {
+			enable = true;
+			inherit flavor;
+			extraConfig = ''
+				set -g @catppuccin_flavor "mocha"
+				set -g @catppuccin_window_status_style "rounded"
+				set -g status-left ""
+				set -g status-left-length 100
+
+				set -g status-right-length 100
+				set -g status-right "#{E:@catppuccin_status_user}"
+				set -ag status-right "#{E:@catppuccin_status_host}"
+				set -ag status-right "#{E:@catppuccin_status_directory}"
+				set -ag status-right "#{E:@catppuccin_status_application}"
+				set -ag status-right "#{E:@catppuccin_status_session}"
+				set -g @catppuccin_status_left_separator  " "
+				set -g @catppuccin_status_right_separator ""
+				set -g @catppuccin_status_fill "icon"
+				set -g @catppuccin_status_connect_separator "no"
+
+				set -g @catppuccin_directory_text "#{pane_current_path}"
+				set -g @catppuccin_user_color "#f38ba8"
+				set -g @catppuccin_host_color "#eba0ac"
+				set -g @catppuccin_application_color "#f9e2af"
+				set -g @catppuccin_directory_color "#fab387"
+			'';
 		};
 	};
 
@@ -89,90 +172,8 @@ in {
 		done
 	'';
 
-	qt.style.catppuccin = {
-		enable = true;
-		inherit accent flavor;
-	};
-
-	programs = {
-		alacritty.catppuccin = {
-			enable = true;
-			inherit flavor;
-		};
-
-		bat.catppuccin = {
-			enable = true;
-			inherit flavor;
-		};
-
-		btop.catppuccin = {
-			enable = true;
-			inherit flavor;
-		};
-
-		fish.catppuccin = {
-			enable = true;
-			inherit flavor;
-		};
-
-		fzf.catppuccin = {
-			enable = true;
-			inherit flavor;
-		};
-
-		git.delta.catppuccin = {
-			enable = true;
-			inherit flavor;
-		};
-
-		mpv.catppuccin = {
-			enable = false;
-			accent = "mauve";
-			inherit flavor;
-		};
-
-		obs.catppuccin = {
-			enable = false;
-			inherit flavor;
-		};
-
-		tmux.catppuccin = {
-			enable = true;
-			inherit flavor;
-			extraConfig = ''
-				set -g @catppuccin_flavor "mocha"
-				set -g @catppuccin_window_status_style "rounded"
-				set -g status-left ""
-				set -g status-left-length 100
-
-				set -g status-right-length 100
-				set -g status-right "#{E:@catppuccin_status_user}"
-				set -ag status-right "#{E:@catppuccin_status_host}"
-				set -ag status-right "#{E:@catppuccin_status_directory}"
-				set -ag status-right "#{E:@catppuccin_status_application}"
-				set -ag status-right "#{E:@catppuccin_status_session}"
-				set -g @catppuccin_status_left_separator  " "
-				set -g @catppuccin_status_right_separator ""
-				set -g @catppuccin_status_fill "icon"
-				set -g @catppuccin_status_connect_separator "no"
-
-				set -g @catppuccin_directory_text "#{pane_current_path}"
-				set -g @catppuccin_user_color "#f38ba8"
-				set -g @catppuccin_host_color "#eba0ac"
-				set -g @catppuccin_application_color "#f9e2af"
-				set -g @catppuccin_directory_color "#fab387"
-			'';
-		};
-	};
-
-	services.dunst.catppuccin = {
-		enable = true;
-		inherit flavor;
-	};
-
-
 	wayland.windowManager.hyprland.settings = lib.mkIf config.wayland.windowManager.hyprland.enable {
-		source = [ "${config.catppuccin.sources.hyprland}/themes/${flavor}.conf" ];
+		source = [ "${config.catppuccin.sources.hyprland}/${flavor}.conf" ];
 
 		general = {
 			"col.inactive_border" = "\$base \$overlay0 45deg";
