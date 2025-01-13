@@ -8,8 +8,6 @@
 			style = "default";
 		};
 		extraPackages = with pkgs.bat-extras; [
-			batpipe
-			batgrep
 			batman
 		];
 	};
