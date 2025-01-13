@@ -131,6 +131,11 @@ in {
 			inherit flavor;
 		};
 
+		obs.catppuccin = {
+			enable = false;
+			inherit flavor;
+		};
+
 		tmux.catppuccin = {
 			enable = true;
 			inherit flavor;
