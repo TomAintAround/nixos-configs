@@ -59,6 +59,10 @@
 
 				/* Enabling userChrome customization */
 				user_pref("toolkit.legacyuserprofilecustomizations.stylesheets", true);
+
+				/* Enable Hardware Acceleration */
+				user_pref("gfx.webrender.all", true);
+				user_pref("media.ffmpeg.vaapi.enabled", true);
 			'';
 		};
 	};
