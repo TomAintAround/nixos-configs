@@ -18,6 +18,7 @@
 		./fd.nix
 		./firefox.nix
 		./fzf.nix
+		./gamedev.nix
 		./gaming.nix
 		./git.nix
 		./kdeconnect.nix
