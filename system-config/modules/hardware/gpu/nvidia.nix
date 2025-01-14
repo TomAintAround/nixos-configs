@@ -13,6 +13,9 @@
 			powerManagement.enable = true;
 			package = config.boot.kernelPackages.nvidiaPackages.stable;
 			open = true;
+			nvidiaSettings = true;
+			modesetting.enable = true;
+			gsp.enable = true;
 			videoAcceleration = true;
 		};
 	};
