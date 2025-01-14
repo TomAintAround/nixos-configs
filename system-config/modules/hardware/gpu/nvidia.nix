@@ -9,13 +9,12 @@
 
 	hardware = {
 		nvidia = {
-			modesetting.enable = true;
-			powerManagement.enable = true;
 			package = config.boot.kernelPackages.nvidiaPackages.stable;
-			open = true;
-			nvidiaSettings = true;
-			modesetting.enable = true;
 			gsp.enable = true;
+			modesetting.enable = true;
+			nvidiaSettings = true;
+			open = true;
+			powerManagement.enable = true;
 			videoAcceleration = true;
 		};
 	};
