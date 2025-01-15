@@ -16,9 +16,6 @@
 		bind \cf 'commandline -f kill-whole-line && lf && commandline -f execute'
 		bind -M insert \cf 'commandline -f kill-whole-line && lf && commandline -f execute'
 		bind -M visual \cf 'commandline -f kill-whole-line && lf && commandline -f execute'
-		bind \cl 'commandline -f kill-whole-line && ls && commandline -f execute'
-		bind -M insert \cl 'commandline -f kill-whole-line && ls && commandline -f execute'
-		bind -M visual \cl 'commandline -f kill-whole-line && ls && commandline -f execute'
 
 		# Done Plugin
 		set -a __done_exclude '^pgrep'
