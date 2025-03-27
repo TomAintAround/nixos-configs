@@ -72,8 +72,8 @@
 					draw "$cache.jpg"
 				else
 					${pkgs.poppler_utils}/bin/pdftotext -nopgbrk -q -- "$file" -
-					exit 0
 				fi
+				exit 0
 			;;
 			docx|odt|epub)
 				${pkgs.pandoc}/bin/pandoc -s -t plain -- "$file"
@@ -90,6 +90,7 @@
 					convert -- "$file" "$cache"
 					draw "$cache"
 				fi
+				exit 0
 			;;
 		esac
 
@@ -115,6 +116,7 @@
 					draw "$file"
 					fi
 				fi
+				exit 0
 			;;
 			audio/*,[01])
 				${pkgs.exiftool}/bin/exiftool -j "$1" | jq -C
@@ -127,6 +129,7 @@
 					${pkgs.ffmpegthumbnailer}/bin/ffmpegthumbnailer -i "$file" -o "$cache" -s 0
 					draw "$cache"
 				fi
+				exit 0
 			;;
 		esac
 
