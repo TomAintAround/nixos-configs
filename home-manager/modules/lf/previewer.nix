@@ -63,16 +63,16 @@
 					cache="$(hash "$file")"
 					cache "$cache.jpg"
 					${pkgs.poppler_utils}/bin/pdftoppm -f 1 -l 1 \
-					-scale-to-x "$default_x" \
-					-scale-to-y -1 \
-					-singlefile \
-					-jpeg \
-					-- "$file" "$cache"
+						-scale-to-x "$default_x" \
+						-scale-to-y -1 \
+						-singlefile \
+						-jpeg \
+						-- "$file" "$cache"
 					draw "$cache.jpg"
 				else
 					${pkgs.poppler_utils}/bin/pdftotext -nopgbrk -q -- "$file" -
-				fi
-				exit 0;;
+					exit 0
+				fi;;
 			docx|odt|epub)
 				${pkgs.pandoc}/bin/pandoc -s -t plain -- "$file"
 				exit 0;;
@@ -101,15 +101,14 @@
 				if [ -n "''${FIFO_UEBERZUG-}" ]; then
 					orientation="$(identify -format '%[EXIF:Orientation]\n' -- "$file")"
 					if [ -n "$orientation" ] && [ "$orientation" != 1 ]; then
-					cache="$(hash "$file").jpg"
-					cache "$cache"
-					convert -- "$file" -auto-orient "$cache"
-					draw "$cache"
+						cache="$(hash "$file").jpg"
+						cache "$cache"
+						convert -- "$file" -auto-orient "$cache"
+						draw "$cache"
 					else
-					draw "$file"
+						draw "$file"
 					fi
-				fi
-				exit 0;;
+				fi;;
 			audio/*,[01])
 				${pkgs.exiftool}/bin/exiftool -j "$1" | jq -C
 				exit 0;;
