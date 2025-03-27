@@ -1,8 +1,6 @@
 { pkgs, ... }: {
 	home.packages = with pkgs; [
 		act
-		arduino-cli
-		arduino-ide
 		brave
 		cpu-x
 		eza
@@ -11,7 +9,6 @@
 		jq
 		killall
 		libreoffice
-		neovim
 		newsflash
 		nix-tree # View all package dependencies
 		nurl # Query data from a Github repo
