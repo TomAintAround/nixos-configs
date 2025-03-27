@@ -30,6 +30,7 @@
 			ICON_THEME = config.gtk.iconTheme.name;
 			HYPRCURSOR_THEME = config.home.pointerCursor.name;
 			HYPRCURSOR_SIZE = 20;
+			KRITA_NO_STYLE_OVERRIDE = 1;
 		};
 	};
 
