@@ -108,7 +108,7 @@ in {
 			default = false;
 		};
 
-		options.openrgb.enable = mkOption {
+		openrgb.enable = mkOption {
 			type = types.bool;
 			description = "Enables OpenRGB related settings";
 			default = false;
