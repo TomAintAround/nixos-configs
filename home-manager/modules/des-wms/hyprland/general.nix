@@ -57,6 +57,7 @@
 		input = {
 			kb_model = "QWERTY";
 			kb_layout = "pt,es";
+			kb_options = "grp:alt_shift_toggle";
 			numlock_by_default = true;
 			follow_mouse = 1;
 
