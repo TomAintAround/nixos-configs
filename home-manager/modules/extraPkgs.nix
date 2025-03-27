@@ -30,6 +30,7 @@
 		vlc
 		vscode
 		wget
+		libsForQt5.xwaylandvideobridge
 		zip
 	];
 }
