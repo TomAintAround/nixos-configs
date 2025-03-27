@@ -17,8 +17,8 @@
 			set -g status-interval 1
 			set -g clock-mode-style 24
 			set -g escape-time 0
-			set-option -g focus-events on
-			set-option -g status-position top
+			set -g focus-events on
+			set -g status-position top
 
 			# Keybindings
 			unbind t
