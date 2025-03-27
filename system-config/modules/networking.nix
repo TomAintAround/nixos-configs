@@ -3,7 +3,7 @@
 		useDHCP = lib.mkDefault true;
 		enableIPv6 = false;
 		firewall = {
-			allowedTCPPorts = [ 80 443 465 587 993 25565 27036 27037 27040 ];
+			allowedTCPPorts = [ 80 443 465 587 995 25565 27036 27037 27040 ];
 			allowedTCPPortRanges = [
 				{ from = 1714; to = 1764; }
 			];
