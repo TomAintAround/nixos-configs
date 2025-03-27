@@ -138,11 +138,11 @@
 		len="$(( (width - (''${#header_text} + 2)) / 2 ))"
 		if [ "$len" -gt 0 ]; then
 			for i in $(seq "$len"); do
-			header="-$header"
+				header="-$header"
 			done
 			header="$header $header_text "
 			for i in $(seq "$len"); do
-			header="$header-"
+				header="$header-"
 			done
 		else
 			header="$header_text"
