@@ -32,6 +32,7 @@ LSPCI="/var/lib/libvirt/bin/lspci"
 AWK="/var/lib/libvirt/bin/awk"
 LSOF="/var/lib/libvirt/bin/lsof"
 PKILL="/var/lib/libvirt/bin/pkill"
+PGREP="/var/lib/libvirt/bin/pgrep"
 
 ################################## Script ###################################
 
@@ -127,6 +128,7 @@ systemctl stop openrgb.service
 if $LSPCI -nn | grep -e VGA | grep -s NVIDIA ; then
 	echo "$DATE System has an NVIDIA GPU"
 	grep -qsF "true" "/tmp/vfio-is-nvidia" || echo "true" >/tmp/vfio-is-nvidia
+	echo efi-framebuffer.0 > /sys/bus/platform/drivers/efi-framebuffer/unbind
 
 	$PKILL -9 X
 
@@ -140,6 +142,8 @@ if $LSPCI -nn | grep -e VGA | grep -s NVIDIA ; then
 	modprobe -r nvidia_modeset
 	modprobe -r nvidia
 	modprobe -r i2c_nvidia_gpu
+	modprobe -r drm_kms_helper
+	modprobe -r drm
 
 	echo "$DATE NVIDIA GPU Drivers Unloaded"
 fi
@@ -147,6 +151,7 @@ fi
 if $LSPCI -nn | grep -e VGA | grep -s AMD ; then
 	echo "$DATE System has an AMD GPU"
 	grep -qsF "true" "/tmp/vfio-is-amd" || echo "true" >/tmp/vfio-is-amd
+	echo efi-framebuffer.0 > /sys/bus/platform/drivers/efi-framebuffer/unbind
 
 	## Unload AMD GPU drivers ##
 	modprobe -r drm_kms_helper

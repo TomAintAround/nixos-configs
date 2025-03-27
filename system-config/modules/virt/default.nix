@@ -58,6 +58,7 @@
 				ln -sf ${pkgs.gawk}/bin/gawk $libvirtPath/bin/awk
 				ln -sf ${pkgs.lsof}/bin/lsof $libvirtPath/bin/lsof
 				ln -sf ${pkgs.procps}/bin/pkill $libvirtPath/bin/pkill
+				ln -sf ${pkgs.procps}/bin/pgrep $libvirtPath/bin/pgrep
 			'';
 		};
 
