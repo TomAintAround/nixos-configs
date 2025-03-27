@@ -9,6 +9,12 @@ in {
 			default = false;
 		};
 
+		gamedev.enable = mkOption {
+			type = types.bool;
+			description = "Installs gamedev apps";
+			default = false;
+		};
+
 		gaming.enable = mkOption {
 			type = types.bool;
 			description = "Installs gaming apps";
