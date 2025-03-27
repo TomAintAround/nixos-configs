@@ -30,7 +30,7 @@
 
 		cache() {
 			if [ -f "$1" ]; then
-			draw "$1"
+				draw "$1"
 			fi
 		}
 
@@ -55,10 +55,9 @@
 			tbz2|tgz|tlz|txz|tZ|tzo|war|xz|Z|zip)
 				${pkgs.atool}/bin/als -- "$file"
 				exit 0;;
-				[1-8])
+			[1-8])
 				COLUMNS="$width" man -- "$file" | col -b
-				exit 0
-			;;
+				exit 0;;
 			pdf)
 				if [ -n "''${FIFO_UEBERZUG-}" ]; then
 					cache="$(hash "$file")"
@@ -73,16 +72,13 @@
 				else
 					${pkgs.poppler_utils}/bin/pdftotext -nopgbrk -q -- "$file" -
 				fi
-				exit 0
-			;;
+				exit 0;;
 			docx|odt|epub)
 				${pkgs.pandoc}/bin/pandoc -s -t plain -- "$file"
-				exit 0
-			;;
+				exit 0;;
 			htm|html|xhtml)
 				${pkgs.lynx}/bin/lynx -dump -- "$file"
-				exit 0
-			;;
+				exit 0;;
 			svg)
 				if [ -n "''${FIFO_UEBERZUG-}" ]; then
 					cache="$(hash "$file").jpg"
@@ -90,20 +86,17 @@
 					convert -- "$file" "$cache"
 					draw "$cache"
 				fi
-				exit 0
-			;;
+				exit 0;;
 		esac
 
 		mime="$(file -Lb --mime-type -- "$file")"
 		case "$mime" in
 			text/*)
 				${pkgs.bat}/bin/bat --paging=never --color=always --wrap=never --style=header,grid,numbers --line-range :50 "$file"
-				exit 0
-			;;
+				exit 0;;
 			application/json,0)
 				${pkgs.jq}/bin/jq -C < $file
-				exit 0
-			;;
+				exit 0;;
 			image/*)
 				if [ -n "''${FIFO_UEBERZUG-}" ]; then
 					orientation="$(identify -format '%[EXIF:Orientation]\n' -- "$file")"
@@ -116,12 +109,10 @@
 					draw "$file"
 					fi
 				fi
-				exit 0
-			;;
+				exit 0;;
 			audio/*,[01])
 				${pkgs.exiftool}/bin/exiftool -j "$1" | jq -C
-				exit 0
-			;;
+				exit 0;;
 			video/*)
 				if [ -n "''${FIFO_UEBERZUG-}" ]; then
 					cache="$(hash "$file").jpg"
@@ -129,8 +120,7 @@
 					${pkgs.ffmpegthumbnailer}/bin/ffmpegthumbnailer -i "$file" -o "$cache" -s 0
 					draw "$cache"
 				fi
-				exit 0
-			;;
+				exit 0;;
 		esac
 
 		header_text="File Type Classification"
