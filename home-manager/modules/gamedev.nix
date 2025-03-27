@@ -4,7 +4,7 @@
 		aseprite
 		famistudio
 		gimp
-		godot_4-mono
+		godot_4
 		krita
 		tenacity
 	];
