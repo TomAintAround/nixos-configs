@@ -1,5 +1,5 @@
-{ pkgs, ... }: {
-	home.packages = with pkgs; [
+{ pkgs, lib, config, ... }: {
+	home.packages = with pkgs; lib.mkIf config.gamedev.enable [
 		ardour
 		aseprite
 		famistudio

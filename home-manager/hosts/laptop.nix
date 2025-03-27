@@ -24,6 +24,7 @@
 
 	brightness.enable = true;
 	gaming.enable = false;
+	gamedev.enable = false;
 	openrazer.enable = false;
 	openrgb.enable = false;
 }
