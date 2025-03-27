@@ -43,11 +43,11 @@
 				"liner, 1, 1, 1, 1"
 			];
 			animation = [
-				"windowsIn, 1, 3, winIn, slide"
-				"windowsOut, 1, 5, winOut, slide"
-				"windowsMove, 1, 5, win, slide"
-				"layersIn, 1, 3, winIn, slide"
-				"layersOut, 1, 5, winIn, slide"
+				"windowsIn, 1, 3, winIn, gnomed"
+				"windowsOut, 1, 5, winOut, gnomed"
+				"windowsMove, 1, 5, win, gnomed"
+				"layersIn, 1, 3, winIn, gnomed"
+				"layersOut, 1, 5, winIn, gnomed"
 				"border, 1, 4, liner"
 				"borderangle, 1, 30, liner, loop"
 				"workspaces, 1, 5, win, slidevert"
@@ -82,12 +82,16 @@
 			workspace_back_and_forth = false;
 		};
 
+		xwayland.force_zero_scaling = true;
+
 		cursor = {
 			no_hardware_cursors = true;
 			default_monitor = let
 				monitor = builtins.elemAt (builtins.filter (m: m.default) config.monitors) 0;
 			in monitor.name;
 		};
+
+		ecosystem.no_donation_nag = true;
 
 		master = {
 			mfact = 0.5;

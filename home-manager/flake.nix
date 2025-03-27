@@ -20,7 +20,7 @@
 			type = "github";
 			owner = "hyprwm";
 			repo = "Hyprland";
-			rev = "0bd541f2fd902dbfa04c3ea2ccf679395e316887"; # v0.46.2
+			rev = "5ee35f914f921e5696030698e74fb5566a804768"; # v0.48.0
 		};
 
 		hyprland-plugins = {
