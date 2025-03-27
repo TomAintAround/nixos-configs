@@ -14,7 +14,7 @@
 			y = 0;
 			scale = 1.0;
 			enable = true;
-			default = false;
+			default = true;
 		}
 		{
 			name = "DVI-D-1";

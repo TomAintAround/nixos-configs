@@ -31,6 +31,9 @@
 			HYPRCURSOR_THEME = config.home.pointerCursor.name;
 			HYPRCURSOR_SIZE = 20;
 			KRITA_NO_STYLE_OVERRIDE = 1;
+			GDK_SCALE = let
+				monitor = builtins.elemAt (builtins.filter (m: m.default) config.monitors) 0;
+			in monitor.scale;
 		};
 	};
 
