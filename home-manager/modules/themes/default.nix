@@ -1,5 +1,5 @@
 { pkgs, config, lib, ... }: {
-	imports = [ ./catppuccin-mocha-sky.nix ];
+	imports = [ ./catppuccin.nix ];
 
 	gtk = {
 		enable = true;
