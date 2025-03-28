@@ -142,10 +142,10 @@ exit 0
 	'';
 
 	xdg.configFile."lf/cleaner.sh".text = ''
-		#!/usr/bin/env bash
-		set -euf
-		if [ -n "''${FIFO_UEBERZUG-}" ]; then
-			printf '{"action":"remove","identifier":"preview"}\n' >"$FIFO_UEBERZUG"
-		fi
+#!/usr/bin/env bash
+set -euf
+if [ -n "''${FIFO_UEBERZUG-}" ]; then
+	printf '{"action":"remove","identifier":"preview"}\n' >"$FIFO_UEBERZUG"
+fi
 	'';
 }
