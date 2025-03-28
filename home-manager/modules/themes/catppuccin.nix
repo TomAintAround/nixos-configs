@@ -39,7 +39,6 @@ in {
 		dunst = {
 			enable = true;
 			inherit flavor;
-			prefix = "99";
 		};
 
 		fish = {
