@@ -155,11 +155,6 @@ in
 
 newIconPath="$iconDir"/Papirus
 
-copyIcon() {
-	run cp -r "$iconPath""$1" "$iconDir"
-	run chmod +w "$newIconPath""$1"
-}
-
 for extra in "" "-Dark" "-Light"; do
 	if [ -e "$newIconPath""$extra" ]; then
 		if ! run diff "$iconPath""$extra" "$newIconPath""$extra" &>/dev/null; then
