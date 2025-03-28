@@ -128,18 +128,18 @@ in
 
 newThemePath="$themeDir"/${config.gtk.theme.name}
 
-copyTheme() {
-	run cp -r "$themePath" "$themeDir"
-	run chmod +w "$newThemePath"
+copy () {
+	run cp -r "$1" "$2"
+	run chmod +w "$3"
 }
 
 if [ -e "$newThemePath" ]; then
 	if ! run diff "$themePath" $newThemePath &>/dev/null; then
 		${pkgs.trash-cli}/bin/trash-put "$newThemePath"
-		copyTheme
+		copy "$themePath" "$themeDir" "$newThemePath"
 	fi
 else
-	copyTheme
+	copy "$themePath" "$themeDir" "$newThemePath"
 fi
 
 iconPath=$(run nix-instantiate --eval --expr '
@@ -164,10 +164,10 @@ for extra in "" "-Dark" "-Light"; do
 	if [ -e "$newIconPath""$extra" ]; then
 		if ! run diff "$iconPath""$extra" "$newIconPath""$extra" &>/dev/null; then
 			${pkgs.trash-cli}/bin/trash-put "$newIconPath""$extra"
-			copyIcon "$extra"
+			copy "$iconPath""$extra" "$iconDir" "$newIconPath""$extra"
 		fi
 	else
-		copyIcon "$extra"
+		copy "$iconPath""$extra" "$iconDir" "$newIconPath""$extra"
 	fi
 done
 	'';
