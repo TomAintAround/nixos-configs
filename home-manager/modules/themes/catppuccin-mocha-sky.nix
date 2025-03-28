@@ -78,27 +78,27 @@ in {
 			enable = true;
 			inherit flavor;
 			extraConfig = ''
-				set -g @catppuccin_flavor "mocha"
-				set -g @catppuccin_window_status_style "rounded"
-				set -g status-left ""
-				set -g status-left-length 100
+set -g @catppuccin_flavor "mocha"
+set -g @catppuccin_window_status_style "rounded"
+set -g status-left ""
+set -g status-left-length 100
 
-				set -g status-right-length 100
-				set -g status-right "#{E:@catppuccin_status_user}"
-				set -ag status-right "#{E:@catppuccin_status_host}"
-				set -ag status-right "#{E:@catppuccin_status_directory}"
-				set -ag status-right "#{E:@catppuccin_status_application}"
-				set -ag status-right "#{E:@catppuccin_status_session}"
-				set -g @catppuccin_status_left_separator  " "
-				set -g @catppuccin_status_right_separator ""
-				set -g @catppuccin_status_fill "icon"
-				set -g @catppuccin_status_connect_separator "no"
+set -g status-right-length 100
+set -g status-right "#{E:@catppuccin_status_user}"
+set -ag status-right "#{E:@catppuccin_status_host}"
+set -ag status-right "#{E:@catppuccin_status_directory}"
+set -ag status-right "#{E:@catppuccin_status_application}"
+set -ag status-right "#{E:@catppuccin_status_session}"
+set -g @catppuccin_status_left_separator  " "
+set -g @catppuccin_status_right_separator ""
+set -g @catppuccin_status_fill "icon"
+set -g @catppuccin_status_connect_separator "no"
 
-				set -g @catppuccin_directory_text "#{pane_current_path}"
-				set -g @catppuccin_user_color "#f38ba8"
-				set -g @catppuccin_host_color "#eba0ac"
-				set -g @catppuccin_application_color "#f9e2af"
-				set -g @catppuccin_directory_color "#fab387"
+set -g @catppuccin_directory_text "#{pane_current_path}"
+set -g @catppuccin_user_color "#f38ba8"
+set -g @catppuccin_host_color "#eba0ac"
+set -g @catppuccin_application_color "#f9e2af"
+set -g @catppuccin_directory_color "#fab387"
 			'';
 		};
 	};
@@ -106,70 +106,70 @@ in {
 	# Script to copy the GTK theme to ~/.themes/ and the icon theme
 	# to ~/.icons each time home-manager is updated for flatpak support
 	home.activation.copy-themes = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-		themeDir=${config.home.homeDirectory}/.themes
-		iconDir=${config.home.homeDirectory}/.icons
+themeDir=${config.home.homeDirectory}/.themes
+iconDir=${config.home.homeDirectory}/.icons
 
-		run mkdir "$themeDir" 2>/dev/null & # For some reason, "&" is needed
-		run mkdir "$iconDir" 2>/dev/null &
-		run sleep 1
+run mkdir "$themeDir" 2>/dev/null & # For some reason, "&" is needed
+run mkdir "$iconDir" 2>/dev/null &
+run sleep 1
 
-		# Because there's an override in catppuccin-gtk,
-		# it's more difficult to get the path
-		themePath=$(run nix-instantiate --eval --expr '
-		let
-			pkgs = import <nixpkgs> {};
-			myGtk = pkgs.catppuccin-gtk.override (old: {
-				accents = [ "${accent}" ];
-				variant = "${flavor}";
-			});
-		in
-			myGtk.outPath
-		' | run sed 's/\"//g')/share/themes/${config.gtk.theme.name}
+# Because there's an override in catppuccin-gtk,
+# it's more difficult to get the path
+themePath=$(run nix-instantiate --eval --expr '
+let
+	pkgs = import <nixpkgs> {};
+	myGtk = pkgs.catppuccin-gtk.override (old: {
+		accents = [ "${accent}" ];
+		variant = "${flavor}";
+	});
+in
+	myGtk.outPath
+' | run sed 's/\"//g')/share/themes/${config.gtk.theme.name}
 
-		newThemePath="$themeDir"/${config.gtk.theme.name}
+newThemePath="$themeDir"/${config.gtk.theme.name}
 
-		copyTheme() {
-			run cp -r "$themePath" "$themeDir"
-			run chmod +w "$newThemePath"
-		}
+copyTheme() {
+	run cp -r "$themePath" "$themeDir"
+	run chmod +w "$newThemePath"
+}
 
-		if [ -e "$newThemePath" ]; then
-			if ! run diff "$themePath" $newThemePath &>/dev/null; then
-				${pkgs.trash-cli}/bin/trash-put "$newThemePath"
-				copyTheme
-			fi
-		else
-			copyTheme
+if [ -e "$newThemePath" ]; then
+	if ! run diff "$themePath" $newThemePath &>/dev/null; then
+		${pkgs.trash-cli}/bin/trash-put "$newThemePath"
+		copyTheme
+	fi
+else
+	copyTheme
+fi
+
+iconPath=$(run nix-instantiate --eval --expr '
+let
+	pkgs = import <nixpkgs> {};
+	myIcon = pkgs.catppuccin-papirus-folders.override (old: {
+		accent = "${accent}";
+		flavor = "${flavor}";
+	});
+in
+	myIcon.outPath
+' | run sed 's/\"//g')/share/icons/Papirus
+
+newIconPath="$iconDir"/Papirus
+
+copyIcon() {
+	run cp -r "$iconPath""$1" "$iconDir"
+	run chmod +w "$newIconPath""$1"
+}
+
+for extra in "" "-Dark" "-Light"; do
+	if [ -e "$newIconPath""$extra" ]; then
+		if ! run diff "$iconPath""$extra" "$newIconPath""$extra" &>/dev/null; then
+			${pkgs.trash-cli}/bin/trash-put "$newIconPath""$extra"
+			copyIcon "$extra"
 		fi
-
-		iconPath=$(run nix-instantiate --eval --expr '
-		let
-			pkgs = import <nixpkgs> {};
-			myIcon = pkgs.catppuccin-papirus-folders.override (old: {
-				accent = "${accent}";
-				flavor = "${flavor}";
-			});
-		in
-			myIcon.outPath
-		' | run sed 's/\"//g')/share/icons/Papirus
-
-		newIconPath="$iconDir"/Papirus
-
-		copyIcon() {
-			run cp -r "$iconPath""$1" "$iconDir"
-			run chmod +w "$newIconPath""$1"
-		}
-
-		for extra in "" "-Dark" "-Light"; do
-			if [ -e "$newIconPath""$extra" ]; then
-				if ! run diff "$iconPath""$extra" "$newIconPath""$extra" &>/dev/null; then
-					${pkgs.trash-cli}/bin/trash-put "$newIconPath""$extra"
-					copyIcon "$extra"
-				fi
-			else
-				copyIcon "$extra"
-			fi
-		done
+	else
+		copyIcon "$extra"
+	fi
+done
 	'';
 
 	wayland.windowManager.hyprland.settings = lib.mkIf config.wayland.windowManager.hyprland.enable {

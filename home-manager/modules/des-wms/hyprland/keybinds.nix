@@ -12,23 +12,23 @@
 			"SUPER, M, fullscreen, 1"
 			(let
 				changeLayout = pkgs.writeShellScriptBin "changeLayout.bash" ''
-					###################################################################################################################
-					# https://github.com/arcolinux/arcolinux-hyprland/blob/main/etc/skel/.config/hypr/scripts/changeLayout (modified) #
-					###################################################################################################################
+###################################################################################################################
+# https://github.com/arcolinux/arcolinux-hyprland/blob/main/etc/skel/.config/hypr/scripts/changeLayout (modified) #
+###################################################################################################################
 
-					LAYOUT=$(${pkgs.hyprland}/bin/hyprctl -j getoption general:layout | ${pkgs.jq}/bin/jq '.str' | sed 's/"//g')
+LAYOUT=$(${pkgs.hyprland}/bin/hyprctl -j getoption general:layout | ${pkgs.jq}/bin/jq '.str' | sed 's/"//g')
 
-					case "$LAYOUT" in
-					"master")
-					${pkgs.hyprland}/bin/hyprctl keyword general:layout dwindle
-					${pkgs.libnotify}/bin/notify-send --app-name="Layout change" "Dwindle Layout"
-					;;
-					"dwindle")
-					${pkgs.hyprland}/bin/hyprctl keyword general:layout master
-					${pkgs.libnotify}/bin/notify-send --app-name="Layout change" "Master Layout"
-					;;
-					*) ;;
-					esac
+case "$LAYOUT" in
+"master")
+	${pkgs.hyprland}/bin/hyprctl keyword general:layout dwindle
+	${pkgs.libnotify}/bin/notify-send --app-name="Layout change" "Dwindle Layout"
+;;
+"dwindle")
+	${pkgs.hyprland}/bin/hyprctl keyword general:layout master
+	${pkgs.libnotify}/bin/notify-send --app-name="Layout change" "Master Layout"
+;;
+*) ;;
+esac
 				'';
 			in
 				"SUPER, S, exec, ${lib.getExe changeLayout}")

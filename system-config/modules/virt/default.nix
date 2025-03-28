@@ -39,26 +39,26 @@
 			in
 				[ env ];
 			preStart = ''
-				libvirtPath=/var/lib/libvirt
+libvirtPath=/var/lib/libvirt
 
-				mkdir -p $libvirtPath/hooks
-				mkdir -p $libvirtPath/bin
-				mkdir -p $libvirtPath/vgabios
+mkdir -p $libvirtPath/hooks
+mkdir -p $libvirtPath/bin
+mkdir -p $libvirtPath/vgabios
 
-				ln -sf /etc/nixos/modules/virt/qemu $libvirtPath/hooks/qemu
-				ln -sf /etc/nixos/modules/virt/vfio-startup.sh $libvirtPath/bin/vfio-startup.sh
-				ln -sf /etc/nixos/modules/virt/vfio-teardown.sh $libvirtPath/bin/vfio-teardown.sh
-				ln -sf /etc/nixos/hosts/${config.networking.hostName}/patched.rom $libvirtPath/vgabios/patched.rom
+ln -sf /etc/nixos/modules/virt/qemu $libvirtPath/hooks/qemu
+ln -sf /etc/nixos/modules/virt/vfio-startup.sh $libvirtPath/bin/vfio-startup.sh
+ln -sf /etc/nixos/modules/virt/vfio-teardown.sh $libvirtPath/bin/vfio-teardown.sh
+ln -sf /etc/nixos/hosts/${config.networking.hostName}/patched.rom $libvirtPath/vgabios/patched.rom
 
-				chmod +x $libvirtPath/hooks/qemu
-				chmod +x $libvirtPath/bin/vfio-startup.sh
-				chmod +x $libvirtPath/bin/vfio-teardown.sh
+chmod +x $libvirtPath/hooks/qemu
+chmod +x $libvirtPath/bin/vfio-startup.sh
+chmod +x $libvirtPath/bin/vfio-teardown.sh
 
-				ln -sf ${pkgs.pciutils}/bin/lspci $libvirtPath/bin/lspci
-				ln -sf ${pkgs.gawk}/bin/gawk $libvirtPath/bin/awk
-				ln -sf ${pkgs.lsof}/bin/lsof $libvirtPath/bin/lsof
-				ln -sf ${pkgs.procps}/bin/pkill $libvirtPath/bin/pkill
-				ln -sf ${pkgs.procps}/bin/pgrep $libvirtPath/bin/pgrep
+ln -sf ${pkgs.pciutils}/bin/lspci $libvirtPath/bin/lspci
+ln -sf ${pkgs.gawk}/bin/gawk $libvirtPath/bin/awk
+ln -sf ${pkgs.lsof}/bin/lsof $libvirtPath/bin/lsof
+ln -sf ${pkgs.procps}/bin/pkill $libvirtPath/bin/pkill
+ln -sf ${pkgs.procps}/bin/pgrep $libvirtPath/bin/pgrep
 			'';
 		};
 

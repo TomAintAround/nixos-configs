@@ -26,8 +26,8 @@
 		dnssec = "true";
 		domains = [ "~." ];
 		extraConfig = ''
-			DNSOverTLS=opportunistic
-			MulticastDNS=resolve
+DNSOverTLS=opportunistic
+MulticastDNS=resolve
 		'';
 		llmnr = "true";
 	};

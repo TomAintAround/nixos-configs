@@ -11,24 +11,24 @@
 	services.mpd = {
 	enable = true;
 	extraConfig = ''
-		music_directory    "~/Music"
-		playlist_directory "~/.config/mpd/playlists"
-		db_file			   "~/.config/mpd/database"
-		log_file		   "~/.config/mpd/log"
-		sticker_file	   "~/.config/mpd/sticker.sql"
-		bind_to_address    "~/.config/mpd/socket"
+music_directory    "~/Music"
+playlist_directory "~/.config/mpd/playlists"
+db_file			   "~/.config/mpd/database"
+log_file		   "~/.config/mpd/log"
+sticker_file	   "~/.config/mpd/sticker.sql"
+bind_to_address    "~/.config/mpd/socket"
 
-		audio_output {
-			type			"pipewire"
-			name			"PipeWire Sound Server"
-		}
+audio_output {
+	type			"pipewire"
+	name			"PipeWire Sound Server"
+}
 
-		audio_output {
-			type					"fifo"
-			name					"mpd_visualizer"
-			path					"/tmp/mpd.fifo"
-			format					"44100:16:2"
-		}
+audio_output {
+	type					"fifo"
+	name					"mpd_visualizer"
+	path					"/tmp/mpd.fifo"
+	format					"44100:16:2"
+}
 	'';
 	network.startWhenNeeded = true;
 	};

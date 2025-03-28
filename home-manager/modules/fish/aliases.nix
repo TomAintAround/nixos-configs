@@ -9,30 +9,30 @@
 			arduino-eject = {
 				description = "Compile and upload arduino file into Arduino and open the serial monitor";
 				body = ''
-					set file $argv[1]
-					set usb $argv[2]
-					set fqbn $argv[3]
+set file $argv[1]
+set usb $argv[2]
+set fqbn $argv[3]
 
-					arduino-cli compile --fqbn $fqbn $file
-					and arduino-cli upload -p $usb --fqbn $fqbn $file
-					and arduino-cli monitor -p $usb --fqbn $fqbn
+arduino-cli compile --fqbn $fqbn $file
+and arduino-cli upload -p $usb --fqbn $fqbn $file
+and arduino-cli monitor -p $usb --fqbn $fqbn
 				'';
 			};
 
 			c-execute = {
 				description = "Compile and execute C code";
 				body = ''
-					gcc main.c -Wall -Wextra -o main.bin -lm -g
-					and ./main.bin
+gcc main.c -Wall -Wextra -o main.bin -lm -g
+and ./main.bin
 				'';
 			};
 
 			flatclean = {
 				description = "Removes orphaned flatpaks";
 				body = ''
-					${pkgs.flatpak}/bin/flatpak uninstall --unused | grep -E 'Nothing unused to uninstall|Nada sin usar que desinstalar' >/dev/null
-					and printf '\n\\033[31;1m[ ERROR]\\033[0m Nothing to uninstall\n'
-					or ${pkgs.flatpak}/bin/flatpak uninstall --unused $argv
+${pkgs.flatpak}/bin/flatpak uninstall --unused | grep -E 'Nothing unused to uninstall|Nada sin usar que desinstalar' >/dev/null
+and printf '\n\\033[31;1m[ ERROR]\\033[0m Nothing to uninstall\n'
+or ${pkgs.flatpak}/bin/flatpak uninstall --unused $argv
 				'';
 			};
 
