@@ -100,13 +100,7 @@ esac
 			coordinates = if sameXCoord then coordinates_y else coordinates_x;
 			axis = "${if coordinates == coordinates_x then "x" else "y"}";
 
-			monSelector = n:
-				builtins.foldl' (x: y: x + y) "" (lib.lists.remove "" (builtins.map (
-				m:
-					if (builtins.elemAt coordinates (n - 1)) == m.x
-						then "${m.name}"
-					else ""
-				) enabledMonitors));
+			monSelector = n: (builtins.elemAt coordinates (n - 1)).name;
 
 			firstMon = monSelector 1;
 			secondMon = monSelector 2;
