@@ -1,4 +1,4 @@
-{ config, ... }: {
+{ lib, ... }: {
 	programs.neovim.enable = true;
-	xdg.configFile."nvim".source = "${config.xdg.configHome}/home-manager/modules/neovim";
+	xdg.configFile."nvim".source = lib.cleanSource ./neovim;
 }
