@@ -46,7 +46,7 @@ esac
 			"SUPER, F10, exec, ${pkgs.hyprpicker}/bin/hyprpicker -a"
 			"SUPER, F11, exec, ${pkgs.alacritty}/bin/alacritty --class music -e ncmpcpp"
 			"SUPER, F12, exec, ${pkgs.alacritty}/bin/alacritty --class btop -e btop"
-			",Print, exec, ${pkgs.grimblast}/bin/grimblast --notify --cursor --freeze copy area"
+			",Print, exec, ${pkgs.grimblast}/bin/grimblast --notify --freeze copy area"
 
 			# Move focus
 			"SUPER, H, movefocus, l"
