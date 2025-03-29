@@ -18,7 +18,7 @@
 		truncatechar = "...";
 		tabstop = 4;
 		cleaner = "${config.xdg.configHome}/lf/cleaner.bash";
-		#previewer = "${config.xdg.configHome}/lf/previewer.bash";
+		previewer = "${config.xdg.configHome}/lf/previewer.bash";
 		cursorpreviewfmt = "\\033[4m";
 		infotimefmtnew = "01/02 15:04";
 		infotimefmtold = "01/02/2006";

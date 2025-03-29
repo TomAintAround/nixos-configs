@@ -1,5 +1,8 @@
 { pkgs, ... }: {
-	programs.lf.previewer.source = pkgs.writeShellScript "previewer.bash" ''
+	xdg.configFile = {
+		"lf/previewer.bash" = {
+			executable = true;
+			text = ''
 #!/usr/bin/env bash
 set -euf
 exec 2>/dev/null
@@ -92,7 +95,7 @@ esac
 mime="$(file -Lb --mime-type -- "$file")"
 case "$mime" in
 	text/*)
-		${pkgs.bat}/bin/bat --paging=never --color=always --wrap=never --style=header,grid,numbers --line-range :50 "$file"
+		${pkgs.bat}/bin/bat --paging=never --color=always --wrap=never --style=grid,numbers --line-range :50 "$file"
 		exit 0;;
 	application/json,0)
 		${pkgs.jq}/bin/jq -C < $file
@@ -139,13 +142,18 @@ fi
 printf '\033[7m%s\033[0m\n' "$header"
 ${pkgs.file}/bin/file -Lb -- "$file" | fold -s -w "$width"
 exit 0
-	'';
+			'';
+		};
 
-	xdg.configFile."lf/cleaner.sh".text = ''
+		"lf/cleaner.bash" = {
+			executable = true;
+			text = ''
 #!/usr/bin/env bash
 set -euf
 if [ -n "''${FIFO_UEBERZUG-}" ]; then
 	printf '{"action":"remove","identifier":"preview"}\n' >"$FIFO_UEBERZUG"
 fi
-	'';
+			'';
+		};
+	};
 }

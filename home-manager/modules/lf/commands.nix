@@ -116,7 +116,7 @@
 	--bind "start:reload([ -n {q} ] && $cmd -- {q} || true)" \
 	--bind "change:reload([ -n {q} ] && $cmd -- {q} || true)" \
 	--bind 'enter:become(${pkgs.lf}/bin/lf -remote "send $id select \"$(printf "%s" {1} | sed '\'''s/\\/\\\\/g;s/"/\\"/g'\''')\"")' \
-	--preview '${pkgs.bat}/bin/bat --paging=never --color=always --wrap=never --style=header,grid,numbers --line-range :50 "$file" -- {1}' --preview-window 'right:60%'
+	--preview='~/.config/lf/cleaner.bash; ~/.config/lf/previewer.bash {1} "$FZF_PREVIEW_COLUMNS" "$FZF_PREVIEW_LINES" "$FZF_PREVIEW_LEFT" "$FZF_PREVIEW_TOP"' --preview-window 'right:60%'
 }}
 		'';
 
