@@ -27,6 +27,8 @@ done
 			text = ''
 #!/usr/bin/env bash
 
+set -eux
+
 selected=$(cat $XDG_DATA_HOME/scripts/wallpaper/wallpaper-set)
 selected="''${selected:-1}"
 wallpapersDir="$XDG_PICTURES_DIR"/Wallpapers
@@ -54,15 +56,15 @@ wayland() {
 		${pkgs.swww}/bin/swww img $wallpapersDir/"$new".jpg --transition-step 150 --transition-type wipe --transition-bezier .33,1,.67,1
 	else
 		printf "\033[0;32m[INFO]\033[0m Initializing SWWW and selecting wallpaper $new.jpg\n"
-		rm -rf /run/user/1000/swww-wayland-1.socket
 		${pkgs.swww}/bin/swww-daemon &
+		sleep 0.8
 		${pkgs.swww}/bin/swww img $wallpapersDir/"$new".jpg
 	fi
 }
 
 case "$XDG_SESSION_TYPE" in
 	"wayland")
-		wayland "$1"
+		wayland "$@"
 	;;
 
 	*)
