@@ -1,11 +1,5 @@
 { pkgs, config, ... }: {
 	imports = [
-		../bat.nix
-		../fzf.nix
-		../tmux.nix
-		../trash-cli.nix
-		../zoxide.nix
-
 		./commands.nix
 		./keybindings.nix
 		./opener.nix
