@@ -1,0 +1,3 @@
+[submodule "home-manager/modules/neovim"]
+	path = home-manager/modules/neovim
+	url = https://github.com/TomAintAround/nixos-configs
