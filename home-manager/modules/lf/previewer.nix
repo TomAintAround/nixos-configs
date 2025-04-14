@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+ { pkgs, ... }: {
 	xdg.configFile = {
 		"lf/previewer.bash" = {
 			executable = true;

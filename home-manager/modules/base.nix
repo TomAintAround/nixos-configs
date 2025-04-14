@@ -1,4 +1,4 @@
-{ config, lib, userVars, ... }: {
+{ userVars, ... }: {
 	imports = [
 		./customOptions.nix
 		./des-wms/hyprland

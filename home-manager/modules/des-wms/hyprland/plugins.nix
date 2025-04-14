@@ -1,4 +1,4 @@
-{ inputs, pkgs, lib, config, ... }: let 
+{ inputs, pkgs,  config, ... }: let 
 	hyprbars = inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars;
 	hyprsplit = inputs.hyprsplit.packages.${pkgs.system}.hyprsplit;
 	hyprfocus = inputs.hyprfocus.packages.${pkgs.system}.hyprfocus;

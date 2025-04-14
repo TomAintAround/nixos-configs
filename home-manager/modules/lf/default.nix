@@ -1,4 +1,4 @@
-{ pkgs, config, ... }: {
+{ pkgs, ... }: {
 	imports = [
 		./commands.nix
 		./keybindings.nix
