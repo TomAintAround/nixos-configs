@@ -10,19 +10,24 @@
 	home = {
 		packages = with pkgs; [
 			atool
+			bat
 			exiftool
 			eza
 			ffmpeg
 			ffmpegthumbnailer
 			file
+			fzf
 			jq
 			lynx
 			pandoc
 			poppler_utils
 			ripdrag
 			ripgrep
+			tmux
+			trash-cli
 			ueberzugpp
 			zip
+			zoxide
 		];
 	};
 
