@@ -19,14 +19,6 @@ and arduino-cli monitor -p $usb --fqbn $fqbn
 				'';
 			};
 
-			c-execute = {
-				description = "Compile and execute C code";
-				body = ''
-gcc main.c -Wall -Wextra -o main.bin -lm -g
-and ./main.bin
-				'';
-			};
-
 			flatclean = {
 				description = "Removes orphaned flatpaks";
 				body = ''
