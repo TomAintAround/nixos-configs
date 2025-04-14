@@ -1,4 +1,4 @@
-{ pkgs, config, ... }: {
+{ pkgs, ... }: {
 	home.packages = [ pkgs.tmux ];
 	programs.tmux = {
 		enable = true;
@@ -19,6 +19,7 @@ set -g clock-mode-style 24
 set -g escape-time 0
 set -g focus-events on
 set -g status-position top
+set -g allow-passthrough on
 
 # Keybindings
 unbind t
