@@ -16,6 +16,10 @@ set fish_cursor_visual block
 bind \cf 'commandline -f kill-whole-line && lf && commandline -f execute'
 bind -M insert \cf 'commandline -f kill-whole-line && lf && commandline -f execute'
 bind -M visual \cf 'commandline -f kill-whole-line && lf && commandline -f execute'
+bind \ce 'commandline -f kill-whole-line && nvim . && commandline -f execute'
+bind -M insert \ce 'commandline -f kill-whole-line && nvim . && commandline -f execute'
+bind -M visual \ce 'commandline -f kill-whole-line && nvim . && commandline -f execute'
+
 
 # Done Plugin
 set -a __done_exclude '^pgrep'
