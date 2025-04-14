@@ -1,4 +1,4 @@
-{ lib, pkgs, config, ... }: {
+{ pkgs, config, ... }: {
 	xdg.dataFile = {
 		"scripts/albumart.bash" = {
 			executable = true;
@@ -57,7 +57,7 @@ wayland() {
 	else
 		printf "\033[0;32m[INFO]\033[0m Initializing SWWW and selecting wallpaper $new.jpg\n"
 		${pkgs.swww}/bin/swww-daemon &
-		sleep 0.8
+		sleep 1
 		${pkgs.swww}/bin/swww img $wallpapersDir/"$new".jpg
 	fi
 }
