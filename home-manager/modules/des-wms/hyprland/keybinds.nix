@@ -98,7 +98,6 @@ esac
 			coordinates_x = builtins.sort builtins.lessThan (builtins.map (m: m.x) enabledMonitors);
 			coordinates_y = builtins.sort builtins.lessThan (builtins.map (m: m.y) enabledMonitors);
 			coordinates = if sameXCoord then coordinates_y else coordinates_x;
-			axis = "${if coordinates == coordinates_x then "x" else "y"}";
 
 			monSelector = n: (builtins.elemAt coordinates (n - 1)).name;
 
