@@ -20,19 +20,14 @@ bind \ce 'commandline -f kill-whole-line && nvim . && commandline -f execute'
 bind -M insert \ce 'commandline -f kill-whole-line && nvim . && commandline -f execute'
 bind -M visual \ce 'commandline -f kill-whole-line && nvim . && commandline -f execute'
 
-
 # Done Plugin
 set -a __done_exclude '^pgrep'
 
 # Tmux
-for sessions in (${pkgs.tmux}/bin/tmux list-sessions | command grep -v "(attached)\|keep" | sed 's/:.*$//')
-	${pkgs.tmux}/bin/tmux kill-session -t "$sessions"
+set tmuxSession default
+if ! tmux has-session -t $tmuxSession 2>/dev/null
+	tmux new-session -d -s $tmuxSession
 end
-
-if not set -q TMUX
-	${pkgs.tmux}/bin/tmux list-sessions | command grep -v "(attached)" &>/dev/null
-	and exec ${pkgs.tmux}/bin/tmux attach
-	or exec ${pkgs.tmux}/bin/tmux
-end
+tmux attach-session -t $tmuxSession 2>/dev/null
 	'';
 }
