@@ -87,7 +87,7 @@ or ${pkgs.flatpak}/bin/flatpak uninstall --unused $argv
 		shellAliases = {
 			"cat" = "${pkgs.bat}/bin/bat --paging=never";
 			"less" = "${pkgs.bat}/bin/bat --paging=always";
-			"lf" = "cd \"$($XDG_CONFIG_HOME/home-manager/modules/lf/lfimg -print-last-dir)\"";
+			"lf" = "cd \"$($XDG_CONFIG_HOME/lf/lfimg -print-last-dir)\"";
 			"ls" = "${pkgs.eza}/bin/eza --git --icons=always --long --all --group --header --links --color=always --no-quotes --smart-group --group-directories-first --time-style='+%H:%m %d/%m/%y'";
 			"man" = "${pkgs.bat-extras.batman}/bin/batman";
 		};
