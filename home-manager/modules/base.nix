@@ -5,6 +5,7 @@
 		./fish
 		./lf
 		./themes
+		./tmux
 		./alacritty.nix
 		./bat.nix
 		./btop.nix
@@ -23,7 +24,6 @@
 		./neovim.nix
 		./openrgb.nix
 		./scripts.nix
-		./tmux.nix
 		./trash-cli.nix
 		./udiskie.nix
 		./zoxide.nix

@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+SESSION_NAME="pypacman"
+SESSION_PATH="$HOME/Documents/Projects/University/pyPacman"
+
+if ! tmux has-session -t $SESSION_NAME 2>/dev/null; then
+	tmux new-session -d -s $SESSION_NAME -n "editor" -c "$SESSION_PATH"
+	tmux send-keys -t $SESSION_NAME:editor "nix develop --command fish" C-m
+	tmux send-keys -t $SESSION_NAME:editor "nvim ." C-m
+
+	tmux new-window -t $SESSION_NAME -n "files" -c "$SESSION_PATH"
+	tmux send-keys -t $SESSION_NAME:files "lf ." C-m
+
+	tmux select-window -t $SESSION_NAME:editor
+fi
+tmux switch-client -t $SESSION_NAME

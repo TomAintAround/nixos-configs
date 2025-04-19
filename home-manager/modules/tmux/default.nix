@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, config, ... }: {
 	home.packages = [ pkgs.tmux ];
 	programs.tmux = {
 		enable = true;
@@ -31,6 +31,8 @@ bind-key -T root C-M-s kill-pane
 bind-key -T root C-M-w new-window
 bind-key -T root C-M-h previous-window
 bind-key -T root C-M-l next-window
+bind-key -T root C-M-n run-shell "tmux new-session -d"
+bind-key -T root C-M-f run-shell "bash ${config.xdg.configHome}/home-manager/modules/tmux/sessions.sh"
 		'';
 	};
 }
