@@ -6,7 +6,7 @@ SELECTED=$(fd . "$XDG_CONFIG_HOME"/home-manager/modules/tmux/sessions | \
 )
 
 if [[ -z "$SELECTED" ]]; then
-	exit 1
+	exit
 fi
 
 bash "$SELECTED"
