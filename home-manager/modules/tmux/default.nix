@@ -1,5 +1,4 @@
 { pkgs, config, ... }: {
-	home.packages = [ pkgs.tmux ];
 	programs.tmux = {
 		enable = true;
 		extraConfig = ''
