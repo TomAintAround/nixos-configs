@@ -29,7 +29,7 @@ ${pkgs.xdg-desktop-portal}/libexec/xdg-desktop-portal &
 			"dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
 
 			# Set wallpaper
-			"\$scriptsDir/wallpaper/wallpaper.bash startup"
+			"${pkgs.swww}/bin/swww-daemon"
 
 			# Generate Album Arts
 			"\$scriptsDir/albumart.bash"
