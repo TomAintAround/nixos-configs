@@ -27,4 +27,5 @@
 	gamedev.enable = false;
 	openrazer.enable = false;
 	openrgb.enable = false;
+	terminal = "kitty";
 }

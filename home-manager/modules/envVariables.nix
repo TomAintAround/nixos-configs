@@ -5,7 +5,7 @@
 		VISUAl = "nvim";
 		EDITOR = "nvim";
 		PAGER = "bat --paging=always";
-		TERMINAL = "alacritty";
+		TERMINAL = config.terminal;
 		READER = "libreoffice --draw";
 		BROWSER = "firefox";
 		IMAGE_EDITOR = "gimp";

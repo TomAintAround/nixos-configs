@@ -113,5 +113,12 @@ in {
 			description = "Enables OpenRGB related settings";
 			default = false;
 		};
+
+		terminal = mkOption {
+			type = types.str;
+			description = "Chooses which terminal to install";
+			default = "kitty";
+			example = "All available options: alacritty, kitty";
+		};
 	};
 }

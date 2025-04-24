@@ -1,4 +1,4 @@
-{
+{ lib, config, ... }: lib.mkIf (config.terminal == "alacritty") {
 	programs.alacritty = {
 		enable = true;
 		settings = {

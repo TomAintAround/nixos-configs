@@ -56,6 +56,11 @@ in {
 			inherit accent flavor;
 		};
 
+		kitty = {
+			enable = true;
+			inherit flavor;
+		};
+
 		kvantum = {
 			enable = true;
 			apply = true;
