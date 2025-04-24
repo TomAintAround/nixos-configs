@@ -3,7 +3,7 @@
 ${pkgs.bash}/bin/bash "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" 2>/dev/null
 
 # Greeting
-source "$XDG_CONFIG_HOME/home-manager/modules/fish/greeting.fish"
+set fish_greeting ""
 
 # Vi Mode
 fish_vi_key_bindings
