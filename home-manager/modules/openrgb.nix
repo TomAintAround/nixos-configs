@@ -1,5 +1,5 @@
-{ pkgs, lib, config, ... }: {
-	home = lib.mkIf config.openrgb.enable {
+{ pkgs, lib, config, ... }: lib.mkIf config.openrgb.enable {
+	home = {
 		packages = with pkgs; [
 			openrgb-plugin-effects
 			openrgb-plugin-hardwaresync

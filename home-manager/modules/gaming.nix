@@ -1,5 +1,5 @@
-{ pkgs, lib, config, ... }: {
-	home.packages = with pkgs; lib.mkIf config.gaming.enable [
+{ pkgs, lib, config, ... }: lib.mkIf config.gaming.enable {
+	home.packages = with pkgs; [
 		heroic
 		lutris
 		prismlauncher

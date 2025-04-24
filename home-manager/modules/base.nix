@@ -19,6 +19,7 @@
 		./gaming.nix
 		./git.nix
 		./kdeconnect.nix
+		./kitty.nix
 		./locales.nix
 		./music.nix
 		./neovim.nix
