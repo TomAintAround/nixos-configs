@@ -34,7 +34,8 @@ esac
 				"SUPER, S, exec, ${lib.getExe changeLayout}")
 
 			# Apps keybinds
-			"SUPER, Return, exec, ${pkgs.alacritty}/bin/alacritty"
+			"${if (config.terminal == "alacritty") then "SUPER, Return, exec, ${pkgs.alacritty}/bin/alacritty" else "SUPER, Return, exec,"}"
+			"${if (config.terminal == "kitty") then "SUPER, Return, exec, ${pkgs.kitty}/bin/kitty" else "SUPER, Return, exec,"}"
 			"SUPER, C, exec, ${pkgs.clipman}/bin/clipman pick -t rofi -T'-theme ${config.xdg.configHome}/rofi/clipboard.rasi'"
 			"SUPER, Space, exec, ${pkgs.rofi}/bin/rofi -show drun -modi drun,window -theme ~/.config/rofi/launcher.rasi -show-icons -icon-theme Papirus-Dark"
 			"SUPER, F1, exec, ${pkgs.firefox}/bin/firefox"
@@ -44,8 +45,10 @@ esac
 			"SUPER, F5, exec, ${pkgs.newsflash}/bin/io.gitlab.news_flash.NewsFlash"
 			"${if config.gaming.enable then "SUPER, F6, exec, ${pkgs.lutris}/bin/lutris" else "SUPER, F6, exec,"}"
 			"SUPER, F10, exec, ${pkgs.hyprpicker}/bin/hyprpicker -a"
-			"SUPER, F11, exec, ${pkgs.alacritty}/bin/alacritty --class music -e ncmpcpp"
-			"SUPER, F12, exec, ${pkgs.alacritty}/bin/alacritty --class btop -e btop"
+			"${if (config.terminal == "alacritty") then "SUPER, F11, exec, ${pkgs.alacritty}/bin/alacritty --class music -e ncmpcpp" else "SUPER, F11, exec,"}"
+			"${if (config.terminal == "alacritty") then "SUPER, F12, exec, ${pkgs.alacritty}/bin/alacritty --class btop -e btop" else "SUPER, F12, exec,"}"
+			"${if (config.terminal == "kitty") then "SUPER, F11, exec, ${pkgs.kitty}/bin/kitty --app-id music ncmpcpp" else "SUPER, F11, exec,"}"
+			"${if (config.terminal == "kitty") then "SUPER, F12, exec, ${pkgs.kitty}/bin/kitty --app-id btop btop" else "SUPER, F12, exec,"}"
 			",Print, exec, ${pkgs.grimblast}/bin/grimblast --notify --freeze copy area"
 
 			# Move focus

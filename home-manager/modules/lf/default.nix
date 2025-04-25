@@ -5,13 +5,14 @@
 		./opener.nix
 		./previewer.nix
 		./settings.nix
-	];
 
+		./lfimg.nix
+		./vidthumb.nix
+	];
 
 	xdg.configFile = {
 		"lf/colors".source = ./colors;
 		"lf/icons".source = ./icons;
-		"lf/lfimg".source = ./lfimg;
 	};
 
 	programs.lf = {

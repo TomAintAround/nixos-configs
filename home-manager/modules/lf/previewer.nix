@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, config, ... }: {
 	xdg.configFile = {
 		"lf/previewer.bash" = {
 			executable = true;
@@ -6,12 +6,24 @@
 #!/usr/bin/env bash
 
 draw() {
+${
+	if (config.terminal == "alacritty" || config.programs.tmux.enable) then ''
 	path="$(readlink -f -- "$1" | sed 's/\\/\\\\/g;s/"/\\"/g')"
 	printf '{"action":"add","identifier":"preview","x":%d,"y":%d,"width":%d,"height":%d,"scaler":"contain","scaling_position_x":0.5,"scaling_position_y":0.5,"path":"%s"}\n' \
 	"$x" "$y" "$width" "$height" "$path" >"$FIFO_UEBERZUG"
+	''
+	else ""
+}
+${
+	if (config.terminal == "kitty" && !config.programs.tmux.enable) then ''
+	${pkgs.kitty}/bin/kitten icat --stdin no --transfer-mode memory --place "''${width}x''${height}@''${x}x''${y}" "$1" </dev/null >/dev/tty
+	''
+	else ""
+}
 	exit 1
 }
 
+${ if (config.terminal == "alacritty" || config.programs.tmux.enable) then ''
 hash() {
 	cache="$HOME/.cache/lf/$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' -- "$(readlink -f -- "$1")" | sha256sum | cut -d' ' -f1).jpg"
 }
@@ -24,6 +36,9 @@ cache() {
 	fi
 	draw "$cache"
 }
+	''
+	else ""
+}
 
 file="$1"
 width="$2"
@@ -34,6 +49,8 @@ y="$5"
 mime_preview() {
 	case "$mime_type","$ran_guard" in
 		image/*)
+${ 
+	if (config.terminal == "alacritty" || config.programs.tmux.enable) then ''
 			if [ -p "$FIFO_UEBERZUG" ]; then
 				# ueberzug doesn't handle image orientation correctly
 				orientation="$(magick identify -format '%[orientation]\n' -- "''${file[0]}")"
@@ -46,6 +63,15 @@ mime_preview() {
 					draw "$file"
 				fi
 			fi
+	''
+	else ""
+}
+${ 
+	if (config.terminal == "kitty" && !config.programs.tmux.enable) then ''
+			draw "$file"
+	''
+	else ""
+}
 		;;
 		(video/webm,0)
 			# file --mime-type doesn't distinguish well between "video/webm"
@@ -56,10 +82,21 @@ mime_preview() {
 			mime_preview "$@"
 		;;
 		video/*)
+${ 
+	if (config.terminal == "alacritty" || config.programs.tmux.enable) then ''
 			if [ -p "$FIFO_UEBERZUG" ]; then
 				hash "$file"
 				cache ${pkgs.ffmpegthumbnailer}/bin/ffmpegthumbnailer -i "$file" -o "$cache".jpg -s 0
 			fi
+	''
+	else ""
+}
+${
+	if (config.terminal == "kitty" && !config.programs.tmux.enable) then ''
+			draw $(${config.xdg.configHome}/lf/vidthumb.bash "$file")
+	''
+	else ""
+}
 		;;
 		(text/html,0)
 			${pkgs.lynx}/bin/lynx -width="$x" -display_charset=utf-8 -dump -- "$file"
@@ -77,7 +114,7 @@ mime_preview() {
 			${pkgs.bat}/bin/bat --terminal-width "$(($x*7/9))" --style=numbers --paging=never "$file"
 		;;
 		(application/json,0)
-			${pkgs.jq}/bin/jq -C < $file
+			${pkgs.jq}/bin/jq -C < "$file"
 		;;
 		( application/x-pie-executable,0 | application/x-executable,0 | \
 		application/x-sharedlib,0)
@@ -134,10 +171,10 @@ main() {
 	mime_type="$(${pkgs.file}/bin/file --dereference -b --mime-type -- "$1")" \
 	ran_guard=0
 	mime_preview "$@" || return $?
-	${pkgs.file}/bin/file -Lb -- "$file" | fold -s -w "$width"
 }
 
 main "$@" || exit $?
+${pkgs.file}/bin/file -Lb -- "$file" | fold -s -w "$width"
 			'';
 		};
 
@@ -145,7 +182,18 @@ main "$@" || exit $?
 			executable = true;
 			text = ''
 #!/usr/bin/env bash
+${ 
+	if (config.terminal == "alacritty" || config.programs.tmux.enable) then ''
 [ -p "$FIFO_UEBERZUG" ] && printf '{"action":"remove","identifier":"preview"}\n' >"$FIFO_UEBERZUG"
+	''
+	else ""
+}
+${
+	if (config.terminal == "kitty" && !config.programs.tmux.enable) then ''
+${pkgs.kitty}/bin/kitty + kitten icat --clear --stdin no --transfer-mode memory --passthrough tmux </dev/null >/dev/tty
+	''
+	else ""
+}
 			'';
 		};
 	};
