@@ -1,40 +1,28 @@
- { pkgs, ... }: {
+{ pkgs, ... }: {
 	xdg.configFile = {
 		"lf/previewer.bash" = {
 			executable = true;
 			text = ''
 #!/usr/bin/env bash
-set -euf
-exec 2>/dev/null
 
 draw() {
-	${pkgs.jq}/bin/jq -nc --argjson x "$x" --argjson y "$y" \
-	--argjson width "$width" --argjson height "$height" \
-	--arg path "$(readlink -f -- "$1")" '
-	{
-		"action": "add",
-		"identifier": "preview",
-		"x": $x,
-		"y": $y,
-		"width": $width,
-		"height": $height,
-		"scaler": "contain",
-		"scaling_position_x": 0.5,
-		"scaling_position_y": 0.5,
-		"path": $path
-	}' >"$FIFO_UEBERZUG"
+	path="$(readlink -f -- "$1" | sed 's/\\/\\\\/g;s/"/\\"/g')"
+	printf '{"action":"add","identifier":"preview","x":%d,"y":%d,"width":%d,"height":%d,"scaler":"contain","scaling_position_x":0.5,"scaling_position_y":0.5,"path":"%s"}\n' \
+	"$x" "$y" "$width" "$height" "$path" >"$FIFO_UEBERZUG"
 	exit 1
 }
 
 hash() {
-	printf '%s/.cache/lf/%s' "$HOME" \
-	"$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' -- "$(readlink -f -- "$1")" | sha256sum | cut -d' ' -f1)"
+	cache="$HOME/.cache/lf/$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' -- "$(readlink -f -- "$1")" | sha256sum | cut -d' ' -f1).jpg"
 }
 
 cache() {
-	if [ -f "$1" ]; then
-		draw "$1"
+	if ! [ -f "$cache" ]; then
+		dir="$(dirname -- "$cache")"
+		[ -d "$dir" ] || mkdir -p -- "$dir"
+		"$@"
 	fi
+	draw "$cache"
 }
 
 file="$1"
@@ -43,105 +31,113 @@ height="$3"
 x="$4"
 y="$5"
 
-if ! [ -f "$file" ] && ! [ -h "$file" ]; then
-	exit
-fi
-
-default_x="1920"
-default_y="1080"
-
-ext="$(printf '%s' "$file" | tr '[:upper:]' '[:lower:]')"
-ext="''${ext##*.}"
-case "$ext" in
-	7z|a|ace|alz|arc|arj|bz|bz2|cab|cpio|deb|gz|jar|\
-	lha|lrz|lz|lzh|lzma|lzo|rar|rpm|rz|t7z|tar|tbz|\
-	tbz2|tgz|tlz|txz|tZ|tzo|war|xz|Z|zip)
-		${pkgs.atool}/bin/als -- "$file"
-		exit 0;;
-	[1-8])
-		COLUMNS="$width" man -- "$file" | col -b
-		exit 0;;
-	pdf)
-		if [ -n "''${FIFO_UEBERZUG-}" ]; then
-			cache="$(hash "$file")"
-			cache "$cache.jpg"
-			${pkgs.poppler_utils}/bin/pdftoppm -f 1 -l 1 \
-				-scale-to-x "$default_x" \
-				-scale-to-y -1 \
-				-singlefile \
-				-jpeg \
-				-- "$file" "$cache"
-			draw "$cache.jpg"
-		else
-			${pkgs.poppler_utils}/bin/pdftotext -nopgbrk -q -- "$file" -
-			exit 0
-		fi;;
-	docx|odt|epub)
-		${pkgs.pandoc}/bin/pandoc -s -t plain -- "$file"
-		exit 0;;
-	htm|html|xhtml)
-		${pkgs.lynx}/bin/lynx -dump -- "$file"
-		exit 0;;
-	svg)
-		if [ -n "''${FIFO_UEBERZUG-}" ]; then
-			cache="$(hash "$file").jpg"
-			cache "$cache"
-			convert -- "$file" "$cache"
-			draw "$cache"
-		fi
-		exit 0;;
-esac
-
-mime="$(file -Lb --mime-type -- "$file")"
-case "$mime" in
-	text/*)
-		${pkgs.bat}/bin/bat --paging=never --color=always --wrap=never --style=grid,numbers --line-range :50 "$file"
-		exit 0;;
-	application/json,0)
-		${pkgs.jq}/bin/jq -C < $file
-		exit 0;;
-	image/*)
-		if [ -n "''${FIFO_UEBERZUG-}" ]; then
-			orientation="$(identify -format '%[EXIF:Orientation]\n' -- "$file")"
-			if [ -n "$orientation" ] && [ "$orientation" != 1 ]; then
-				cache="$(hash "$file").jpg"
-				cache "$cache"
-				convert -- "$file" -auto-orient "$cache"
-				draw "$cache"
-			else
-				draw "$file"
+mime_preview() {
+	case "$mime_type","$ran_guard" in
+		image/*)
+			if [ -p "$FIFO_UEBERZUG" ]; then
+				# ueberzug doesn't handle image orientation correctly
+				orientation="$(magick identify -format '%[orientation]\n' -- "''${file[0]}")"
+				if [ -n "$orientation" ] \
+				&& [ "$orientation" != Undefined ] \
+				&& [ "$orientation" != TopLeft ]; then
+					hash "$file"
+					cache ${pkgs.imagemagick}/bin/magick -- "''${file[0]}" -auto-orient "$cache".jpg
+				else
+					draw "$file"
+				fi
 			fi
-		fi;;
-	audio/*,[01])
-		${pkgs.exiftool}/bin/exiftool -j "$1" | jq -C
-		exit 0;;
-	video/*)
-		if [ -n "''${FIFO_UEBERZUG-}" ]; then
-			cache="$(hash "$file").jpg"
-			cache "$cache"
-			${pkgs.ffmpegthumbnailer}/bin/ffmpegthumbnailer -i "$file" -o "$cache" -s 0
-			draw "$cache"
-		fi
-		exit 0;;
-esac
+		;;
+		(video/webm,0)
+			# file --mime-type doesn't distinguish well between "video/webm"
+			# actual webm videos or webm audios, but exiftool does, thus
+			# re-run this function with new mimetype
+			mime_type="$(${pkgs.exiftool}/bin/exiftool -s3 -MIMEType "$file")" \
+			ran_guard=$((ran_guard+1))
+			mime_preview "$@"
+		;;
+		video/*)
+			if [ -p "$FIFO_UEBERZUG" ]; then
+				hash "$file"
+				cache ${pkgs.ffmpegthumbnailer}/bin/ffmpegthumbnailer -i "$file" -o "$cache".jpg -s 0
+			fi
+		;;
+		(text/html,0)
+			${pkgs.lynx}/bin/lynx -width="$x" -display_charset=utf-8 -dump -- "$file"
+		;;
+		(text/troff,0)
+			case "''${file##*.}" in
+			([0-9] | [01]p | [23]*)
+				man ./ "$file" | col -b
+			;;
+			(*)
+				${pkgs.bat}/bin/bat --terminal-width "$(($x*7/9))" --style=numbers --paging=never "$file"
+			esac
+		;;
+		(text/*,0 | */xml,0 | application/javascript,0 | application/x-subrip,0 )
+			${pkgs.bat}/bin/bat --terminal-width "$(($x*7/9))" --style=numbers --paging=never "$file"
+		;;
+		(application/json,0)
+			${pkgs.jq}/bin/jq -C < $file
+		;;
+		( application/x-pie-executable,0 | application/x-executable,0 | \
+		application/x-sharedlib,0)
+			objdump -d "$file" -M intel
+			#readelf -WCa "$file"
+			#hexdump -C "$file" || xxd "$file"
+		;;
+		(audio/*)
+			${pkgs.exiftool}/bin/exiftool -j "$file" | jq -C
+		;;
+		(*opendocument*,0) # .odt, .ods
+			CCt='	' \
+			bytes=$(du -sb "$file") bytes="''${bytes%%"$CCt"*}"
+			if [ "$bytes" -lt 150000 ]; then
+				${pkgs.odt2txt}/bin/odt2txt "$file"
+			else
+				printf "file too big too preview quickly\n"
+			fi
+		;;
+		(*ms-excel,0)  # .xls
+			${pkgs.catdoc}/bin/xls2csv -- "$file" \
+				| ${pkgs.bat}/bin/bat --terminal-width "$(($x*7/9))" --color=always -l csv --style=numbers --paging=never
+		;;
+		(application/pgp-encrypted,0)
+			printf "PGP armored ASCII \033[1;31mencrypted\033[m file,\ntry using gpg to decrypt it\n\n"
+			cat "$file"
+			${pkgs.gnupg}/bin/gpg -d -- "$file"
+		;;
+		(application/octet-stream,0)
+			#extension="''${file##*.}" extension="''${extension%"$file"}"
+			case "''${file##*.}" in
+			(gpg)
+				printf "OpenPGP \033[1;31mencrypted\033[m file,\ntry using gpg to decrypt it\n\n"
+			;;
+			(*) ${pkgs.exiftool}/bin/exiftool -j "$file" | jq -C
+			esac
+		;;
+	esac
 
-header_text="File Type Classification"
-header=""
-len="$(( (width - (''${#header_text} + 2)) / 2 ))"
-if [ "$len" -gt 0 ]; then
-	for i in $(seq "$len"); do
-		header="-$header"
-	done
-	header="$header $header_text "
-	for i in $(seq "$len"); do
-		header="$header-"
-	done
-else
-	header="$header_text"
-fi
-printf '\033[7m%s\033[0m\n' "$header"
-${pkgs.file}/bin/file -Lb -- "$file" | fold -s -w "$width"
-exit 0
+	ext="$(printf '%s' "$file" | tr '[:upper:]' '[:lower:]')"
+	ext="''${ext##*.}"
+	case "$ext" in
+		7z|a|ace|alz|arc|arj|bz|bz2|cab|cpio|deb|gz|jar|\
+		lha|lrz|lz|lzh|lzma|lzo|rar|rpm|rz|t7z|tar|tbz|\
+		tbz2|tgz|tlz|txz|tZ|tzo|war|xz|Z|zip)
+			${pkgs.atool}/bin/als -- "$file"
+		;;
+	esac
+
+	return 1
+}
+
+main() {
+	mime_type="$(${pkgs.file}/bin/file --dereference -b --mime-type -- "$1")" \
+	ran_guard=0
+	mime_preview "$@" || return $?
+	${pkgs.file}/bin/file -Lb -- "$file" | fold -s -w "$width"
+}
+
+main "$@" || exit $?
 			'';
 		};
 
@@ -149,10 +145,7 @@ exit 0
 			executable = true;
 			text = ''
 #!/usr/bin/env bash
-set -euf
-if [ -n "''${FIFO_UEBERZUG-}" ]; then
-	printf '{"action":"remove","identifier":"preview"}\n' >"$FIFO_UEBERZUG"
-fi
+[ -p "$FIFO_UEBERZUG" ] && printf '{"action":"remove","identifier":"preview"}\n' >"$FIFO_UEBERZUG"
 			'';
 		};
 	};
