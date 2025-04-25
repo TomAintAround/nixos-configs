@@ -91,7 +91,7 @@ or ${pkgs.flatpak}/bin/flatpak uninstall --unused $argv
 			"man" = "${pkgs.bat-extras.batman}/bin/batman";
 		} // (
 			if (config.terminal == "alacritty" || config.programs.tmux.enable) then
-				{ "lf" = "cd \"$($XDG_CONFIG_HOME/lf/lfimg -print-last-dir)\""; }
+				{ "lf" = "cd \"$(${config.xdg.configHome}/lf/lfimg -print-last-dir)\""; }
 			else 
 				{ "lf" = "cd \"$(command lf -print-last-dir $argv)\""; }
 		);
