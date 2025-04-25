@@ -20,10 +20,10 @@
 			"nofocus,class:^(xwaylandvideobridge)$"
 			"noinitialfocus,class:^(xwaylandvideobridge)$"
 
-			"noanim,class:^(ueberzugpp)"
-			"noshadow,class:^(ueberzugpp)"
-			"noborder,class:^(ueberzugpp)"
-			"plugin:hyprbars:nobar,class:^(ueberzugpp)"
+			"noanim,class:^ueberzugpp.*"
+			"noshadow,class:^ueberzugpp.*"
+			"noborder,class:^ueberzugpp.*"
+			"plugin:hyprbars:nobar,class:^ueberzugpp.*"
 		];
 	};
 }
