@@ -12,7 +12,7 @@ THUMB="/tmp/mpdAlbumArt.jpg"
 
 while true; do
 	if [ $(${pkgs.mpc-cli}/bin/mpc status %state%) == "playing" ]; then
-	FILE="${config.xdg.userDirs.music}/$(${pkgs.mpc-cli}/bin/mpc current -f %file%)"
+		FILE="${config.xdg.userDirs.music}/$(${pkgs.mpc-cli}/bin/mpc current -f %file%)"
 	fi
 	echo "$FILE"
 	${pkgs.ffmpeg}/bin/ffmpeg -i "$FILE" "$THUMB" -y &> /dev/null
