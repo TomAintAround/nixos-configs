@@ -44,7 +44,7 @@ in {
 				bar_text_align = "center";
 				bar_buttons_alignment = "right";
 				bar_part_of_window = true;
-				bar_precedence_over_border = true;
+				bar_precedence_over_border = false;
 				bar_padding = 7;
 				bar_button_padding = 7;
 			};
