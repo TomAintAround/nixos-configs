@@ -1,7 +1,7 @@
 { pkgs, ... }: {
 	imports = [
 		./commands.nix
-		./keybindings.nix
+		./keybinds.nix
 		./opener.nix
 		./previewer.nix
 		./settings.nix
