@@ -95,16 +95,12 @@
 		application/pgp-encrypted | inode/x-empty | application/octet-stream )
 			app=$(menu_select <<-\EOF
 				$EDITOR
-				$EDITOR (new terminal)
 				nano
-				nano (new terminal)
 				EOF
 			)
 			case "$app" in
 				(1) "''${EDITOR}" $fx ;;
-				(2) dem "''${TERMINAL}" -e "$EDITOR" $fx ;;
-				(3) ${pkgs.nano}/bin/nano $fx ;;
-				(4) dem "''${TERMINAL}" -e ${pkgs.nano}/bin/nano $fx ;;
+				(2) ${pkgs.nano}/bin/nano $fx ;;
 			esac
 		;;
 
