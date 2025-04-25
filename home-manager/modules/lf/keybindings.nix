@@ -8,7 +8,7 @@
 		"<a-x>" = "chmodx";
 		"<a-e>" = "extract";
 		"<a-z>" = "push :zip<space>";
-		"<a-d>" = "%ripdrag $fx";
+		"<a-d>" = "ripdrag";
 		J = "move-parent down";
 		K = "move-parent up";
 		O = "openwith";

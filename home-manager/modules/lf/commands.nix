@@ -71,6 +71,12 @@
 	${pkgs.lf}/bin/lf -remote "send $id unselect"
 }}
 		'';
+		
+		ripdrag = ''
+%{{
+	${pkgs.ripdrag}/bin/ripdrag $fx
+}}
+		'';
 
 		paste_link = ''
 %{{
