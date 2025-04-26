@@ -3,7 +3,9 @@
 		act
 		brave
 		cpu-x
+		exiftool
 		eza
+		ffmpeg
 		gimp
 		imagemagick
 		jq
@@ -14,6 +16,7 @@
 		nurl # Query data from a Github repo
 		obsidian
 		p7zip
+		parallel
 		popsicle
 		ripdrag # Drag-and-drop for the terminal
 		ripgrep # Grep but better

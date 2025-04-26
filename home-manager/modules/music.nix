@@ -1,6 +1,5 @@
 { pkgs, ... }: {
 	home.packages = with pkgs; [
-	ffmpeg
 		mpc-cli
 		mpd-mpris
 		playerctl
