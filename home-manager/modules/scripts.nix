@@ -25,58 +25,57 @@ done
 		executable = true;
 		text = ''
 #!/usr/bin/env bash
+set -euo pipefail
 
-wallpapersDir="${config.xdg.userDirs.pictures}"/Wallpapers
-wallpaperSet="${config.xdg.cacheHome}"/wallpaper-set
-if [ ! -f "$wallpaperSet" ]; then
-	touch "$wallpaperSet"
+wallpapersDir="${config.xdg.userDirs.pictures}/Wallpapers"
+wallpaperSet="${config.xdg.cacheHome}/wallpaper-set"
+mkdir -p "$wallpapersDir"
+touch "$wallpaperSet"
+
+wallpapers=()
+while IFS= read -r -d ''' file; do
+	wallpapers+=("$file")
+done < <(find "$wallpapersDir" -maxdepth 1 -type f \( -name '*.jpg' -o -name '*.jpeg' -o -name '*.png' -o -name '*.webp' \) -print0 | sort -z)
+wallpaperCount="''${#wallpapers[@]}"
+if [ "$wallpaperCount" -eq 0 ]; then
+	echo "No wallpapers found in $wallpapersDir." >&2
+	exit 1
 fi
+selected=$(cat "$wallpaperSet" 2>/dev/null || echo "1")
 
-selected=$(cat "$wallpaperSet")
-selected="''${selected:-1}"
-
-mode() {
-	if [[ $1 =~ ^[0-9]+$ ]] && [[ $(find "$wallpapersDir"/* | grep -ow "$1") ]]; then
-		new="$1"
-		printf "\033[0;32m[MODE]\033[0m Direct\n"
-	elif [[ "$1" = "startup" ]]; then
-		new=$selected
+getNewIndex() {
+	local arg="''${1:-}"
+	if [[ "$arg" =~ ^[0-9]+$ ]] && [ "$arg" -ge 1 ] && [ "$arg" -le "$wallpaperCount" ]; then
+		printf "\033[0;32m[MODE]\033[0m Direct\n" >&2
+		echo "$arg"
+	elif [[ "$arg" == "startup" ]]; then
+		printf "\033[0;32m[MODE]\033[0m Startup\n" >&2
+		echo "$selected"
 	else
-		wallpapernum=$(find "$wallpapersDir"/* | wc -l)
-		new="$(("$selected" + 1))"
-		if [ "$new" -gt "$wallpapernum" ]; then
-			new=1
+		local next=$((selected + 1))
+		if [[ next -gt wallpaperCount ]]; then
+			next=1
 		fi
-		printf "\033[0;32m[MODE]\033[0m Cycle\n"
+		printf "\033[0;32m[MODE]\033[0m Cycle\n" >&2
+		echo "$next"
 	fi
 }
+new=$(getNewIndex "''${1:-}")
+wallpaper="''${wallpapers[$((new-1))]}"
 
-wayland() {
-	mode "$1"
-	if [[ $(pgrep swww-daemon) ]]; then
-		printf "\033[0;32m[INFO]\033[0m Selecting wallpaper %s.jpg\n" "$new"
-		swww img "$wallpapersDir"/"$new".jpg --transition-step 150 --transition-type wipe --transition-bezier .33,1,.67,1
-	else
-		echo "Error: swww-daemon is not initialized" >&2
-		exit 1
-	fi
-}
-
-if [ $# -lt 1 ]; then
-	argument="placeholderThatDoesNothingButEnsuresAnArgumentExists"
-else
-	argument=$1
-fi
-
-case "$XDG_SESSION_TYPE" in
-	"wayland")
-		wayland "$argument"
-	;;
-
+case "''${XDG_SESSION_TYPE:-}" in
+	wayland)
+		if pgrep swww-daemon &>/dev/null; then
+			printf "\033[0;32m[INFO]\033[0m Selecting wallpaper %s\n" "$wallpaper"
+			${pkgs.swww}/bin/swww img "$wallpaper" --transition-step 150 --transition-type wipe --transition-bezier .33,1,.67,1
+		else
+			echo "Error: swww-daemon is not initialized" >&2
+			exit 1
+		fi
+		;;
 	*)
-		mode "$argument"
-		printf "\033[0;32m[INFO]\033[0m Selecting wallpaper %s.jpg\n" "$new"
-		feh --bg-fill "$wallpapersDir"/"$new".jpg
+		printf "\033[0;32m[INFO]\033[0m Selecting wallpaper %s\n" "$wallpaper"
+		${pkgs.feh}/bin/feh --bg-fill "$wallpaper"
 esac
 
 echo "$new" > "$wallpaperSet"
