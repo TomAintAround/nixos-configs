@@ -58,7 +58,7 @@ ${
 				&& [ "$orientation" != Undefined ] \
 				&& [ "$orientation" != TopLeft ]; then
 					hash "$file"
-					cache ${pkgs.imagemagick}/bin/magick -- "''${file[0]}" -auto-orient "$cache".jpg
+					cache ${pkgs.imagemagick}/bin/magick -- "''${file[0]}" -auto-orient "$cache"
 				else
 					draw "$file"
 				fi
@@ -86,7 +86,7 @@ ${
 	if (config.terminal == "alacritty" || config.programs.tmux.enable) then ''
 			if [ -p "$FIFO_UEBERZUG" ]; then
 				hash "$file"
-				cache ${pkgs.ffmpegthumbnailer}/bin/ffmpegthumbnailer -i "$file" -o "$cache".jpg -s 0
+				cache ${pkgs.ffmpegthumbnailer}/bin/ffmpegthumbnailer -i "$file" -o "$cache" -s 0
 			fi
 	''
 	else ""
