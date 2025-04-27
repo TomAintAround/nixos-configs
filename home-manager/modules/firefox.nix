@@ -63,6 +63,9 @@ user_pref("toolkit.legacyuserprofilecustomizations.stylesheets", true);
 /* Enable Hardware Acceleration */
 user_pref("gfx.webrender.all", true);
 user_pref("media.ffmpeg.vaapi.enabled", true);
+
+/* Make firefox boot faster */
+user_pref("widget.use-xdg-desktop-portal.settings", 0);
 			'';
 		};
 	};
