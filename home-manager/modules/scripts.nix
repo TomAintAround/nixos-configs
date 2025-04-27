@@ -21,9 +21,10 @@ done
 		'';
 	};
 
-	home.file.".local/bin/wallpaper-change" = {
-		executable = true;
-		text = ''
+	home.file = {
+		".local/bin/wallpaper-change" = {
+			executable = true;
+			text = ''
 #!/usr/bin/env bash
 set -euo pipefail
 
@@ -79,6 +80,109 @@ case "''${XDG_SESSION_TYPE:-}" in
 esac
 
 echo "$new" > "$wallpaperSet"
-		'';
+			'';
+		};
+
+		".local/bin/backupSystem" = {
+			executable = true;
+			text = ''
+#!/usr/bin/env bash
+set -euo pipefail
+
+backupLocation="${config.home.homeDirectory}/Backup"
+lastBackupDir="$backupLocation/lastBackup"
+currentBackupDir="$backupLocation/currentBackup"
+backupList="$backupLocation/toBackup.txt"
+mkdir -p "$lastBackupDir" "$currentBackupDir"
+
+copyFiles() {
+    src="$1"
+    dest="$2"
+    if [ ! -d "$src/.git" ]; then
+        mkdir -p "$dest"
+        ${pkgs.rsync}/bin/rsync -a --update "$src" "$dest/"
+    fi
+}
+
+if [[ "''${1:-}" != "dontMove" ]]; then
+    rm -rf "''${lastBackupDir:?}/"*
+    if [ "$(ls -A "$currentBackupDir")" ]; then
+        mv "$currentBackupDir"/* "$lastBackupDir"
+    fi
+fi
+
+while IFS= read -r fileOrDir; do
+    [[ -z "$fileOrDir" || "$fileOrDir" =~ ^# ]] && continue
+
+    parentDirs=$(dirname "$fileOrDir")
+    backupDest="$currentBackupDir$parentDirs"
+    copyFiles "$fileOrDir" "$backupDest" &
+done < "$backupList"
+wait
+
+echo "Backup complete."
+			'';
+		};
+
+		".local/bin/backupImages" = {
+			executable = true;
+			text = ''
+#!/usr/bin/env bash
+set -euo pipefail
+
+backupPath="$HOME/Downloads"
+old="$backupPath/old"
+new="$backupPath/new"
+mkdir -p "$new"
+
+renameFile() {
+    file="$1"
+    ext="''${file##*.}"
+    ext="''${ext,,}"
+    datetime=$(date -r "$file" "+%Y-%m-%d_%H-%M-%S")
+    dest="$new/''${datetime}.''${ext}"
+    if [[ -e "$dest" ]]; then
+        i=1
+        while [[ -e "''${dest%.*}_$i.''${ext}" ]]; do ((i++)); done
+        dest="''${dest%.*}_$i.''${ext}"
+    fi
+    mv -- "$file" "$dest"
+}
+
+convertImage() {
+    ext="''${1##*.}"
+    ext="''${ext,,}"
+    case "$ext" in
+        heic|jpg|jpeg|png|webp)
+            ${pkgs.imagemagick}/bin/magick "$1" -auto-orient "''${1%.*}.jpeg" &&
+				[ "$ext" != "jpeg" ] &&
+				rm -- "$1"
+            ;;
+    esac
+}
+
+convertVideo() {
+    ext="''${1##*.}"
+    ext="''${ext,,}"
+    case "$ext" in
+        mov)
+            ${pkgs.ffmpeg}/bin/ffmpeg -i "$1" -c:v libx264 -c:a aac "''${1%.*}.mp4" && rm -- "$1"
+            ;;
+    esac
+}
+
+export -f renameFile convertImage convertVideo
+export new
+
+printf "Copying images/videos...\n"
+cp -pru "$old"/* "$new" && printf "Done\n" || printf "An error occurred"
+printf "Renaming...\n"
+find "$new" -type f -print0 | ${pkgs.parallel}/bin/parallel -0 -j32 renameFile {} && printf "Done\n" || printf "An error occurred"
+printf "Converting images...\n"
+find "$new" -type f -print0 | ${pkgs.parallel}/bin/parallel -0 -j16 convertImage {} && printf "Done\n" || printf "An error occurred"
+printf "Converting videos...\n"
+find "$new" -type f ! -iname "*.mp4" -print0 | ${pkgs.parallel}/bin/parallel -0 -j2 convertVideo {} && printf "Done\n" || printf "An error occurred"
+			'';
+		};
 	};
 }
