@@ -105,10 +105,12 @@ copyFiles() {
 }
 
 if [[ "''${1:-}" != "dontMove" ]]; then
-    rm -rf "''${lastBackupDir:?}/"*
+    rm -rf "''${lastBackupDir:?}/*"
     if [ "$(ls -A "$currentBackupDir")" ]; then
-        mv "$currentBackupDir"/* "$lastBackupDir"
+        mv "$currentBackupDir/*" "$lastBackupDir"
     fi
+else
+	rm -rf "''${currentBackupDir:?}/*"
 fi
 
 while IFS= read -r fileOrDir; do
