@@ -1,6 +1,6 @@
 {
 	wayland.windowManager.hyprland.settings = {
-		windowrulev2 = [
+		windowrule = [
 			"float,class:^(music)$"
 			"size 86% 660px,class:^(music)$"
 			"move 7% 35,class:^(music)$"
