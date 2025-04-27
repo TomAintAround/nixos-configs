@@ -1,5 +1,8 @@
 { pkgs, lib, config, ... }: {
-	programs.firefox.enable = true;
+	programs.firefox = {
+		enable = true;
+		package = (pkgs.wrapFirefox (pkgs.firefox-unwrapped.override { pipewireSupport = true;}) {});
+	};
 
 	# Updates are only done manually (probably for the best)
 	home = {
