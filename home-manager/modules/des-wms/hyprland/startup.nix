@@ -30,6 +30,7 @@ ${pkgs.xdg-desktop-portal}/libexec/xdg-desktop-portal &
 
 			# Set wallpaper
 			"${pkgs.swww}/bin/swww-daemon"
+			"wallpaper-change startup"
 
 			# Generate Album Arts
 			"\$scriptsDir/albumart.bash"
