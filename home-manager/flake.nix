@@ -20,7 +20,7 @@
 			type = "github";
 			owner = "hyprwm";
 			repo = "Hyprland";
-			rev = "5ee35f914f921e5696030698e74fb5566a804768"; # v0.48.0
+			rev = "29e2e59fdbab8ed2cc23a20e3c6043d5decb5cdc"; # v0.48.1
 		};
 
 		hyprland-plugins = {
@@ -28,9 +28,9 @@
 			inputs.hyprland.follows = "hyprland";
 		};
 
-		hyprsplit = {
-			url = "github:shezdy/hyprsplit";
-			inputs.hyprland.follows = "hyprland";
+		split-monitor-workspaces = {
+			url = "github:Duckonaut/split-monitor-workspaces";
+			# inputs.hyprland.follows = "hyprland";
 		};
 
 		hyprfocus = {
@@ -40,7 +40,7 @@
 
 		hypr-dynamic-cursors = {
 			url = "github:VirtCode/hypr-dynamic-cursors";
-			inputs.hyprland.follows = "hyprland";
+			# inputs.hyprland.follows = "hyprland";
 		};
 	};
 
@@ -60,7 +60,7 @@
 		homeManagerConfig = inputs.home-manager.lib.homeManagerConfiguration;
 
 		nix-index-database = [ inputs.nix-index-database.hmModules.nix-index ];
-		catppuccin = [ inputs.catppuccin.homeManagerModules.catppuccin ];
+		catppuccin = [ inputs.catppuccin.homeModules.catppuccin ];
 	in {
 		homeConfigurations = {
 			"tomm@desktop" = homeManagerConfig {

@@ -1,13 +1,13 @@
 { inputs, pkgs,  config, ... }: let 
 	hyprbars = inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars;
-	hyprsplit = inputs.hyprsplit.packages.${pkgs.system}.hyprsplit;
+	split-monitor-workspaces = inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces;
 	hyprfocus = inputs.hyprfocus.packages.${pkgs.system}.hyprfocus;
 	hypr-dynamic-cursors = inputs.hypr-dynamic-cursors.packages.${pkgs.system}.hypr-dynamic-cursors;
 in {
 	wayland.windowManager.hyprland = {
 		plugins = [
-			hyprbars
-			hyprsplit
+			# hyprbars
+			# split-monitor-workspaces
 			# hyprfocus
 			hypr-dynamic-cursors
 		];
@@ -59,7 +59,7 @@ in {
 				};
 			};
 
-			hyprsplit.num_workspaces = config.wayland.windowManager.hyprland.numOfWorkspaces / 2;
+			split-monitor-workspaces.count = config.wayland.windowManager.hyprland.numOfWorkspaces / 2;
 		};
 	};
 }

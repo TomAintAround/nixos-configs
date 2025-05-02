@@ -5,7 +5,7 @@
 				screen = "${toString m.width}x${toString m.height}@${toString m.refreshRate}";
 				coordinates = "${toString m.x}x${toString m.y}";
 			in
-				"${m.name}, ${if m.enable then "${screen}, ${coordinates}, ${toString m.scale}" else "disable"}"
+				"${m.name}, ${if m.enable then "${screen}, ${coordinates}, ${toString m.scale}, bitdepth, 8" else "disable"}"
 		) (config.monitors);
 
 		general = {

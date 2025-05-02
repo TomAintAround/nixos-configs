@@ -70,11 +70,11 @@ esac
 		++
 		(let
 			cfg = config.wayland.windowManager.hyprland;
-			splitPluginInstalled = builtins.elem inputs.hyprsplit.packages.${pkgs.system}.hyprsplit cfg.plugins;
+			splitPluginInstalled = builtins.elem inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces cfg.plugins;
 		in
 			builtins.concatLists (builtins.genList (
 				i: let
-					split = "${if splitPluginInstalled then "split:" else ""}";
+					split = "${if splitPluginInstalled then "split-" else ""}";
 					ws = i + 1;
 				in [
 					"SUPER, code:1${toString i}, ${split}workspace, ${toString ws}"

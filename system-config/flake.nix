@@ -15,7 +15,7 @@
 			type = "github";
 			owner = "hyprwm";
 			repo = "Hyprland";
-			rev = "5ee35f914f921e5696030698e74fb5566a804768"; # v0.48.0
+			rev = "29e2e59fdbab8ed2cc23a20e3c6043d5decb5cdc"; # v0.48.1
 		};
 	};
 
