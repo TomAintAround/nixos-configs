@@ -1,4 +1,4 @@
-{ pkgs, ...}: {
+{ pkgs, ... }: {
 	home.packages = with pkgs; [
 		clipman # Clipboard manager
 		grimblast # Screenshot utility

@@ -1,4 +1,4 @@
-{ modulesPath, pkgs, ... }: {
+{ modulesPath, ... }: {
 	imports =
 		[ (modulesPath + "/installer/scan/not-detected.nix")
 			( import ./disko.nix { device = "/dev/nvme0n1"; } )
