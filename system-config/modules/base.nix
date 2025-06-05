@@ -12,7 +12,7 @@
 		./nix.nix
 		./openssh.nix
 		./pkgs.nix
-		./sddm.nix
+		./sddm
 		./security.nix
 		./xserver.nix
 	];
