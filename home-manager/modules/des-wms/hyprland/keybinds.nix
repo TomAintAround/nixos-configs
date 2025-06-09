@@ -49,7 +49,7 @@ esac
 			"${if (config.terminal == "alacritty") then "SUPER, F12, exec, ${pkgs.alacritty}/bin/alacritty --class btop -e btop" else "SUPER, F12, exec,"}"
 			"${if (config.terminal == "kitty") then "SUPER, F11, exec, ${pkgs.kitty}/bin/kitty --app-id music ncmpcpp" else "SUPER, F11, exec,"}"
 			"${if (config.terminal == "kitty") then "SUPER, F12, exec, ${pkgs.kitty}/bin/kitty --app-id btop btop" else "SUPER, F12, exec,"}"
-			",Print, exec, ${pkgs.grimblast}/bin/grimblast --notify --freeze copy area"
+			",Print, exec, ${pkgs.flameshot.override { enableWlrSupport = true; }}/bin/flameshot gui"
 
 			# Move focus
 			"SUPER, H, movefocus, l"

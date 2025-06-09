@@ -41,6 +41,9 @@ ${pkgs.xdg-desktop-portal}/libexec/xdg-desktop-portal &
 			# Clipboard Manager
 			"${pkgs.wl-clipboard}/bin/wl-paste -t text --watch clipman store --no-persist"
 
+			# Screenshot tool
+			"${pkgs.flameshot.override { enableWlrSupport = true; }}/bin/flameshot"
+
 			# Software for Peripherals
 			"${if config.openrazer.enable then "${pkgs.polychromatic}/bin/polychromatic-tray-applet}" else "echo no"}"
 			"${if config.openrgb.enable then "${pkgs.openrgb}/bin/openrgb --startminimized" else "echo no"}"

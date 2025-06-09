@@ -1,7 +1,7 @@
 { pkgs, ... }: {
 	home.packages = with pkgs; [
 		clipman # Clipboard manager
-		grimblast # Screenshot utility
+		(flameshot.override { enableWlrSupport = true; }) # Screenshot utility
 		swww # Wallpaper manager
 		wl-clipboard # Copy/Paste
 	];
