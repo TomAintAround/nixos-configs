@@ -1,4 +1,4 @@
-{ pkgs, config, lib, inputs, ... }: {
+{ pkgs, config, lib, ... }: {
 	wayland.windowManager.hyprland.settings = {
 		bind = [
 			# Hyprland keybinds
@@ -70,21 +70,16 @@ esac
 		++
 		(let
 			cfg = config.wayland.windowManager.hyprland;
-			splitPluginInstalled = builtins.elem inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces cfg.plugins;
 		in
 			builtins.concatLists (builtins.genList (
 				i: let
-					split = "${if splitPluginInstalled then "split-" else ""}";
 					ws = i + 1;
 				in [
-					"SUPER, code:1${toString i}, ${split}workspace, ${toString ws}"
-					"SUPER SHIFT, code:1${toString i}, ${split}movetoworkspace, ${toString ws}"
+					"SUPER, code:1${toString i}, workspace, ${toString ws}"
+					"SUPER SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
 				]
-			) (
-				if splitPluginInstalled then (cfg.numOfWorkspaces / 2)
-				else (cfg.numOfWorkspaces))
-			)
-		) 
+			) cfg.numOfWorkspaces)
+		)
 		++
 		# I know what you're thinking: "What the hell am I reading? What kind of spaguetti mess is this?".
 		# You think this sucks? THEN MAKE IT BETTER YOURSELF AND MAKE A PULL REQUEST. Let's see if you can

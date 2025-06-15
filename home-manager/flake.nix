@@ -15,33 +15,6 @@
 		};
 
 		catppuccin.url = "github:catppuccin/nix";
-
-		hyprland = {
-			type = "github";
-			owner = "hyprwm";
-			repo = "Hyprland";
-			rev = "29e2e59fdbab8ed2cc23a20e3c6043d5decb5cdc"; # v0.48.1
-		};
-
-		hyprland-plugins = {
-			url = "github:hyprwm/hyprland-plugins";
-			inputs.hyprland.follows = "hyprland";
-		};
-
-		split-monitor-workspaces = {
-			url = "github:Duckonaut/split-monitor-workspaces";
-			# inputs.hyprland.follows = "hyprland";
-		};
-
-		hyprfocus = {
-			url = "github:pyt0xic/hyprfocus";
-			inputs.hyprland.follows = "hyprland";
-		};
-
-		hypr-dynamic-cursors = {
-			url = "github:VirtCode/hypr-dynamic-cursors";
-			# inputs.hyprland.follows = "hyprland";
-		};
 	};
 
 	outputs = inputs: let

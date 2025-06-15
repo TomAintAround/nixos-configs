@@ -9,7 +9,6 @@ in {
 		./environment.nix
 		./general.nix
 		./keybinds.nix
-		./plugins.nix
 		./startup.nix
 		./window-rules.nix
 	];
