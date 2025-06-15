@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, lib, config, ... }: {
 	programs.neovim.enable = true;
 
 	home = {
@@ -34,13 +34,24 @@
 			# Debuggers
 			bashdb
 			completely # dependency of bashdb
-			nodejs_23 # required for lua debugger
+			nodejs # required for lua debugger
+			vscode-extensions.ms-vscode.cpptools
+			vscode-js-debug
 		];
+
 		# I'm absolutely not configuring neovim through nix,
 		# so here's my solution that doesn't rely on sourcing
 		# (which makes the configuration read-only)
 		sessionVariables = {
 			NVIM_APPNAME = "home-manager/modules/neovim";
 		};
+
+
+		activation.link-debuggers = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+LOCATION=${config.xdg.stateHome}/nvim/debuggers
+mkdir -p "$LOCATION"
+ln -sf ${pkgs.vscode-js-debug}/lib/node_modules/js-debug/dist/src/dapDebugServer.js "$LOCATION"
+ln -sf ${pkgs.vscode-extensions.ms-vscode.cpptools}/share/vscode/extensions/ms-vscode.cpptools/debugAdapters/bin/OpenDebugAD7 "$LOCATION"
+		'';
 	};
 }
