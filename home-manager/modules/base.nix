@@ -9,6 +9,7 @@
 		./alacritty.nix
 		./bat.nix
 		./btop.nix
+		./contentCreation.nix
 		./direnv.nix
 		./easyeffects.nix
 		./envVariables.nix

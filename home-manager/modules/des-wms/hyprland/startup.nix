@@ -2,6 +2,9 @@
 	wayland.windowManager.hyprland.settings = {
 		"\$scriptsDir" = "${config.xdg.dataHome}/scripts";
 		exec-once = [
+			# Screensharing
+			"dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+
 			# Portals
 			(let
 				portal = pkgs.writeShellScriptBin "portal.bash" ''
@@ -24,9 +27,6 @@ ${pkgs.xdg-desktop-portal}/libexec/xdg-desktop-portal &
 
 			# Notification Daemon
 			"${pkgs.systemd}/bin/systemctl --user start dunst.service"
-
-			# Screensharing
-			"dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
 
 			# Set wallpaper
 			"${pkgs.swww}/bin/swww-daemon"

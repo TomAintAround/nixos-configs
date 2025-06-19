@@ -10,6 +10,9 @@
 		pavucontrol
 		polkit_gnome
 		rofi # Will be replace by ags in the future
+
+		grim
+		slurp
 	];
 
 	services.network-manager-applet.enable = true;

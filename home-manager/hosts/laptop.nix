@@ -23,6 +23,7 @@
 	];
 
 	brightness.enable = true;
+	contentCreation.enable = false;
 	gaming.enable = false;
 	gamedev.enable = false;
 	openrazer.enable = false;

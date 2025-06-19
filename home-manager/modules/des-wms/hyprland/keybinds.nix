@@ -66,6 +66,12 @@ esac
 			# Scroll through existing workspaces
 			"SUPER, mouse_down, workspace, e+1"
 			"SUPER, mouse_up, workspace, e-1"
+
+			# OBS
+			"CTRL SHIFT, Home, pass, class:^(com\.obsproject\.Studio)$"
+			"CTRL SHIFT, End, pass, class:^(com\.obsproject\.Studio)$"
+			"CTRL SHIFT, Insert, pass, class:^(com\.obsproject\.Studio)$"
+			"CTRL SHIFT, Delete, pass, class:^(com\.obsproject\.Studio)$"
 		]
 		++
 		(let
