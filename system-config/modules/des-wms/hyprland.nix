@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }: {
+{
 	imports = [
 		./wayland.nix
 		./wm.nix
