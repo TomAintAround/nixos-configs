@@ -13,8 +13,8 @@
 			x = 0;
 			y = 0;
 			scale = 1.0;
-			enable = true;
-			default = true;
+			enable = false;
+			default = false;
 		}
 		{
 			name = "DVI-D-1";
@@ -25,7 +25,7 @@
 			x = 1920;
 			y = 0;
 			scale = 1.0;
-			enable = false;
+			enable = true;
 			default = true;
 		}
 		{
