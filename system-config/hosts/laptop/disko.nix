@@ -35,7 +35,7 @@
 
 					root = {
 						name = "root";
-						size = "60G";
+						size = "100G";
 						content = {
 							type = "luks";
 							name = "cryptedroot";
