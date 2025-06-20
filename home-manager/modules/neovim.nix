@@ -48,7 +48,7 @@
 
 
 		activation.link-debuggers = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-LOCATION=${config.xdg.stateHome}/nvim/debuggers
+LOCATION=${config.xdg.stateHome}/"$NVIM_APPNAME"/debuggers
 mkdir -p "$LOCATION"
 ln -sf ${pkgs.vscode-js-debug}/lib/node_modules/js-debug/dist/src/dapDebugServer.js "$LOCATION"
 ln -sf ${pkgs.vscode-extensions.ms-vscode.cpptools}/share/vscode/extensions/ms-vscode.cpptools/debugAdapters/bin/OpenDebugAD7 "$LOCATION"
