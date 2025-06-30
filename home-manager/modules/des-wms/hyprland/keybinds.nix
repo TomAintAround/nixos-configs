@@ -90,6 +90,7 @@ esac
 		# I know what you're thinking: "What the hell am I reading? What kind of spaguetti mess is this?".
 		# You think this sucks? THEN MAKE IT BETTER YOURSELF AND MAKE A PULL REQUEST. Let's see if you can
 		# (please do it I beg you).
+		# Update: I've managed to make it better. I was very inexperienced the first time I did this.
 		(let
 			enabledMonitors = builtins.filter (m: m.enable) config.monitors;
 
@@ -101,11 +102,6 @@ esac
 			coordinates = if sameXCoord then coordinates_y else coordinates_x;
 
 			monSelector = n: (builtins.elemAt coordinates (n - 1)).name;
-
-			firstMon = monSelector 1;
-			secondMon = monSelector 2;
-			thirdMon = monSelector 3;
-			fourthMon = monSelector 4;
 		in
 			if coordinates != (lib.lists.unique coordinates)
 				then throw "If your monitors are vertically distributed, each one must have a unique ordinate. If not, each one must have a unique abscissa"
@@ -113,30 +109,30 @@ esac
 				then []
 			else if length == 2
 				then [
-					"SUPER ALT, H, focusmonitor, ${firstMon}"
-					"SUPER ALT, L, focusmonitor, ${secondMon}"
-					"SUPER ALT SHIFT, H, movewindow, mon:${firstMon}"
-					"SUPER ALT SHIFT, L, movewindow, mon:${secondMon}"
+					"SUPER ALT, H, focusmonitor, ${monSelector 1}"
+					"SUPER ALT, L, focusmonitor, ${monSelector 2}"
+					"SUPER ALT SHIFT, H, movewindow, mon:${monSelector 1}"
+					"SUPER ALT SHIFT, L, movewindow, mon:${monSelector 2}"
 				]
 			else if length == 3
 				then [
-					"SUPER ALT, H, focusmonitor, ${firstMon}"
-					"SUPER ALT, K, focusmonitor, ${secondMon}"
-					"SUPER ALT, L, focusmonitor, ${thirdMon}"
-					"SUPER ALT SHIFT, H, movewindow, mon:${firstMon}"
-					"SUPER ALT SHIFT, K, movewindow, mon:${secondMon}"
-					"SUPER ALT SHIFT, L, movewindow, mon:${thirdMon}"
+					"SUPER ALT, H, focusmonitor, ${monSelector 1}"
+					"SUPER ALT, K, focusmonitor, ${monSelector 2}"
+					"SUPER ALT, L, focusmonitor, ${monSelector 3}"
+					"SUPER ALT SHIFT, H, movewindow, mon:${monSelector 1}"
+					"SUPER ALT SHIFT, K, movewindow, mon:${monSelector 2}"
+					"SUPER ALT SHIFT, L, movewindow, mon:${monSelector 3}"
 				]
 			else if length == 4
 				then [
-					"SUPER ALT, H, focusmonitor, ${firstMon}"
-					"SUPER ALT, J, focusmonitor, ${secondMon}"
-					"SUPER ALT, K, focusmonitor, ${thirdMon}"
-					"SUPER ALT, L, focusmonitor, ${fourthMon}"
-					"SUPER ALT SHIFT, H, movewindow, mon:${firstMon}"
-					"SUPER ALT SHIFT, J, movewindow, mon:${secondMon}"
-					"SUPER ALT SHIFT, K, movewindow, mon:${thirdMon}"
-					"SUPER ALT SHIFT, L, movewindow, mon:${fourthMon}"
+					"SUPER ALT, H, focusmonitor, ${monSelector 1}"
+					"SUPER ALT, J, focusmonitor, ${monSelector 2}"
+					"SUPER ALT, K, focusmonitor, ${monSelector 3}"
+					"SUPER ALT, L, focusmonitor, ${monSelector 4}"
+					"SUPER ALT SHIFT, H, movewindow, mon:${monSelector 1}"
+					"SUPER ALT SHIFT, J, movewindow, mon:${monSelector 2}"
+					"SUPER ALT SHIFT, K, movewindow, mon:${monSelector 3}"
+					"SUPER ALT SHIFT, L, movewindow, mon:${monSelector 4}"
 				]
 			else throw "WHAT THE HELL ARE YOU DOING WITH 5+ MONITORS???????");
 
