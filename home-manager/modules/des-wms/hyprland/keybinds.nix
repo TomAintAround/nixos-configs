@@ -91,10 +91,7 @@ esac
 		# You think this sucks? THEN MAKE IT BETTER YOURSELF AND MAKE A PULL REQUEST. Let's see if you can
 		# (please do it I beg you).
 		(let
-			enabledMonitors = lib.lists.remove {} (builtins.map
-				(m: if m.enable then { inherit (m) name x y; } else {})
-				config.monitors
-			);
+			enabledMonitors = builtins.filter (m: m.enable) config.monitors;
 
 			length = builtins.length enabledMonitors;
 
