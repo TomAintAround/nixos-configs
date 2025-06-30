@@ -95,7 +95,7 @@ esac
 
 			length = builtins.length enabledMonitors;
 
-			sameXCoord = ((builtins.map (m: m.x) enabledMonitors) == (builtins.genList (x: 0) length));
+			sameXCoord = ((builtins.map (m: m.x) enabledMonitors) == (builtins.genList (x: (builtins.elemAt enabledMonitors 0).x) length));
 			coordinates_x = builtins.sort builtins.lessThan (builtins.map (m: m.x) enabledMonitors);
 			coordinates_y = builtins.sort builtins.lessThan (builtins.map (m: m.y) enabledMonitors);
 			coordinates = if sameXCoord then coordinates_y else coordinates_x;
