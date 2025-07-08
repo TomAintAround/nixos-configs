@@ -13,6 +13,7 @@
 		nix-ld.enable = true;
 		appimage.enable = true;
 		gamemode.enable = true;
+		gamescope.enable = true;
 	};
 	
 	services.flatpak.enable = true;
