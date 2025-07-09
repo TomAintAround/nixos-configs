@@ -22,15 +22,13 @@
 		ripgrep # Grep but better
 		stremio
 		thunderbird
-		unar # Extrach RAR files
-		unrar-wrapper
-		unzip
+		unar unrar-wrapper # Extrach RAR files
+		unzip zip
 		vesktop
 		virt-manager
 		vlc
 		vscode
 		wget
 		libsForQt5.xwaylandvideobridge
-		zip
 	];
 }
