@@ -19,6 +19,8 @@ set -g escape-time 0
 set -g focus-events on
 set -g status-position top
 set -g allow-passthrough on
+set -ga update-environment TERM
+set -ga update-environment TERM_PROGRAM
 
 # Keybindings
 unbind t
