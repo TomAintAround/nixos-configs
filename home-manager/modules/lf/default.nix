@@ -9,14 +9,14 @@
 		./lfimg.nix
 		./vidthumb.nix
 	];
-} // lib.mkIf (config.fileManager == "lf") {
-	xdg.configFile = {
+
+	xdg.configFile = lib.mkIf (config.fileManager == "lf") {
 		"lf/colors".source = ./colors;
 		"lf/icons".source = ./icons;
 	};
 
 	programs.lf = {
-		enable = true;
+		enable = config.fileManager == "lf";
 		extraConfig = "on-cd";
 	};
 }

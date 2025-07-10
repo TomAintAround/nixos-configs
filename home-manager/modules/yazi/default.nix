@@ -3,8 +3,8 @@
 		./settings.nix
 		./keymaps.nix
 	];
-} // lib.mkIf (config.fileManager == "yazi") {
-	home.packages = with pkgs; [
+
+	home.packages = with pkgs; lib.mkIf (config.fileManager == "yazi") [
 		ffmpeg # for video thumbnails
 		atool unzip zip # for archive extraction and preview
 		jq # for JSON preview
@@ -23,7 +23,7 @@
 	];
 
 	programs.yazi = {
-		enable = true;
+		enable = config.fileManager == "yazi";
 		plugins = let 
 			compress = pkgs.fetchFromGitHub {
 				owner = "KKV9";

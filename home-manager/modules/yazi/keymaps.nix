@@ -1,4 +1,4 @@
-{ lib, config, ... }: lib.mkIf (config.fileManager == "yazi") {
+{
 	programs.yazi.keymap.mgr.prepend_keymap = [
 		# Disable tab keymaps
 		{ on  = "<C-c>"; run = "noop"; }

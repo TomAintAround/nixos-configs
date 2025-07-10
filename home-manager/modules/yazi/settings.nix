@@ -1,4 +1,4 @@
-{ lib, config, ... }: lib.mkIf (config.fileManager == "yazi") {
+{
 	programs.yazi.settings = {
 		mgr = {
 			ratio = [ 1 2 3 ];

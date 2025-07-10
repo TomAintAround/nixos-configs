@@ -1,4 +1,4 @@
-{ lib, config, ... }: lib.mkIf (config.fileManager == "lf") {
+{
 	programs.lf.keybindings = {
 		p = "paste; clear";
 		ad = "push :mkdir<space>";
