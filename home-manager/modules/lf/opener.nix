@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, lib, config, ... }: lib.mkIf (config.fileManager == "lf") {
 	programs.lf.commands = {
 		open = ''
 ''${{

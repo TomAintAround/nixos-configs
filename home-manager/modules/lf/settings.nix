@@ -1,4 +1,4 @@
-{ config, ... }: {
+{ lib, config, ... }: lib.mkIf (config.fileManager == "lf") {
 	programs.lf.settings = {
 		shell = "bash";
 		shellopts = "-eu";

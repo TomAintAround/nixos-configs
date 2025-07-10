@@ -11,6 +11,7 @@
 		IMAGE_EDITOR = "gimp";
 		AUDIO_PLAYER = "vlc";
 		VIDEO_PLAYER = "vlc";
+		FILE_MANAGER = config.fileManager;
 
 		# Paths
 		GOPATH = "${config.xdg.dataHome}/go";

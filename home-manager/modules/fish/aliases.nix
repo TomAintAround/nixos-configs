@@ -82,7 +82,20 @@ or ${pkgs.flatpak}/bin/flatpak uninstall --unused $argv
 				description = "Update flatpaks";
 				body = "${pkgs.flatpak}/bin/flatpak update $argv";
 			};
-		};
+		} // (if (config.fileManager == "yazi") then {
+			yazicd = {
+				description = "Open yazi and change directory";
+				body = ''
+set tmp (mktemp -t "yazi-cwd.XXXXXX")
+${pkgs.yazi}/bin/yazi $argv --cwd-file="$tmp"
+if read -z cwd <"$tmp"; and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+	cd -- "$cwd"
+end
+rm -f -- "$tmp"
+				'';
+			};
+
+		} else {});
 
 		shellAliases = {
 			"cat" = "${pkgs.bat}/bin/bat --paging=never";
@@ -90,10 +103,13 @@ or ${pkgs.flatpak}/bin/flatpak uninstall --unused $argv
 			"ls" = "${pkgs.eza}/bin/eza --git --icons=always --long --all --group --header --links --color=always --no-quotes --smart-group --group-directories-first --time-style='+%H:%m %d/%m/%y'";
 			"man" = "${pkgs.bat-extras.batman}/bin/batman";
 		} // (
-			if (config.terminal == "alacritty" || config.programs.tmux.enable) then
-				{ "lf" = "cd \"$(${config.xdg.configHome}/lf/lfimg -print-last-dir)\""; }
-			else 
-				{ "lf" = "cd \"$(command lf -print-last-dir $argv)\""; }
+			if (config.fileManager == "lf") then (
+				if (config.terminal == "alacritty" || config.programs.tmux.enable) then
+					{ "lf" = "cd \"$(${config.xdg.configHome}/lf/lfimg -print-last-dir)\""; }
+				else 
+					{ "lf" = "cd \"$(command lf -print-last-dir $argv)\""; }
+			) else if (config.fileManager == "yazi") then { "yazi" = "yazicd"; }
+			else {}
 		);
 	};
 }

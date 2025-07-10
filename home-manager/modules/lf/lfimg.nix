@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }: lib.mkIf (config.terminal == "alacritty" || config.programs.tmux.enable) {
+{ pkgs, lib, config, ... }: lib.mkIf (config.fileManager == "lf" && (config.terminal == "alacritty" || config.programs.tmux.enable)) {
 	xdg.configFile."lf/lfimg" = {
 		executable = true;
 		text = ''

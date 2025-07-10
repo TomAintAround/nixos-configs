@@ -105,6 +105,11 @@ set -g @catppuccin_application_color "#f9e2af"
 set -g @catppuccin_directory_color "#fab387"
 			'';
 		};
+
+		yazi = {
+			enable = true;
+			inherit accent flavor;
+		};
 	};
 
 	# Script to copy the GTK theme to ~/.themes/ and the icon theme

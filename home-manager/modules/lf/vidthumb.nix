@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }: lib.mkIf (config.terminal == "kitty" && !config.programs.tmux.enable) {
+{ pkgs, lib, config, ... }: lib.mkIf (config.fileManager == "lf" && (config.terminal == "kitty" && !config.programs.tmux.enable)) {
 	xdg.configFile."lf/vidthumb.bash" = {
 		executable = true;
 		text = ''

@@ -1,4 +1,4 @@
-{ pkgs, config, ... }: {
+{ pkgs, lib, config, ... }: lib.mkIf (config.fileManager == "lf") {
 	xdg.configFile = {
 		"lf/previewer.bash" = {
 			executable = true;

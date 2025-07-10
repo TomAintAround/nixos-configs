@@ -1,4 +1,4 @@
-{
+{ lib, config, ... }: {
 	imports = [
 		./commands.nix
 		./keybinds.nix
@@ -9,7 +9,7 @@
 		./lfimg.nix
 		./vidthumb.nix
 	];
-
+} // lib.mkIf (config.fileManager == "lf") {
 	xdg.configFile = {
 		"lf/colors".source = ./colors;
 		"lf/icons".source = ./icons;
