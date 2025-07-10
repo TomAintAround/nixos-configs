@@ -83,7 +83,7 @@ or ${pkgs.flatpak}/bin/flatpak uninstall --unused $argv
 				body = "${pkgs.flatpak}/bin/flatpak update $argv";
 			};
 		} // (if (config.fileManager == "yazi") then {
-			yazicd = {
+			yazi = {
 				description = "Open yazi and change directory";
 				body = ''
 set tmp (mktemp -t "yazi-cwd.XXXXXX")
@@ -108,8 +108,7 @@ rm -f -- "$tmp"
 					{ "lf" = "cd \"$(${config.xdg.configHome}/lf/lfimg -print-last-dir)\""; }
 				else 
 					{ "lf" = "cd \"$(command lf -print-last-dir $argv)\""; }
-			) else if (config.fileManager == "yazi") then { "yazi" = "yazicd"; }
-			else {}
+			) else {}
 		);
 	};
 }
