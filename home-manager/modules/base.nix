@@ -6,6 +6,7 @@
 		./lf
 		./themes
 		./tmux
+		./yazi
 		./alacritty.nix
 		./bat.nix
 		./btop.nix
