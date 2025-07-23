@@ -1,6 +1,7 @@
 {
 	imports = [
 		./boot
+		./boot/plymouth.nix
 		./boot/systemd-boot.nix
 		./hardware/disks.nix
 		./hardware/graphics.nix
