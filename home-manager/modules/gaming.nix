@@ -7,11 +7,12 @@
 				egl-wayland
 			];
 		})
-		lutris
 		prismlauncher
 		protonup
 		rpcs3
 		steam
 		wineWowPackages.stable
 	];
+
+	programs.lutris.enable = true;
 }
