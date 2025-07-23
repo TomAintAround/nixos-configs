@@ -3,7 +3,6 @@
 		[ (modulesPath + "/installer/scan/not-detected.nix")
 			( import ./disko.nix { device = "/dev/nvme0n1"; } )
 			../../modules/base.nix
-			../../modules/boot/impermanence.nix
 			../../modules/des-wms/awesome.nix
 			../../modules/des-wms/hyprland.nix
 			../../modules/hardware/cpu/amd
