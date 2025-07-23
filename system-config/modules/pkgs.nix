@@ -11,9 +11,12 @@
 
 	programs = {
 		nix-ld.enable = true;
-		appimage.enable = true;
 		gamemode.enable = true;
 		gamescope.enable = true;
+		appimage = {
+			enable = true;
+			binfmt = true;
+		};
 	};
 	
 	services.flatpak.enable = true;
