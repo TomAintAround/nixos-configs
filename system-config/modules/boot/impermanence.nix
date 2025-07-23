@@ -38,6 +38,7 @@ umount /btrfs_tmp
 			"/var/lib/libvirt"
 			"/var/lib/nixos"
 			"/var/lib/systemd/coredump"
+			"/var/lib/systemd/timers"
 			"/var/log"
 			{
 				directory = "/var/lib/colord";
@@ -50,6 +51,10 @@ umount /btrfs_tmp
 			"/etc/machine-id"
 			{
 				file = "/var/keys/secret_file";
+				parentDirectory = { mode = "u=rwx,g=,o="; };
+			}
+			{
+				file = "/etc/nix/id_rsa";
 				parentDirectory = { mode = "u=rwx,g=,o="; };
 			}
 		];
