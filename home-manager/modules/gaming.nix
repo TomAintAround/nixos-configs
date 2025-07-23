@@ -10,6 +10,7 @@
 		lutris
 		prismlauncher
 		protonup
+		rpcs3
 		steam
 		wineWowPackages.stable
 	];
