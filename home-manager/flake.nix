@@ -32,26 +32,24 @@
 
 		homeManagerConfig = inputs.home-manager.lib.homeManagerConfiguration;
 
-		nix-index-database = [ inputs.nix-index-database.hmModules.nix-index ];
+		nix-index-database = [ inputs.nix-index-database.homeModules.nix-index ];
 		catppuccin = [ inputs.catppuccin.homeModules.catppuccin ];
 	in {
 		homeConfigurations = {
 			"tomm@desktop" = homeManagerConfig {
 				inherit pkgs extraSpecialArgs;
 				modules =
-				nix-index-database ++
-				catppuccin ++ [
-					./hosts/desktop.nix
-				];
+					nix-index-database ++
+					catppuccin ++
+					[ ./hosts/desktop.nix ];
 			};
 
 			"tomm@laptop" = homeManagerConfig {
 				inherit pkgs extraSpecialArgs;
 				modules =
-				nix-index-database ++
-				catppuccin ++ [
-					./hosts/laptop.nix
-				];
+					nix-index-database ++
+					catppuccin ++
+					[ ./hosts/laptop.nix ];
 			};
 		};
 	};
