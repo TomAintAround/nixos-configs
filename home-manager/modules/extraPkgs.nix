@@ -12,6 +12,7 @@
 		killall
 		libreoffice
 		newsflash
+		nh
 		nix-tree # View all package dependencies
 		nurl # Query data from a Github repo
 		obsidian
