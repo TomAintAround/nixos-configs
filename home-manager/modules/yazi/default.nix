@@ -18,7 +18,7 @@
 		ripdrag # for drag and drop
 
 		# Plugin dependencies
-		# rich-cli
+		rich-cli
 		exiftool
 	];
 

@@ -32,8 +32,8 @@
 			yamlfmt
 
 			# Debuggers
-			bashdb
-			completely # dependency of bashdb
+			# bashdb
+			# completely # dependency of bashdb
 			nodejs # required for lua debugger
 			vscode-extensions.ms-vscode.cpptools
 			vscode-js-debug
