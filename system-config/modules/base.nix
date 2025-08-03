@@ -2,6 +2,7 @@
 	imports = [
 		./boot
 		./boot/plymouth.nix
+		./boot/secure-boot.nix
 		./boot/systemd-boot.nix
 		./hardware/disks.nix
 		./hardware/graphics.nix

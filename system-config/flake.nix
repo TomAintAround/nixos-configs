@@ -8,6 +8,11 @@
 			url = "github:nix-community/disko";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
+
+		lanzaboote = {
+			url = "github:nix-community/lanzaboote";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
 	};
 
 	outputs = inputs: let
@@ -16,12 +21,14 @@
 		specialArgs = { inherit inputs secrets; };
 		nixosSys = inputs.nixpkgs.lib.nixosSystem;
 		disko = [ inputs.disko.nixosModules.default ];
+		lanzaboote = [ inputs.lanzaboote.nixosModules.lanzaboote ];
 	in {
 		nixosConfigurations = {
 			desktop = nixosSys {
 				inherit system specialArgs;
 				modules =
 					disko ++
+					lanzaboote ++
 					[ ./hosts/desktop ];
 			};
 
@@ -29,6 +36,7 @@
 				inherit system specialArgs;
 				modules =
 					disko ++
+					lanzaboote ++
 					[ ./hosts/laptop ];
 			};
 		};
