@@ -46,7 +46,7 @@ ${pkgs.xdg-desktop-portal}/libexec/xdg-desktop-portal &
 
 			# Software for Peripherals
 			"${if config.openrazer.enable then "${pkgs.polychromatic}/bin/polychromatic-tray-applet}" else "echo no"}"
-			"${if config.openrgb.enable then "${pkgs.openrgb}/bin/openrgb --startminimized" else "echo no"}"
+			"${if config.openrgb.enable then "${pkgs.openrgb-with-all-plugins}/bin/openrgb --startminimized" else "echo no"}"
 
 			# Easyeffects
 			"${pkgs.systemd}/bin/systemctl --user start easyeffects.service"
