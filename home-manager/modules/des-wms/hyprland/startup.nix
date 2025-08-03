@@ -45,8 +45,8 @@ ${pkgs.xdg-desktop-portal}/libexec/xdg-desktop-portal &
 			"${pkgs.flameshot.override { enableWlrSupport = true; }}/bin/flameshot"
 
 			# Software for Peripherals
-			"${if config.openrazer.enable then "${pkgs.polychromatic}/bin/polychromatic-tray-applet}" else "echo no"}"
-			"${if config.openrgb.enable then "${pkgs.openrgb}/bin/openrgb --startminimized" else "echo no"}"
+			"${if config.openrazer.enable then "${pkgs.polychromatic}/bin/polychromatic-tray-applet}" else null}"
+			"${if config.openrgb.enable then "${pkgs.openrgb}/bin/openrgb --startminimized" else null}"
 
 			# Easyeffects
 			"${pkgs.systemd}/bin/systemctl --user start easyeffects.service"
