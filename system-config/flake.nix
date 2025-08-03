@@ -14,9 +14,7 @@
 		system = "x86_64-linux";
 		secrets = import ./secrets.nix;
 		specialArgs = { inherit inputs secrets; };
-
 		nixosSys = inputs.nixpkgs.lib.nixosSystem;
-
 		disko = [ inputs.disko.nixosModules.default ];
 	in {
 		nixosConfigurations = {
