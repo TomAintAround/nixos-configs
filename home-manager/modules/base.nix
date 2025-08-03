@@ -26,7 +26,6 @@
 		./locales.nix
 		./music.nix
 		./neovim.nix
-		./openrgb.nix
 		./scripts.nix
 		./trash-cli.nix
 		./udiskie.nix
