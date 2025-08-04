@@ -23,6 +23,7 @@
 		./git.nix
 		./kdeconnect.nix
 		./kitty.nix
+		./lazygit.nix
 		./locales.nix
 		./music.nix
 		./neovim.nix

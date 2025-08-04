@@ -22,6 +22,9 @@ bind -M visual \ce 'commandline -f kill-whole-line && $EDITOR . && commandline -
 bind \cp 'commandline -f kill-whole-line && packMgr . && commandline -f execute'
 bind -M insert \cp 'commandline -f kill-whole-line && packMgr . && commandline -f execute'
 bind -M visual \cp 'commandline -f kill-whole-line && packMgr . && commandline -f execute'
+bind \cg 'commandline -f kill-whole-line && ${pkgs.lazygit}/bin/lazygit && commandline -f execute'
+bind -M insert \cg 'commandline -f kill-whole-line && ${pkgs.lazygit}/bin/lazygit && commandline -f execute'
+bind -M visual \cg 'commandline -f kill-whole-line && ${pkgs.lazygit}/bin/lazygit && commandline -f execute'
 
 # Done Plugin
 set -a __done_exclude '^pgrep'
