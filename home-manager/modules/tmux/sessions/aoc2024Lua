@@ -13,6 +13,8 @@ if ! tmux has-session -t $SESSION_NAME 2>/dev/null; then
 	tmux new-window -t $SESSION_NAME -n "git" -c "$SESSION_PATH"
 	tmux send-keys -t $SESSION_NAME:git "lazygit" C-m
 
+	tmux new-window -t $SESSION_NAME -n "cli" -c "$SESSION_PATH"
+
 	tmux select-window -t $SESSION_NAME:editor
 fi
 tmux switch-client -t $SESSION_NAME
