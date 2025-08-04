@@ -21,6 +21,7 @@ and arduino-cli monitor -p $usb --fqbn $fqbn
 
 			flatclean = {
 				description = "Removes orphaned flatpaks";
+				wraps = "${pkgs.flatpak}/bin/flatpak uninstall --unused";
 				body = ''
 ${pkgs.flatpak}/bin/flatpak uninstall --unused | grep -E 'Nothing unused to uninstall|Nada sin usar que desinstalar' >/dev/null
 and printf '\n\\033[31;1m[ ERROR]\\033[0m Nothing to uninstall\n'
@@ -45,16 +46,19 @@ or ${pkgs.flatpak}/bin/flatpak uninstall --unused $argv
 
 			flatinfo = {
 				description = "Prints info about a flatpak";
+				wraps = "${pkgs.flatpak}/bin/flatpak info";
 				body = "${pkgs.flatpak}/bin/flatpak info $argv";
 			};
 
 			flatins = {
 				description = "Installs a flatpak";
+				wraps = "${pkgs.flatpak}/bin/flatpak install flathub";
 				body = "${pkgs.flatpak}/bin/flatpak install flathub $argv";
 			};
 
 			flatkill = {
 				description = "Kills a flatpak";
+				wraps = "${pkgs.flatpak}/bin/flatpak kill";
 				body = "${pkgs.flatpak}/bin/flatpak kill $argv";
 			};
 
@@ -65,21 +69,25 @@ or ${pkgs.flatpak}/bin/flatpak uninstall --unused $argv
 
 			flatrem = {
 				description = "Uninstalls a flatpak";
+				wraps = "${pkgs.flatpak}/bin/flatpak uninstall";
 				body = "${pkgs.flatpak}/bin/flatpak uninstall $argv";
 			};
 
 			flatrun = {
 				description = "Runs a flatpak";
+				wraps = "${pkgs.flatpak}/bin/flatpak run";
 				body = "${pkgs.flatpak}/bin/flatpak run $argv";
 			};
 
 			flatsear = {
 				description = "Searches for a flatpak";
+				wraps = "${pkgs.flatpak}/bin/flatpak search";
 				body = "${pkgs.flatpak}/bin/flatpak search $argv";
 			};
 
 			flatup = {
 				description = "Update flatpaks";
+				wraps = "${pkgs.flatpak}/bin/flatpak update";
 				body = "${pkgs.flatpak}/bin/flatpak update $argv";
 			};
 		} // (if (config.fileManager == "yazi") then {
