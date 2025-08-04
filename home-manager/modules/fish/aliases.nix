@@ -58,6 +58,11 @@ or ${pkgs.flatpak}/bin/flatpak uninstall --unused $argv
 				body = "${pkgs.flatpak}/bin/flatpak kill $argv";
 			};
 
+			flatlist = {
+				description = "Searches for an installed flatpak";
+				body = "${pkgs.flatpak}/bin/flatpak list $argv";
+			};
+
 			flatrem = {
 				description = "Uninstalls a flatpak";
 				body = "${pkgs.flatpak}/bin/flatpak uninstall $argv";
@@ -71,11 +76,6 @@ or ${pkgs.flatpak}/bin/flatpak uninstall --unused $argv
 			flatsear = {
 				description = "Searches for a flatpak";
 				body = "${pkgs.flatpak}/bin/flatpak search $argv";
-			};
-
-			flatsearins = {
-				description = "Searches for an installed flatpak";
-				body = "${pkgs.flatpak}/bin/flatpak list $argv";
 			};
 
 			flatup = {
