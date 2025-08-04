@@ -22,11 +22,7 @@ and arduino-cli monitor -p $usb --fqbn $fqbn
 			flatclean = {
 				description = "Removes orphaned flatpaks";
 				wraps = "${pkgs.flatpak}/bin/flatpak uninstall --unused";
-				body = ''
-${pkgs.flatpak}/bin/flatpak uninstall --unused | grep -E 'Nothing unused to uninstall|Nada sin usar que desinstalar' >/dev/null
-and printf '\n\\033[31;1m[ ERROR]\\033[0m Nothing to uninstall\n'
-or ${pkgs.flatpak}/bin/flatpak uninstall --unused $argv
-				'';
+				body = "${pkgs.flatpak}/bin/flatpak uninstall --unused";
 			};
 
 			flatcountapp = {
