@@ -1,37 +1,43 @@
-{ pkgs, lib, config, ... }: lib.mkIf (config.fileManager == "lf" && (config.terminal == "alacritty" || config.programs.tmux.enable)) {
-	xdg.configFile."lf/lfimg" = {
-		executable = true;
-		text = ''
-#!/usr/bin/env bash
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+lib.mkIf (config.fileManager == "lf" && (config.terminal == "alacritty" || config.programs.tmux.enable)) {
+  xdg.configFile."lf/lfimg" = {
+    executable = true;
+    text = ''
+      #!/usr/bin/env bash
 
-set -euf
+      set -euf
 
-if [ -n "''${DISPLAY-}" ] && [ -z "''${FIFO_UEBERZUG-}" ]; then
-	export FIFO_UEBERZUG="''${TMPDIR:-/tmp}/lf-ueberzug-$$"
+      if [ -n "''${DISPLAY-}" ] && [ -z "''${FIFO_UEBERZUG-}" ]; then
+      	export FIFO_UEBERZUG="''${TMPDIR:-/tmp}/lf-ueberzug-$$"
 
-	cleanup() {
-		exec 3>&-
-		rm -- "$FIFO_UEBERZUG"
-	}
+      	cleanup() {
+      		exec 3>&-
+      		rm -- "$FIFO_UEBERZUG"
+      	}
 
-	mkfifo -- "$FIFO_UEBERZUG"
-	# Execute ueberzug in a loop in case it crashes. Ueberzug dies if its
-	# associated window is closed. This breaks image previews when using tmux and
-	# reattaching to an existing session.
-	while [ -p "$FIFO_UEBERZUG" ] && ! ${pkgs.ueberzugpp}/bin/ueberzug layer -s <"$FIFO_UEBERZUG"; do :; done &
-	# Open the FIFO for writing. FIFO readers receive an EOF once all writers
-	# have closed their respective file descriptors. Holding a file descriptor
-	# will effectively keep ueberzug alive as long as lf lives.
-	exec 3>"$FIFO_UEBERZUG"
-	trap cleanup EXIT
+      	mkfifo -- "$FIFO_UEBERZUG"
+      	# Execute ueberzug in a loop in case it crashes. Ueberzug dies if its
+      	# associated window is closed. This breaks image previews when using tmux and
+      	# reattaching to an existing session.
+      	while [ -p "$FIFO_UEBERZUG" ] && ! ${pkgs.ueberzugpp}/bin/ueberzug layer -s <"$FIFO_UEBERZUG"; do :; done &
+      	# Open the FIFO for writing. FIFO readers receive an EOF once all writers
+      	# have closed their respective file descriptors. Holding a file descriptor
+      	# will effectively keep ueberzug alive as long as lf lives.
+      	exec 3>"$FIFO_UEBERZUG"
+      	trap cleanup EXIT
 
-	# Start lf without passing in the file descriptor. This is done to avoid the
-	# lf server being passed the file descriptor, which would cause ueberzug to
-	# live longer than is strictly necessary.
-	${pkgs.lf}/bin/lf "$@" 3>&-
-else
-	exec ${pkgs.lf}/bin/lf "$@"
-fi
-		'';
-	};
+      	# Start lf without passing in the file descriptor. This is done to avoid the
+      	# lf server being passed the file descriptor, which would cause ueberzug to
+      	# live longer than is strictly necessary.
+      	${pkgs.lf}/bin/lf "$@" 3>&-
+      else
+      	exec ${pkgs.lf}/bin/lf "$@"
+      fi
+    '';
+  };
 }

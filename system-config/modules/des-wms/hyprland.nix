@@ -1,11 +1,11 @@
 {
-	imports = [
-		./wayland.nix
-		./wm.nix
-	];
+  imports = [
+    ./wayland.nix
+    ./wm.nix
+  ];
 
-	programs.hyprland = {
-		enable = true;
-		xwayland.enable = true;
-	};
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  };
 }

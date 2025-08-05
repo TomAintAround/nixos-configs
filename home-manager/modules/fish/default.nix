@@ -1,11 +1,11 @@
 {
-	imports = [
-		./aliases.nix
-		./init.nix
-		./plugins.nix
-	];
+  imports = [
+    ./aliases.nix
+    ./init.nix
+    ./plugins.nix
+  ];
 
-	programs.fish = {
-		enable = true;
-	};
+  programs.fish = {
+    enable = true;
+  };
 }

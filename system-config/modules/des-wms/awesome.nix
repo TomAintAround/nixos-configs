@@ -1,5 +1,5 @@
 {
-	imports = [ ./wm.nix ];
+  imports = [./wm.nix];
 
-	services.xserver.windowManager.awesome.enable = true;
+  services.xserver.windowManager.awesome.enable = true;
 }

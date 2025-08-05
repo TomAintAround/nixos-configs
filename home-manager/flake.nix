@@ -1,56 +1,56 @@
 {
-	description = "Home Manager configuration";
+  description = "Home Manager configuration";
 
-	inputs = {
-		nixpkgs.url = "github:NixOs/nixpkgs/nixos-unstable";
-		
-		home-manager = {
-			url = "github:nix-community/home-manager/master";
-			inputs.nixpkgs.follows = "nixpkgs";
-		};
+  inputs = {
+    nixpkgs.url = "github:NixOs/nixpkgs/nixos-unstable";
 
-		nix-index-database = {
-			url = "github:nix-community/nix-index-database";
-			inputs.nixpkgs.follows = "nixpkgs";
-		};
+    home-manager = {
+      url = "github:nix-community/home-manager/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-		catppuccin.url = "github:catppuccin/nix";
-	};
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-	outputs = inputs: let
-		username = "tomm";
-		gitUsername = "TomAintAround";
-		email = let
-			secrets = import ./secrets.nix;
-		in
-			secrets.email;
-		userVars = { inherit username gitUsername email; };
+    catppuccin.url = "github:catppuccin/nix";
+  };
 
-		system = "x86_64-linux";
-		pkgs = inputs.nixpkgs.legacyPackages.${system};
-		extraSpecialArgs = { inherit inputs system userVars; };
+  outputs = inputs: let
+    username = "tomm";
+    gitUsername = "TomAintAround";
+    email = let
+      secrets = import ./secrets.nix;
+    in
+      secrets.email;
+    userVars = {inherit username gitUsername email;};
 
-		homeManagerConfig = inputs.home-manager.lib.homeManagerConfiguration;
+    system = "x86_64-linux";
+    pkgs = inputs.nixpkgs.legacyPackages.${system};
+    extraSpecialArgs = {inherit inputs system userVars;};
 
-		nix-index-database = [ inputs.nix-index-database.homeModules.nix-index ];
-		catppuccin = [ inputs.catppuccin.homeModules.catppuccin ];
-	in {
-		homeConfigurations = {
-			"tomm@desktop" = homeManagerConfig {
-				inherit pkgs extraSpecialArgs;
-				modules =
-					nix-index-database ++
-					catppuccin ++
-					[ ./hosts/desktop.nix ];
-			};
+    homeManagerConfig = inputs.home-manager.lib.homeManagerConfiguration;
 
-			"tomm@laptop" = homeManagerConfig {
-				inherit pkgs extraSpecialArgs;
-				modules =
-					nix-index-database ++
-					catppuccin ++
-					[ ./hosts/laptop.nix ];
-			};
-		};
-	};
+    nix-index-database = [inputs.nix-index-database.homeModules.nix-index];
+    catppuccin = [inputs.catppuccin.homeModules.catppuccin];
+  in {
+    homeConfigurations = {
+      "tomm@desktop" = homeManagerConfig {
+        inherit pkgs extraSpecialArgs;
+        modules =
+          nix-index-database
+          ++ catppuccin
+          ++ [./hosts/desktop.nix];
+      };
+
+      "tomm@laptop" = homeManagerConfig {
+        inherit pkgs extraSpecialArgs;
+        modules =
+          nix-index-database
+          ++ catppuccin
+          ++ [./hosts/laptop.nix];
+      };
+    };
+  };
 }
