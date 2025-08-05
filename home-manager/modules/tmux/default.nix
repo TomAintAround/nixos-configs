@@ -22,7 +22,6 @@ set -g allow-passthrough on
 set -ga update-environment TERM
 set -ga update-environment TERM_PROGRAM
 
-# Keybindings
 unbind t
 unbind x
 unbind c
@@ -36,5 +35,6 @@ bind-key -T root C-M-n run-shell "tmux new-session -d"
 bind-key -T root C-M-f run-shell "bash ${config.xdg.configHome}/home-manager/modules/tmux/sessions.sh"
 		'';
 	};
+      # Keybinds
       set -g prefix C-a
 }
