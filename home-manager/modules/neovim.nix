@@ -27,9 +27,9 @@
 			# Formatters
 			jq
 			prettierd
-			ruff # Python
 			stylua
 			yamlfmt
+      black # Python
 
 			# Debuggers
 			# bashdb
