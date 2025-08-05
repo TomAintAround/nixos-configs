@@ -30,6 +30,7 @@
 			stylua
 			yamlfmt
       black # Python
+      alejandra # Nix
 
 			# Debuggers
 			# bashdb
