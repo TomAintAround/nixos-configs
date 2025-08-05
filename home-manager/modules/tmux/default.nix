@@ -36,4 +36,5 @@ bind-key -T root C-M-n run-shell "tmux new-session -d"
 bind-key -T root C-M-f run-shell "bash ${config.xdg.configHome}/home-manager/modules/tmux/sessions.sh"
 		'';
 	};
+      set -g prefix C-a
 }
