@@ -23,7 +23,7 @@
       set -ga update-environment TERM_PROGRAM
 
       # Keybinds
-      set -g prefix C-a
+      set -g prefix C-s
       unbind t
       unbind x
       unbind c
