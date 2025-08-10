@@ -11,7 +11,7 @@
       # Requirements
       curl
       fd
-      gccgo14
+      gcc
       gnumake
       man-pages
       ripgrep
