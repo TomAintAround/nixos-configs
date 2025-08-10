@@ -4,8 +4,6 @@
   ...
 }: {
   boot = {
-    kernelModules = ["nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm"];
-    kernelParams = ["nvidia-drm.modeset=1"];
     extraModprobeConfig = ''
       options nvidia-drm modeset=1 fbdev=1
     '';
