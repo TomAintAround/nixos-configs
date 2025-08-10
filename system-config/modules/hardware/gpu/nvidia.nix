@@ -23,8 +23,11 @@
 
   services.xserver.videoDrivers = lib.mkDefault ["nvidia"];
 
+  nixpkgs.config.cudaSupport = true;
+
   environment.variables = {
     LIBVA_DRIVER_NAME = "nvidia";
+    VDPAU_DRIVER = "nvidia";
     GBM_BACKEND = "nvidia-drm";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
     NVD_BACKEND = "direct";
