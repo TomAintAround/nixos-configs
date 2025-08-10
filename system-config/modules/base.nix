@@ -7,6 +7,7 @@
     ./hardware/disks.nix
     ./hardware/graphics.nix
     ./hardware/sound.nix
+    ./sddm
     ./console.nix
     ./fonts.nix
     ./locales.nix
@@ -14,7 +15,6 @@
     ./nix.nix
     ./openssh.nix
     ./pkgs.nix
-    ./sddm
     ./security.nix
     ./xserver.nix
   ];
