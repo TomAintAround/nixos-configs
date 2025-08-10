@@ -15,6 +15,7 @@
       border_size = 2;
       gaps_in = 1;
       gaps_out = 2;
+      border_size = 0;
       layout = "master";
       resize_on_border = true;
       allow_tearing = true;
