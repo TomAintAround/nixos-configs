@@ -28,6 +28,7 @@
       vscode-langservers-extracted
       taplo # TOML
       yaml-language-server
+      lemminx # xml
 
       # Formatters
       jq
