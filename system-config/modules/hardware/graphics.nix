@@ -6,6 +6,6 @@
   hardware.graphics = {
     enable = lib.mkDefault true;
     enable32Bit = lib.mkDefault true;
-    extraPackages = with pkgs; [libvdpau-va-gl vaapiVdpau egl-wayland];
+    extraPackages = with pkgs; [libvdpau-va-gl libva-vdpau-driver egl-wayland];
   };
 }
