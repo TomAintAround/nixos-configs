@@ -3,14 +3,14 @@
     useDHCP = lib.mkDefault true;
     enableIPv6 = false;
     firewall = {
-      allowedTCPPorts = [80 443 465 587 995 25565 27036 27037 27040];
+      allowedTCPPorts = [80 443 465 587 995 11470 25565 27036 27037 27040];
       allowedTCPPortRanges = [
         {
           from = 1714;
           to = 1764;
         }
       ];
-      allowedUDPPorts = [465 587 993 25565 27031 27036];
+      allowedUDPPorts = [465 587 993 11470 25565 27031 27036];
       allowedUDPPortRanges = [
         {
           from = 1714;
