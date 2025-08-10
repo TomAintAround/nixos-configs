@@ -10,7 +10,6 @@
 
   home.packages = with pkgs; [
     (lib.mkIf config.brightness.enable brightnessctl)
-    ags
     gnome-disk-utility
     pavucontrol
     polkit_gnome

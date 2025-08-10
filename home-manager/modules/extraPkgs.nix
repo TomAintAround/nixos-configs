@@ -6,6 +6,7 @@
     exiftool
     eza
     ffmpeg
+    (flameshot.override {enableWlrSupport = true;}) # Screenshot utility
     gimp
     imagemagick
     jq
