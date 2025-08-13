@@ -15,29 +15,36 @@
     };
   };
 
-  outputs = inputs: let
+  outputs = {
+    nixpkgs,
+    disko,
+    lanzaboote,
+    ...
+  } @ inputs: let
     system = "x86_64-linux";
     secrets = import ./secrets.nix;
     specialArgs = {inherit inputs secrets;};
-    nixosSys = inputs.nixpkgs.lib.nixosSystem;
-    disko = [inputs.disko.nixosModules.default];
-    lanzaboote = [inputs.lanzaboote.nixosModules.lanzaboote];
+    inherit (nixpkgs.lib) nixosSystem;
+    diskoModule = disko.nixosModules.default;
+    lanzabooteModule = lanzaboote.nixosModules.lanzaboote;
   in {
     nixosConfigurations = {
-      desktop = nixosSys {
+      desktop = nixosSystem {
         inherit system specialArgs;
-        modules =
-          disko
-          ++ lanzaboote
-          ++ [./hosts/desktop];
+        modules = [
+          ./hosts/desktop
+          diskoModule
+          lanzabooteModule
+        ];
       };
 
-      laptop = nixosSys {
+      laptop = nixosSystem {
         inherit system specialArgs;
-        modules =
-          disko
-          ++ lanzaboote
-          ++ [./hosts/laptop];
+        modules = [
+          ./hosts/laptop
+          diskoModule
+          lanzabooteModule
+        ];
       };
     };
   };
