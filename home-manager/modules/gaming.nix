@@ -20,5 +20,8 @@ lib.mkIf config.gaming.enable {
     wineWowPackages.stable
   ];
 
-  programs.lutris.enable = true;
+  programs.lutris = {
+    enable = true;
+    runners.rpcs3.settings.runner.runner_executable = "${pkgs.rpcs3}/bin/rpcs3";
+  };
 }
