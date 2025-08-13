@@ -29,6 +29,7 @@
       taplo # TOML
       yaml-language-server
       lemminx # xml
+      cmake-language-server
 
       # Formatters
       jq
@@ -37,6 +38,8 @@
       stylua
       yamlfmt
       alejandra # Nix
+      libxml2
+      cmake-format
 
       # Debuggers
       # bashdb
