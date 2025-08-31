@@ -1,6 +1,3 @@
 [submodule "Neovim"]
 	path = home-manager/modules/neovim
 	url = git@github.com:TomAintAround/neovim-config.git
-[submodule "OTTW"]
-	path = home-manager/modules/des-wms/wm/ottw
-	url = git@github.com:TomAintAround/ottw.git
