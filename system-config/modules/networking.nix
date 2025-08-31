@@ -1,28 +1,24 @@
 {lib, ...}: {
   networking = {
     useDHCP = lib.mkDefault true;
-    enableIPv6 = false;
-    firewall = {
-      allowedTCPPorts = [80 443 465 587 995 11470 25565 27036 27037 27040];
-      allowedTCPPortRanges = [
-        {
-          from = 1714;
-          to = 1764;
-        }
-      ];
-      allowedUDPPorts = [465 587 993 11470 25565 27031 27036];
-      allowedUDPPortRanges = [
-        {
-          from = 1714;
-          to = 1764;
-        }
-      ];
+    enableIPv6 = true;
+    firewall = let
+      kdeConnectPorts = {
+        from = 1714;
+        to = 1764;
+      };
+    in {
+      allowedTCPPortRanges = [kdeConnectPorts];
+      allowedUDPPortRanges = [kdeConnectPorts];
     };
     networkmanager.enable = true;
 
     nameservers = [
-      "9.9.9.9" # Quad9
+      # Quad9
+      "9.9.9.9"
       "149.112.112.112"
+      "2620:fe::fe"
+      "2620:fe::9"
     ];
   };
 
@@ -30,10 +26,10 @@
     enable = true;
     dnssec = "true";
     domains = ["~."];
+    dnsovertls = "opportunistic";
+    llmnr = "true";
     extraConfig = ''
-      DNSOverTLS=opportunistic
       MulticastDNS=resolve
     '';
-    llmnr = "true";
   };
 }
