@@ -12,7 +12,7 @@
     ) (config.monitors);
 
     general = {
-      border_size = 0;
+      border_size = 2;
       gaps_in = 2;
       gaps_out = 5;
       layout = "master";
