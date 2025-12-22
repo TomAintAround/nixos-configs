@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+SESSION_NAME="urgencysimulator"
+SESSION_PATH="$HOME/Documents/Projects/University/UrgencySimulator"
+
+if ! tmux has-session -t $SESSION_NAME 2>/dev/null; then
+	tmux new-session -d -s $SESSION_NAME -n "editor" -c "$SESSION_PATH"
+	tmux send-keys -t $SESSION_NAME:editor "$EDITOR ." C-m
+
+	tmux new-window -t $SESSION_NAME -n "files" -c "$SESSION_PATH"
+	tmux send-keys -t $SESSION_NAME:files "$FILE_MANAGER ." C-m
+
+	tmux new-window -t $SESSION_NAME -n "git" -c "$SESSION_PATH"
+	tmux send-keys -t $SESSION_NAME:git "lazygit" C-m
+
+	tmux new-window -t $SESSION_NAME -n "cli" -c "$SESSION_PATH"
+
+	tmux select-window -t $SESSION_NAME:editor
+fi
+tmux switch-client -t $SESSION_NAME
