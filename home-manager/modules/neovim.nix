@@ -16,7 +16,7 @@
       man-pages
       ripgrep
       python3
-      lua51Packages.lua 
+      lua51Packages.lua
       luajitPackages.luarocks
 
       # LSPs
