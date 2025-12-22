@@ -9,6 +9,7 @@
     (flameshot.override {enableWlrSupport = true;}) # Screenshot utility
     gimp
     imagemagick
+    jetbrains.idea-community
     jq
     killall
     libreoffice

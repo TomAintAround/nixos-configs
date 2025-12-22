@@ -23,6 +23,7 @@
       clang-tools
       fish-lsp
       lua-language-server
+      jdt-language-server
       marksman
       nixd
       vscode-langservers-extracted
@@ -47,6 +48,7 @@
       nodejs # required for lua debugger
       vscode-extensions.ms-vscode.cpptools
       vscode-js-debug
+      vscode-extensions.vscjava.vscode-java-debug
     ];
 
     # I'm absolutely not configuring neovim through nix,
@@ -61,6 +63,7 @@
       mkdir -p "$LOCATION"
       ln -sf ${pkgs.vscode-js-debug}/lib/node_modules/js-debug/dist/src/dapDebugServer.js "$LOCATION"
       ln -sf ${pkgs.vscode-extensions.ms-vscode.cpptools}/share/vscode/extensions/ms-vscode.cpptools/debugAdapters/bin/OpenDebugAD7 "$LOCATION"
+      ln -sf ${pkgs.vscode-extensions.vscjava.vscode-java-debug}/share/vscode/extensions/vscjava.vscode-java-debug/server/* "$LOCATION"/com.microsoft.java.debug.plugin.jar
     '';
   };
 }
