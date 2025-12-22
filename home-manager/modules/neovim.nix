@@ -29,6 +29,7 @@
       jdt-language-server
       marksman
       nixd
+      kdePackages.qtlanguageserver
       vscode-langservers-extracted
       taplo # TOML
       yaml-language-server
