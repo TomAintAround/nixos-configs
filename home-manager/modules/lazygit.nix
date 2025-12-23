@@ -10,7 +10,9 @@
       };
       git = {
         pagers = [
-          {pager = "${pkgs.delta}/bin/delta --paging=never --features \"catppuccin-mocha\" --line-numbers --navigate --true-color=always";}
+          {
+            pager = "${pkgs.delta}/bin/delta --paging=never --features \"catppuccin-mocha\" --line-numbers --navigate --true-color=always";
+          }
         ];
         log.showWholeGraph = true;
       };
