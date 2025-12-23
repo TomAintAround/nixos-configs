@@ -12,10 +12,6 @@
           name = userVars.gitUsername;
           email = userVars.email;
         };
-        signing = {
-          key = "${config.home.homeDirectory}/.ssh/github.pub";
-          signByDefault = true;
-        };
         alias = {
           a = "add";
           br = "branch";
@@ -38,11 +34,21 @@
           st = "status";
           sw = "switch";
         };
-        merge.conflictstyle = "diff3";
         blame.pager = "${pkgs.delta}/bin/delta";
+        commit.gpgSign = true;
+        core.pager = "${pkgs.delta}/bin/delta";
         diff.colorMoved = "default";
+        gpg = {
+          format = "ssh";
+          signingKey = "${config.home.homeDirectory}/.ssh/github.pub";
+        };
         init.defaultBranch = "main";
-        gpg.format = "ssh";
+        interactive.diffFilter = "${pkgs.delta}/bin/delta --color-only";
+        merge.conflictstyle = "diff3";
+        signing = {
+          key = config.programs.git.settings.gpg.signingKey;
+          signByDefault = true;
+        };
       };
     };
 
