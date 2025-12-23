@@ -32,7 +32,7 @@
     ../../modules/users/root.nix
     ../../modules/users/tomm.nix
     ../../modules/virt
-    ../../modules/ai.nix
+    # ../../modules/ai.nix
     ../../modules/docker.nix
   ];
 
