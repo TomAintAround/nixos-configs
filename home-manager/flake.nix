@@ -3,9 +3,15 @@
 
   inputs = {
     nixpkgs.url = "github:NixOs/nixpkgs/nixos-unstable";
+    stremioDowngrade.url = "github:NixOs/nixpkgs/f0eaec3bf29b96bf6f801cc602ed6827a9fa53ec";
 
     home-manager = {
       url = "github:nix-community/home-manager/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -27,13 +33,14 @@
     catppuccin,
     ...
   } @ inputs: let
-    username = "tomm";
-    gitUsername = "TomAintAround";
-    email = let
-      secrets = import ./secrets.nix;
-    in
-      secrets.email;
-    userVars = {inherit username gitUsername email;};
+    userVars = {
+      username = "tomm";
+      gitUsername = "TomAintAround";
+      email = let
+        secrets = import ./secrets.nix;
+      in
+        secrets.email;
+    };
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
     extraSpecialArgs = {inherit inputs system userVars;};

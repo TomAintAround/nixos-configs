@@ -7,7 +7,7 @@
     PAGER = "bat --paging=always";
     TERMINAL = config.terminal;
     READER = "libreoffice --draw";
-    BROWSER = "firefox";
+    BROWSER = "librewolf";
     IMAGE_EDITOR = "gimp";
     AUDIO_PLAYER = "vlc";
     VIDEO_PLAYER = "vlc";

@@ -5,12 +5,12 @@
   ...
 }: {
   programs.firefox = {
-    enable = true;
+    enable = false;
     package = pkgs.wrapFirefox (pkgs.firefox-unwrapped.override {pipewireSupport = true;}) {};
   };
 
   # Updates are only done manually (probably for the best)
-  home = {
+  home = lib.mkIf config.programs.firefox.enable {
     activation.download-arkenfox = lib.hm.dag.entryAfter ["writeBoundary"] ''
       for profile in $(${pkgs.gawk}/bin/gawk -v RS="" '/\[Profile/' ~/.mozilla/firefox/profiles.ini | command grep Path= | sed 's/Path=//'); do
       	profileDir=${config.home.homeDirectory}/.mozilla/firefox/"$profile"
