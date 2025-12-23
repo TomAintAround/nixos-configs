@@ -204,7 +204,7 @@
         	parentDir=$(dirname "$fileOrDir")
         	backupDir="$backupDrive""$parentDir"
         	mkdir -p "$backupDir"
-        	rsync -a --update /home/tomm/Backup/currentBackup"$fileOrDir" "$backupDir/" &
+        	rsync -a --update "$HOME"/Backup/currentBackup"$fileOrDir" "$backupDir/" &
         done < "$HOME/Backup/toBackup.txt"
         wait
       '';
