@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    mpc-cli
+    mpc
     mpd-mpris
     playerctl
     spotdl
@@ -86,7 +86,7 @@
       selected_item_suffix = "$9";
       modified_item_prefix = "$3* $9";
 
-      execute_on_song_change = "sleep .1 && ${pkgs.libnotify}/bin/notify-send -a 'NCMPCPP' -r 27072 'Now Playing:' \"$(${pkgs.mpc-cli}/bin/mpc --format '%title%\\n%artist% - %album%' current)\" -i /tmp/mpdAlbumArt.jpg -h int:value:$(mpc status | ${pkgs.gawk}/bin/gawk 'NR==2 { print $4 }' | sed 's/[(%)]//g')";
+      execute_on_song_change = "sleep .1 && ${pkgs.libnotify}/bin/notify-send -a 'NCMPCPP' -r 27072 'Now Playing:' \"$(${pkgs.mpc}/bin/mpc --format '%title%\\n%artist% - %album%' current)\" -i /tmp/mpdAlbumArt.jpg -h int:value:$(mpc status | ${pkgs.gawk}/bin/gawk 'NR==2 { print $4 }' | sed 's/[(%)]//g')";
 
       playlist_editor_display_mode = "columns";
       autocenter_mode = "yes";

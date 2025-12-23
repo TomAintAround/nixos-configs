@@ -64,7 +64,7 @@
       "${pkgs.systemd}/bin/systemctl --user start easyeffects.service"
 
       # KDE Connect Indicator
-      "${pkgs.plasma5Packages.kdeconnect-kde}/bin/kdeconnect-indicator"
+      "${pkgs.kdePackages.kdeconnect-kde}/bin/kdeconnect-indicator"
     ];
   };
 }

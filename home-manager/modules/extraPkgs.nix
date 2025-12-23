@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   home.packages = with pkgs; [
     act
     brave
@@ -9,7 +13,6 @@
     (flameshot.override {enableWlrSupport = true;}) # Screenshot utility
     gimp
     imagemagick
-    jetbrains.idea-community
     jq
     killall
     libreoffice
@@ -23,7 +26,7 @@
     popsicle
     ripdrag # Drag-and-drop for the terminal
     ripgrep # Grep but better
-    stremio
+    inputs.stremioDowngrade.legacyPackages.${stdenv.hostPlatform.system}.stremio
     thunderbird
     unar
     unrar-wrapper # Extrach RAR files
@@ -34,6 +37,5 @@
     vlc
     vscode
     wget
-    libsForQt5.xwaylandvideobridge
   ];
 }

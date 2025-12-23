@@ -24,6 +24,7 @@
     ./kdeconnect.nix
     ./kitty.nix
     ./lazygit.nix
+    ./librewolf.nix
     ./locales.nix
     ./music.nix
     ./neovim.nix
@@ -36,7 +37,7 @@
   programs.home-manager.enable = true;
 
   nix.gc = {
-    frequency = "daily";
+    dates = "daily";
     automatic = true;
     options = "--delete-older-than 14d";
   };
@@ -57,4 +58,6 @@
       createDirectories = true;
     };
   };
+
+  programs.man.generateCaches = false;
 }

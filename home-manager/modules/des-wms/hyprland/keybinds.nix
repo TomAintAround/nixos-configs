@@ -209,5 +209,10 @@
       "SUPER, mouse:272, movewindow"
       "SUPER, mouse:273, resizewindow"
     ];
+
+    gesture = [
+      "3, vertical, mod: SUPER, workspace"
+      "3, swipe, resize"
+    ];
   };
 }

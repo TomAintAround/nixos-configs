@@ -9,7 +9,9 @@
         filterMode = "fuzzy";
       };
       git = {
-        paging.pager = "${pkgs.delta}/bin/delta --paging=never --features \"catppuccin-mocha\" --line-numbers --navigate --side-by-side --true-color=always";
+        pagers = [
+          {pager = "${pkgs.delta}/bin/delta --paging=never --features \"catppuccin-mocha\" --line-numbers --navigate --true-color=always";}
+        ];
         log.showWholeGraph = true;
       };
       update.method = "never";

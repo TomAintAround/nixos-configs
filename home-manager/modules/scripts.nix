@@ -15,12 +15,12 @@
       THUMB="/tmp/mpdAlbumArt.jpg"
 
       while true; do
-      	if [ $(${pkgs.mpc-cli}/bin/mpc status %state%) == "playing" ]; then
-      		FILE="${config.xdg.userDirs.music}/$(${pkgs.mpc-cli}/bin/mpc current -f %file%)"
+      	if [ $(${pkgs.mpc}/bin/mpc status %state%) == "playing" ]; then
+      		FILE="${config.xdg.userDirs.music}/$(${pkgs.mpc}/bin/mpc current -f %file%)"
       	fi
       	echo "$FILE"
       	${pkgs.ffmpeg}/bin/ffmpeg -i "$FILE" "$THUMB" -y &> /dev/null
-      	${pkgs.mpc-cli}/bin/mpc idle player
+      	${pkgs.mpc}/bin/mpc idle player
       done
     '';
   };
@@ -100,29 +100,27 @@
         mkdir -p "$lastBackupDir" "$currentBackupDir"
 
         copyFiles() {
-            src="$1"
-            dest="$2"
-            if [ ! -d "$src/.git" ]; then
-                mkdir -p "$dest"
-                ${pkgs.rsync}/bin/rsync -a --update "$src" "$dest/"
-            fi
+          src="$1"
+          dest="$2"
+          mkdir -p "$dest"
+          ${pkgs.rsync}/bin/rsync -a --update "$src" "$dest/"
         }
 
         if [[ "''${1:-}" != "dontMove" ]]; then
-            rm -rf "''${lastBackupDir:?}"/*
-            if [ "$(ls -A "$currentBackupDir")" ]; then
-                mv "$currentBackupDir"/* "$lastBackupDir"
-            fi
+          rm -rf "''${lastBackupDir:?}"/*
+          if [ "$(ls -A "$currentBackupDir")" ]; then
+            mv "$currentBackupDir"/* "$lastBackupDir"
+          fi
         else
         	rm -rf "''${currentBackupDir:?}"/*
         fi
 
         while IFS= read -r fileOrDir; do
-            [[ -z "$fileOrDir" || "$fileOrDir" =~ ^# ]] && continue
+          [[ -z "$fileOrDir" || "$fileOrDir" =~ ^# ]] && continue
 
-            parentDirs=$(dirname "$fileOrDir")
-            backupDest="$currentBackupDir$parentDirs"
-            copyFiles "$fileOrDir" "$backupDest" &
+          parentDirs=$(dirname "$fileOrDir")
+          backupDest="$currentBackupDir$parentDirs"
+          copyFiles "$fileOrDir" "$backupDest" &
         done < "$backupList"
         wait
 
@@ -142,39 +140,39 @@
         mkdir -p "$new"
 
         renameFile() {
-            file="$1"
-            ext="''${file##*.}"
-            ext="''${ext,,}"
-            datetime=$(date -r "$file" "+%Y-%m-%d_%H-%M-%S")
-            dest="$new/''${datetime}.''${ext}"
-            if [[ -e "$dest" ]]; then
-                i=1
-                while [[ -e "''${dest%.*}_$i.''${ext}" ]]; do ((i++)); done
-                dest="''${dest%.*}_$i.''${ext}"
-            fi
-            mv -- "$file" "$dest"
+          file="$1"
+          ext="''${file##*.}"
+          ext="''${ext,,}"
+          datetime=$(date -r "$file" "+%Y-%m-%d_%H-%M-%S")
+          dest="$new/''${datetime}.''${ext}"
+          if [[ -e "$dest" ]]; then
+            i=1
+            while [[ -e "''${dest%.*}_$i.''${ext}" ]]; do ((i++)); done
+            dest="''${dest%.*}_$i.''${ext}"
+          fi
+          mv -- "$file" "$dest"
         }
 
         convertImage() {
-            ext="''${1##*.}"
-            ext="''${ext,,}"
-            case "$ext" in
-                heic|jpg|jpeg|png|webp)
-                    ${pkgs.imagemagick}/bin/magick "$1" -auto-orient "''${1%.*}.jpeg" &&
-        				[ "$ext" != "jpeg" ] &&
-        				rm -- "$1"
-                    ;;
-            esac
+          ext="''${1##*.}"
+          ext="''${ext,,}"
+          case "$ext" in
+            heic|jpg|jpeg|png|webp)
+              ${pkgs.imagemagick}/bin/magick "$1" -auto-orient "''${1%.*}.jpeg" &&
+            [ "$ext" != "jpeg" ] &&
+            rm -- "$1"
+              ;;
+          esac
         }
 
         convertVideo() {
-            ext="''${1##*.}"
-            ext="''${ext,,}"
-            case "$ext" in
-                mov)
-                    ${pkgs.ffmpeg}/bin/ffmpeg -i "$1" -c:v libx264 -c:a aac "''${1%.*}.mp4" && rm -- "$1"
-                    ;;
-            esac
+          ext="''${1##*.}"
+          ext="''${ext,,}"
+          case "$ext" in
+            mov)
+              ${pkgs.ffmpeg}/bin/ffmpeg -i "$1" -c:v libx264 -c:a aac "''${1%.*}.mp4" && rm -- "$1"
+              ;;
+          esac
         }
 
         export -f renameFile convertImage convertVideo
@@ -188,6 +186,27 @@
         find "$new" -type f -print0 | ${pkgs.parallel}/bin/parallel -0 -j16 convertImage {} && printf "Done\n" || printf "An error occurred"
         printf "Converting videos...\n"
         find "$new" -type f ! -iname "*.mp4" -print0 | ${pkgs.parallel}/bin/parallel -0 -j2 convertVideo {} && printf "Done\n" || printf "An error occurred"
+      '';
+    };
+
+    ".local/bin/backupToDrive" = {
+      executable = true;
+      text = ''
+        #!/usr/bin/env bash
+
+        if [ $# -ne 1 ]; then
+        	exit 1
+        fi
+
+        backupDrive="$1"
+
+        while read -r fileOrDir; do
+        	parentDir=$(dirname "$fileOrDir")
+        	backupDir="$backupDrive""$parentDir"
+        	mkdir -p "$backupDir"
+        	rsync -a --update /home/tomm/Backup/currentBackup"$fileOrDir" "$backupDir/" &
+        done < "$HOME/Backup/toBackup.txt"
+        wait
       '';
     };
   };

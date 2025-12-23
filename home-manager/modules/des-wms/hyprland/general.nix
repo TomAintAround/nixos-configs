@@ -1,15 +1,23 @@
 {config, ...}: {
   wayland.windowManager.hyprland.settings = {
-    monitor = builtins.map (
-      m: let
-        screen = "${toString m.width}x${toString m.height}@${toString m.refreshRate}";
-        coordinates = "${toString m.x}x${toString m.y}";
-      in "${m.name}, ${
+    monitorv2 = builtins.map (m: let
+      mode = "${toString m.width}x${toString m.height}@${toString m.refreshRate}";
+      position = "${toString m.x}x${toString m.y}";
+    in
+      {
+        output = m.name;
+      }
+      // (
         if m.enable
-        then "${screen}, ${coordinates}, ${toString m.scale}, bitdepth, 8"
-        else "disable"
-      }"
-    ) (config.monitors);
+        then {
+          inherit mode position;
+          inherit (m) scale;
+          transform = 0;
+        }
+        else {
+          disabled = true;
+        }
+      )) (config.monitors);
 
     general = {
       border_size = 2;
@@ -23,6 +31,7 @@
 
     decoration = {
       rounding = 10;
+      rounding_power = 4.0;
       dim_inactive = false;
       dim_strength = 0.1;
       blur = {
@@ -70,10 +79,7 @@
       };
     };
 
-    gestures = {
-      workspace_swipe = true;
-      workspace_swipe_distance = 200;
-    };
+    gestures.workspace_swipe_distance = 200;
 
     misc = {
       disable_hyprland_logo = true;
@@ -98,8 +104,6 @@
 
     ecosystem.no_donation_nag = true;
 
-    master = {
-      mfact = 0.5;
-    };
+    master.mfact = 0.5;
   };
 }
