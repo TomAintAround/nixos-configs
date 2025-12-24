@@ -39,18 +39,21 @@
 
     profiles.default = {
       id = 0;
-      extensions.packages = with inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system}; [
-        ublock-origin
-        bitwarden
-        canvasblocker
-        darkreader
-        firefox-color
-        refined-github
-        skip-redirect
-        sponsorblock
-        stylus
-        xbrowsersync
-      ];
+      extensions = {
+        force = true;
+        packages = with inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system}; [
+          ublock-origin
+          bitwarden
+          canvasblocker
+          darkreader
+          firefox-color
+          refined-github
+          skip-redirect
+          sponsorblock
+          stylus
+          xbrowsersync
+        ];
+      };
     };
   };
 }

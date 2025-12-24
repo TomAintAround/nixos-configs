@@ -71,6 +71,12 @@ in {
       inherit accent flavor;
     };
 
+    librewolf = {
+      enable = true;
+      force = true;
+      inherit accent flavor;
+    };
+
     mpv = {
       enable = false;
       accent = "mauve";
@@ -80,6 +86,11 @@ in {
     obs = {
       enable = false;
       inherit flavor;
+    };
+
+    thunderbird = {
+      enable = true;
+      inherit accent flavor;
     };
 
     tmux = {
