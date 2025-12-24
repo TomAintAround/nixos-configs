@@ -11,6 +11,7 @@
         user = {
           name = userVars.gitUsername;
           email = userVars.email;
+          signingKey = "${config.home.homeDirectory}/.ssh/github.pub";
         };
         alias = {
           a = "add";
@@ -40,13 +41,13 @@
         diff.colorMoved = "default";
         gpg = {
           format = "ssh";
-          signingKey = "${config.home.homeDirectory}/.ssh/github.pub";
+          signingKey = config.programs.git.settings.user.signingKey;
         };
         init.defaultBranch = "main";
         interactive.diffFilter = "${pkgs.delta}/bin/delta --color-only";
         merge.conflictstyle = "diff3";
         signing = {
-          key = config.programs.git.settings.gpg.signingKey;
+          key = config.programs.git.settings.user.signingKey;
           signByDefault = true;
         };
       };
