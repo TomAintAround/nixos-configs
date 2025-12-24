@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 SESSION_NAME="urgencysimulator"
-SESSION_PATH="$HOME/Documents/Projects/University/UrgencySimulator"
+SESSION_PATH="$XDG_DOCUMENTS_DIR/Projects/University/UrgencySimulator"
 
 if ! tmux has-session -t $SESSION_NAME 2>/dev/null; then
 	tmux new-session -d -s $SESSION_NAME -n "editor" -c "$SESSION_PATH"

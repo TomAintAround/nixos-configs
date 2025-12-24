@@ -95,6 +95,8 @@
         packMgr = {
           description = "Package manager for NixOS and Flatpak";
           body = ''
+            set -g script "$XDG_DOCUMENTS_DIR/Projects/Personal/nixos-configs/export"
+
             function fzfSelect
                 command printf "%s\n" $argv | command ${pkgs.fzf}/bin/fzf \
                     --preview "" \
@@ -103,12 +105,14 @@
 
             function nixOS
                 if test "$argv[2]" = Rebuild
+                    "$script" system
                     command ${pkgs.nh}/bin/nh os switch --ask /etc/nixos
                     commandline -f execute
                     return 1
                 end
 
                 if test "$argv[2]" = "Rebuild and upgrade"
+                    "$script" system
                     command sudo nix flake update --flake /etc/nixos
                     command ${pkgs.nh}/bin/nh os switch --ask /etc/nixos
                     commandline -f execute
@@ -137,12 +141,14 @@
 
             function homeManager
                 if test "$argv[2]" = Rebuild
+                    "$script" home
                     command ${pkgs.nh}/bin/nh home switch --ask ${config.xdg.configHome}/home-manager
                     commandline -f execute
                     return 1
                 end
 
                 if test "$argv[2]" = "Rebuild and upgrade"
+                    "$script" home
                     command ${pkgs.nh}/bin/nh home switch --ask --update ${config.xdg.configHome}/home-manager
                     commandline -f execute
                     return 1
