@@ -1,6 +1,8 @@
 [submodule "Neovim"]
 	path = home-manager/modules/neovim
 	url = git@github.com:TomAintAround/neovim-config.git
+	branch = main
 [submodule "ottw"]
 	path = home-manager/modules/des-wms/wm/ottw
 	url = git@github.com:TomAintAround/ottw.git
+	branch = main
