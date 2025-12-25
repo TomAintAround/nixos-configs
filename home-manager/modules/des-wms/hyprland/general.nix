@@ -17,7 +17,8 @@
         else {
           disabled = true;
         }
-      )) (config.monitors);
+      ))
+    config.monitors;
 
     general = {
       border_size = 2;

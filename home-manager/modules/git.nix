@@ -10,7 +10,7 @@
       settings = {
         user = {
           name = userVars.gitUsername;
-          email = userVars.email;
+          inherit (userVars) email;
           signingKey = "${config.home.homeDirectory}/.ssh/github.pub";
         };
         alias = {
@@ -41,7 +41,7 @@
         diff.colorMoved = "default";
         gpg = {
           format = "ssh";
-          signingKey = config.programs.git.settings.user.signingKey;
+          inherit (config.programs.git.settings.user) signingKey;
         };
         init.defaultBranch = "main";
         interactive.diffFilter = "${pkgs.delta}/bin/delta --color-only";

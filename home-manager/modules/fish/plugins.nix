@@ -1,16 +1,12 @@
 {pkgs, ...}: {
-  programs.fish.plugins = [
-    {
-      name = "done";
-      src = pkgs.fishPlugins.done.src;
-    }
-    {
-      name = "autopair";
-      src = pkgs.fishPlugins.autopair.src;
-    }
-    {
-      name = "tide";
-      src = pkgs.fishPlugins.tide.src;
-    }
+  programs.fish.plugins = let
+    mkFishPlugin = name: {
+      inherit name;
+      inherit (pkgs.fishPlugins.${name}) src;
+    };
+  in [
+    (mkFishPlugin "done")
+    (mkFishPlugin "autopair")
+    (mkFishPlugin "tide")
   ];
 }
