@@ -17,4 +17,6 @@
   ];
 
   services.network-manager-applet.enable = true;
+
+  programs.quickshell.enable = true;
 }
