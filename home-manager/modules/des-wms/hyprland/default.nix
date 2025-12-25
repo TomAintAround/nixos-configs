@@ -15,7 +15,7 @@ in {
 
   options.wayland.windowManager.hyprland.numOfWorkspaces = mkOption {
     type = types.int;
-    description = "The ammount of workspaces you want to have";
+    description = "The amount of workspaces you want to have";
     default = " ";
     example = 10;
   };

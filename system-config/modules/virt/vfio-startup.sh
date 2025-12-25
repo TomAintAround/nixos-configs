@@ -105,7 +105,7 @@ fi
 sleep "1"
 
 ##############################################################################################################################
-## Unbind VTconsoles if currently bound (adapted and modernised from https://www.kernel.org/doc/Documentation/fb/fbcon.txt) ##
+## Unbind VTconsoles if currently bound (adapted and modernized from https://www.kernel.org/doc/Documentation/fb/fbcon.txt) ##
 ##############################################################################################################################
 if test -e "/tmp/vfio-bound-consoles"; then
 	rm -f /tmp/vfio-bound-consoles

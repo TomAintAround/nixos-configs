@@ -79,7 +79,7 @@ while read -r DISPMGR; do
 done < "$input"
 
 ############################################################################################################
-## Rebind VT consoles (adapted and modernised from https://www.kernel.org/doc/Documentation/fb/fbcon.txt) ##
+## Rebind VT consoles (adapted and modernized from https://www.kernel.org/doc/Documentation/fb/fbcon.txt) ##
 ############################################################################################################
 
 input="/tmp/vfio-bound-consoles"
