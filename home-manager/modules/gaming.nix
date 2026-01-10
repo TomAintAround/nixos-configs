@@ -14,7 +14,7 @@ lib.mkIf config.gaming.enable {
       ];
     })
     prismlauncher
-    protonup
+    protonup-ng
     rpcs3
     steam
     wineWowPackages.stable
