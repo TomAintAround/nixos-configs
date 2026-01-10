@@ -13,7 +13,7 @@
       x = 0;
       y = 0;
       scale = 1.0;
-      enable = false;
+      enable = true;
       default = false;
     }
     {
@@ -25,7 +25,7 @@
       x = 1920;
       y = 0;
       scale = 1.0;
-      enable = true;
+      enable = false;
       default = true;
     }
     {
