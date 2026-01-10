@@ -97,7 +97,7 @@
           body = ''
             set -g exportConfigs "${config.xdg.userDirs.documents}/Projects/Personal/nixos-configs/export"
             set -g home ${config.xdg.configHome}/home-manager
-            set -g homeFlake ${config.xdg.configHome}/Projects/Personal/nixos-configs/home-manager
+            set -g homeFlake ${config.xdg.userDirs.documents}/Projects/Personal/nixos-configs/home-manager
             set -g system /etc/nixos
             set -g systemFlake ${config.xdg.userDirs.documents}/Projects/Personal/nixos-configs/system-config
 
