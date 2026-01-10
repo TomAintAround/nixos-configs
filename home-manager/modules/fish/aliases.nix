@@ -116,7 +116,7 @@
                 end
 
                 if test "$argv[2]" = "Rebuild and upgrade"
-                    command sudo nix flake update --flake "$systemFlake"
+                    command nix flake update --flake "$systemFlake"
                     "$exportConfigs" system
                     command ${pkgs.nh}/bin/nh os switch --ask "$system"
                     commandline -f execute
