@@ -1,29 +1,43 @@
 {
   wayland.windowManager.hyprland.settings = {
-    windowrule = [
-      "float,class:^(music)$"
-      "size 86% 660px,class:^(music)$"
-      "move 7% 35,class:^(music)$"
-      "animation slide windows,class:^(music)$"
-      "pin,class:^(music)$"
-      "suppressevent[fullscreen],class:^(music)$"
-
-      "float,class:^(btop)$"
-      "size 80% 95%,class:^(btop)$"
-      "move 10% 35,class:^(btop)$"
-      "animation slidefade 0%,class:^(btop)$"
-      "pin,class:^(btop)$"
-      "suppressevent[fullscreen],class:^(btop)$"
-
-      "opacity 0.0 override 0.0 override,class:^(xwaylandvideobridge)$"
-      "noanim,class:^(xwaylandvideobridge)$"
-      "nofocus,class:^(xwaylandvideobridge)$"
-      "noinitialfocus,class:^(xwaylandvideobridge)$"
-
-      "noanim,class:^ueberzugpp.*"
-      "noshadow,class:^ueberzugpp.*"
-      "noborder,class:^ueberzugpp.*"
-      "plugin:hyprbars:nobar,class:^ueberzugpp.*"
+    windowrule = let
+      popup = {
+        class,
+        width,
+        height,
+        x,
+        y,
+      }: {
+        name = class;
+        "match:class" = class;
+        size = "${width} ${height}";
+        move = "${x} ${y}";
+        animation = "slide windows";
+        pin = true;
+        suppress_event = "fullscreen";
+      };
+    in [
+      (popup {
+        class = "music";
+        width = "86%";
+        height = "660px";
+        x = "7%";
+        y = "35";
+      })
+      (popup {
+        class = "btop";
+        width = "80%";
+        height = "95%";
+        x = "10%";
+        y = "35";
+      })
+      {
+        name = "ueberzugpp";
+        "match:class" = "^ueberzugpp.*";
+        no_anim = true;
+        no_shadow = true;
+        border_size = 0;
+      }
     ];
   };
 }
