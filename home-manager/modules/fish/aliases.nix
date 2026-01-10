@@ -95,11 +95,11 @@
         packMgr = {
           description = "Package manager for NixOS and Flatpak";
           body = ''
-            set -g exportConfigs "${config.xdg.userDirs.documents}/Personal/nixos-configs/export"
+            set -g exportConfigs "${config.xdg.userDirs.documents}/Projects/Personal/nixos-configs/export"
             set -g home ${config.xdg.configHome}/home-manager
-            set -g homeFlake ${config.xdg.configHome}/Personal/nixos-configs/home-manager
+            set -g homeFlake ${config.xdg.configHome}/Projects/Personal/nixos-configs/home-manager
             set -g system /etc/nixos
-            set -g systemFlake ${config.xdg.userDirs.documents}/Personal/nixos-configs/system-config
+            set -g systemFlake ${config.xdg.userDirs.documents}/Projects/Personal/nixos-configs/system-config
 
             function fzfSelect
                 command printf "%s\n" $argv | command ${pkgs.fzf}/bin/fzf \
