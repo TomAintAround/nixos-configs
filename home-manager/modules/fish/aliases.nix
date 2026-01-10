@@ -95,7 +95,11 @@
         packMgr = {
           description = "Package manager for NixOS and Flatpak";
           body = ''
-            set -g script "$XDG_DOCUMENTS_DIR/Projects/Personal/nixos-configs/export"
+            set -g exportConfigs "${config.xdg.userDirs.documents}/Personal/nixos-configs/export"
+            set -g home ${config.xdg.configHome}/home-manager
+            set -g homeFlake ${config.xdg.configHome}/Personal/nixos-configs/home-manager
+            set -g system /etc/nixos
+            set -g systemFlake ${config.xdg.userDirs.documents}/Personal/nixos-configs/system-config
 
             function fzfSelect
                 command printf "%s\n" $argv | command ${pkgs.fzf}/bin/fzf \
@@ -105,16 +109,16 @@
 
             function nixOS
                 if test "$argv[2]" = Rebuild
-                    "$script" system
-                    command ${pkgs.nh}/bin/nh os switch --ask /etc/nixos
+                    "$exportConfigs" system
+                    command ${pkgs.nh}/bin/nh os switch --ask "$system"
                     commandline -f execute
                     return 1
                 end
 
                 if test "$argv[2]" = "Rebuild and upgrade"
-                    "$script" system
-                    command sudo nix flake update --flake /etc/nixos
-                    command ${pkgs.nh}/bin/nh os switch --ask /etc/nixos
+                    command sudo nix flake update --flake "$systemFlake"
+                    "$exportConfigs" system
+                    command ${pkgs.nh}/bin/nh os switch --ask "$system"
                     commandline -f execute
                     return 1
                 end
@@ -141,15 +145,16 @@
 
             function homeManager
                 if test "$argv[2]" = Rebuild
-                    "$script" home
-                    command ${pkgs.nh}/bin/nh home switch --ask ${config.xdg.configHome}/home-manager
+                    "$exportConfigs" home
+                    command ${pkgs.nh}/bin/nh home switch --ask "$home"
                     commandline -f execute
                     return 1
                 end
 
                 if test "$argv[2]" = "Rebuild and upgrade"
-                    "$script" home
-                    command ${pkgs.nh}/bin/nh home switch --ask --update ${config.xdg.configHome}/home-manager
+                    command nix flake update --flake "$homeFlake"
+                    "$exportConfigs" home
+                    command ${pkgs.nh}/bin/nh home switch --ask "$home"
                     commandline -f execute
                     return 1
                 end
