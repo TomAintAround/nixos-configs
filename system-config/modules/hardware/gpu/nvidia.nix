@@ -1,4 +1,5 @@
 {
+  pkgs,
   lib,
   config,
   ...
@@ -19,6 +20,7 @@
       powerManagement.enable = true;
       videoAcceleration = true;
     };
+    graphics.extraPackages = with pkgs; [nvidia-vaapi-driver];
   };
 
   services.xserver.videoDrivers = lib.mkDefault ["nvidia"];
