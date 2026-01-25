@@ -1,4 +1,4 @@
-{
+{lib, ...}: {
   imports = [
     ./boot
     ./boot/plymouth.nix
@@ -26,4 +26,6 @@
   time.timeZone = "Europe/Lisbon";
 
   users.mutableUsers = false;
+
+  documentation.man.generateCaches = lib.mkForce false;
 }

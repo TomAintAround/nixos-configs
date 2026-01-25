@@ -1,4 +1,8 @@
-{userVars, ...}: {
+{
+  lib,
+  userVars,
+  ...
+}: {
   imports = [
     ./customOptions.nix
     ./des-wms/hyprland
@@ -66,5 +70,5 @@
     };
   };
 
-  programs.man.generateCaches = false;
+  programs.man.generateCaches = lib.mkForce false;
 }
