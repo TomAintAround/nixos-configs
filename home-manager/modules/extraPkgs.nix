@@ -16,7 +16,9 @@
     jq
     killall
     libreoffice
-    mpv
+    (mpv.override {
+      mpv-unwrapped = pkgs.mpv-unwrapped.override {ffmpeg = pkgs.ffmpeg-full;};
+    })
     newsflash
     nh
     nix-tree # View all package dependencies
