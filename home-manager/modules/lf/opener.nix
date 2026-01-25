@@ -126,22 +126,22 @@
 
       		(audio/*)
       			app=$(menu_select <<-\EOF
-      				vlc
+      				mpv
       				EOF
       			)
       			case "$app" in
-      				(1) dem vlc $fx ;;
+      				(1) dem mpv $fx ;;
       			esac
       		;;
 
       		(video/*)
       			app=$(menu_select <<-\EOF
-      				vlc
+      				mpv
       				kdenlive
       				EOF
       			)
       			case "$app" in
-      				(1) dem vlc $fx ;;
+      				(1) dem mpv $fx ;;
       				(2) dem kdenlive $fx ;;
       			esac
       		;;

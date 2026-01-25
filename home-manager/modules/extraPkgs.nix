@@ -16,6 +16,7 @@
     jq
     killall
     libreoffice
+    mpv
     newsflash
     nh
     nix-tree # View all package dependencies
@@ -31,11 +32,11 @@
     unar
     unrar-wrapper # Extrach RAR files
     unzip
-    zip
     vesktop
     virt-manager
-    vlc
     vscode
     wget
+    zenity
+    zip
   ];
 }

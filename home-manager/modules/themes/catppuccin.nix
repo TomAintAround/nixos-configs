@@ -78,7 +78,7 @@ in {
     };
 
     mpv = {
-      enable = false;
+      enable = true;
       accent = "mauve";
       inherit flavor;
     };

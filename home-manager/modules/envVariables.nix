@@ -9,8 +9,8 @@
     READER = "libreoffice --draw";
     BROWSER = "librewolf";
     IMAGE_EDITOR = "gimp";
-    AUDIO_PLAYER = "vlc";
-    VIDEO_PLAYER = "vlc";
+    AUDIO_PLAYER = "mpv";
+    VIDEO_PLAYER = "mpv";
     FILE_MANAGER = config.fileManager;
 
     # Paths
