@@ -57,6 +57,13 @@
       enable = true;
       createDirectories = true;
     };
+    mimeApps = {
+      enable = true;
+      defaultApplications = {
+        "x-scheme-handler/http" = ["librewolf.desktop"];
+        "x-scheme-handler/https" = ["librewolf.desktop"];
+      };
+    };
   };
 
   programs.man.generateCaches = false;
