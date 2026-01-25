@@ -19,7 +19,7 @@
       		FILE="${config.xdg.userDirs.music}/$(${pkgs.mpc}/bin/mpc current -f %file%)"
       	fi
       	echo "$FILE"
-      	${pkgs.ffmpeg}/bin/ffmpeg -i "$FILE" "$THUMB" -y &> /dev/null
+      	${pkgs.ffmpeg-full}/bin/ffmpeg -i "$FILE" "$THUMB" -y &> /dev/null
       	${pkgs.mpc}/bin/mpc idle player
       done
     '';
@@ -170,7 +170,7 @@
           ext="''${ext,,}"
           case "$ext" in
             mov)
-              ${pkgs.ffmpeg}/bin/ffmpeg -i "$1" -c:v libx264 -c:a aac "''${1%.*}.mp4" && rm -- "$1"
+              ${pkgs.ffmpeg-full}/bin/ffmpeg -i "$1" -c:v libx264 -c:a aac "''${1%.*}.mp4" && rm -- "$1"
               ;;
           esac
         }

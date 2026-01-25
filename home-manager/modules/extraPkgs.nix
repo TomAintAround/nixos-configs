@@ -9,7 +9,7 @@
     cpu-x
     exiftool
     eza
-    ffmpeg
+    ffmpeg-full
     (flameshot.override {enableWlrSupport = true;}) # Screenshot utility
     gimp
     imagemagick

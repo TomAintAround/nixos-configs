@@ -11,7 +11,7 @@
 
   home.packages = with pkgs;
     lib.mkIf (config.fileManager == "yazi") [
-      ffmpeg # for video thumbnails
+      ffmpeg-full # for video thumbnails
       atool
       unzip
       zip # for archive extraction and preview
