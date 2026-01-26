@@ -34,7 +34,7 @@
 
       # Set wallpaper
       "${pkgs.swww}/bin/swww-daemon"
-      "wallpaper-change startup"
+      "wallpaper-change random"
 
       # Generate Album Arts
       "\$scriptsDir/albumart.bash"

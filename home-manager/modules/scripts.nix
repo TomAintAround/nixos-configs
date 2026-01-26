@@ -56,6 +56,10 @@
         	elif [[ "$arg" == "startup" ]]; then
         		printf "\033[0;32m[MODE]\033[0m Startup\n" >&2
         		echo "$selected"
+        	elif [[ "$arg" == "random" ]]; then
+        		local randomNum=$(("$RANDOM" % "$wallpaperCount" + 1))
+        		printf "\033[0;32m[MODE]\033[0m Random\n" >&2
+        		echo "$randomNum"
         	else
         		local next=$((selected + 1))
         		if [[ next -gt wallpaperCount ]]; then
