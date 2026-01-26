@@ -30,10 +30,10 @@
         offset = "40x10";
         scale = 0;
         transparency = 0;
-        padding = 8;
-        horizontal_padding = 8;
-        text_icon_padding = 15;
-        frame_width = 3;
+        padding = 15;
+        horizontal_padding = 15;
+        text_icon_padding = 20;
+        frame_width = 0;
         separator_height = 2;
         gap_size = 30;
         line_height = 0;
