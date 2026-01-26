@@ -26,7 +26,7 @@
 
         width = "(100, 400)";
         height = "300";
-        origin = "bottom-right";
+        origin = "top-right";
         offset = "40x10";
         scale = 0;
         transparency = 0;
