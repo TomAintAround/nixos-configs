@@ -24,12 +24,11 @@
 
   services.resolved = {
     enable = true;
-    dnssec = "true";
-    domains = ["~."];
-    dnsovertls = "opportunistic";
-    llmnr = "true";
-    extraConfig = ''
-      MulticastDNS=resolve
-    '';
+    settings.Resolve = {
+      DNSSEC = true;
+      Domains = ["~."];
+      DNSOverTLS = "opportunistic";
+      MulticastDNS = "resolve";
+    };
   };
 }
