@@ -62,10 +62,7 @@ in {
       package = pkgs.kdePackages.sddm;
       autoNumlock = true;
       enableHidpi = true;
-      wayland = {
-        enable = true;
-        compositor = "kwin";
-      };
+      wayland.enable = true;
       extraPackages = [customTheme];
       theme = "${customTheme}/share/sddm/themes/sddm-astronaut-theme";
     };
