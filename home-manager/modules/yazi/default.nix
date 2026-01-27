@@ -36,7 +36,7 @@
       compress = pkgs.fetchFromGitHub {
         owner = "KKV9";
         repo = "compress.yazi";
-        rev = "9fc8fe0bd82e564f50eb98b95941118e7f681dc8";
+        rev = "v0.5.0";
         hash = "sha256-VKo4HmNp5LzOlOr+SwUXGx3WsLRUVTxE7RI7kIRKoVs=";
       };
       exifaudio = pkgs.fetchFromGitHub {
