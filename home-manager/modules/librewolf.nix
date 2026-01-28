@@ -47,7 +47,6 @@
           canvasblocker
           darkreader
           firefox-color
-          refined-github
           skip-redirect
           sponsorblock
           stylus
