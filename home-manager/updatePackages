@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# See https://discourse.nixos.org/t/25274
+
+root="$(readlink --canonicalize -- "$(dirname -- "$0")")"
+
+# Mock nixpkgs
+trap 'rm -f "$root/default.nix"' EXIT; cat > "$root/default.nix" << NIX
+{}: import <nixpkgs> { overlays = [ (import $root/overlays/customPkgs.nix) ]; }
+NIX
+
+while read -r pkg; do
+	echo "Updating $pkg"
+	nix-update --quiet --commit "$pkg" -f "$root"
+	echo
+done < <(find "$root/overlays/customPkgs/" -type f | sed 's/.*\/\(.*\)\/\(.*\)\.nix/\1\.\2/')

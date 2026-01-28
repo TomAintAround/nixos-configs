@@ -16,9 +16,6 @@
     jq
     killall
     libreoffice
-    (mpv.override {
-      mpv-unwrapped = pkgs.mpv-unwrapped.override {ffmpeg = pkgs.ffmpeg-full;};
-    })
     newsflash
     nh
     nix-tree # View all package dependencies
@@ -38,7 +35,6 @@
     virt-manager
     vscode
     wget
-    zenity
     zip
   ];
 }

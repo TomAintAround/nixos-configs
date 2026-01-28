@@ -9,6 +9,7 @@
     systemPackages = with pkgs; [
       git
       home-manager
+      nix-update
       libnotify
       libsecret
     ];

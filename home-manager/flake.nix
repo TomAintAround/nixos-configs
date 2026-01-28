@@ -42,7 +42,10 @@
         secrets.email;
     };
     system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
+    pkgs = import nixpkgs {
+      inherit system;
+      overlays = [(import ./overlays/customPkgs.nix)];
+    };
     extraSpecialArgs = {inherit inputs system userVars;};
     inherit (home-manager.lib) homeManagerConfiguration;
     inherit (nix-index-database.homeModules) nix-index;
