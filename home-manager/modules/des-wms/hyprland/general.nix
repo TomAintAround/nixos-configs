@@ -31,7 +31,7 @@
     };
 
     decoration = {
-      rounding = 10;
+      rounding = 15;
       rounding_power = 4.0;
       dim_inactive = false;
       dim_strength = 0.1;
