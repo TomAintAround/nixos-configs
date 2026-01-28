@@ -105,7 +105,6 @@ in {
         set -g status-right-length 100
         set -g status-right "#{E:@catppuccin_status_user}"
         set -ag status-right "#{E:@catppuccin_status_host}"
-        set -ag status-right "#{E:@catppuccin_status_directory}"
         set -ag status-right "#{E:@catppuccin_status_application}"
         set -ag status-right "#{E:@catppuccin_status_session}"
         set -g @catppuccin_status_left_separator  " "
@@ -116,8 +115,7 @@ in {
         set -g @catppuccin_directory_text "#{pane_current_path}"
         set -g @catppuccin_user_color "#f38ba8"
         set -g @catppuccin_host_color "#eba0ac"
-        set -g @catppuccin_application_color "#f9e2af"
-        set -g @catppuccin_directory_color "#fab387"
+        set -g @catppuccin_application_color  "#fab387"
       '';
     };
 
