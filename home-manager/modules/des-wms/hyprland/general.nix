@@ -33,7 +33,7 @@
     decoration = {
       rounding = 15;
       rounding_power = 4.0;
-      dim_inactive = false;
+      dim_inactive = true;
       dim_strength = 0.1;
       blur = {
         size = 7;
