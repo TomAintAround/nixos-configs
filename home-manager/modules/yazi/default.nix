@@ -32,22 +32,8 @@
 
   programs.yazi = {
     enable = config.fileManager == "yazi";
-    plugins = let
-      compress = pkgs.fetchFromGitHub {
-        owner = "KKV9";
-        repo = "compress.yazi";
-        rev = "v0.5.0";
-        hash = "sha256-VKo4HmNp5LzOlOr+SwUXGx3WsLRUVTxE7RI7kIRKoVs=";
-      };
-      exifaudio = pkgs.fetchFromGitHub {
-        owner = "Sonico98";
-        repo = "exifaudio.yazi";
-        rev = "4506f9d5032e714c0689be09d566dd877b9d464e";
-        hash = "sha256-RWCqWBpbmU3sh/A+LBJPXL/AY292blKb/zZXGvIA5/o=";
-      };
-    in {
-      inherit (pkgs.yaziPlugins) chmod full-border git relative-motions rich-preview;
-      inherit compress exifaudio;
+    plugins = with pkgs.yaziPlugins; {
+      inherit chmod full-border git relative-motions rich-preview compress;
     };
     initLua = ./init.lua;
   };
