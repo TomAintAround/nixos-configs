@@ -5,7 +5,7 @@
   ...
 }: {
   boot = {
-    kernelModules = ["vfio_pci" "vfio" "vfio_iommu_type1" "vfio_virqfd"];
+    kernelModules = ["vfio_pci" "vfio" "vfio_iommu_type1"];
     kernelParams = ["video:efifb=off" "pcie_acs_override=downstream,multifunction"];
   };
 
