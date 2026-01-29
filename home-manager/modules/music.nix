@@ -1,47 +1,54 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   home.packages = with pkgs; [
     mpc
-    mpd-mpris
-    playerctl
     spotdl
     spotify
   ];
 
-  services.mpd = {
-    enable = true;
-    extraConfig = ''
-      music_directory    "~/Music"
-      playlist_directory "~/.config/mpd/playlists"
-      db_file			   "~/.config/mpd/database"
-      log_file		   "~/.config/mpd/log"
-      sticker_file	   "~/.config/mpd/sticker.sql"
-      bind_to_address    "~/.config/mpd/socket"
+  services = {
+    mpd = {
+      enable = true;
+      musicDirectory = config.xdg.userDirs.music;
+      playlistDirectory = "${config.xdg.dataHome}/mpd/playlists";
+      extraConfig = ''
+        db_file			   "~/.local/share/mpd/database"
+        log_file		   "~/.local/share/mpd/log"
+        sticker_file	   "~/.local/share/mpd/sticker.sql"
+        bind_to_address    "~/.local/share/mpd/socket"
 
-      audio_output {
-      	type			"pipewire"
-      	name			"PipeWire Sound Server"
-      }
+        audio_output {
+        	type			"pipewire"
+        	name			"PipeWire Sound Server"
+        }
 
-      audio_output {
-      	type					"fifo"
-      	name					"mpd_visualizer"
-      	path					"/tmp/mpd.fifo"
-      	format					"44100:16:2"
-      }
-    '';
-    network.startWhenNeeded = true;
+        audio_output {
+        	type					"fifo"
+        	name					"mpd_visualizer"
+        	path					"/tmp/mpd.fifo"
+        	format					"44100:16:2"
+        }
+      '';
+      network.startWhenNeeded = true;
+    };
+
+    mpd-mpris.enable = true;
+    playerctld.enable = true;
   };
 
   programs.ncmpcpp = {
     enable = true;
-    mpdMusicDir = "~/Music";
+    mpdMusicDir = config.xdg.userDirs.music;
     package = pkgs.ncmpcpp.override {
       visualizerSupport = true;
       clockSupport = true;
     };
     settings = {
-      ncmpcpp_directory = "~/.config/ncmpcpp";
-      lyrics_directory = "~/.config/ncmpcpp/lyrics/";
+      ncmpcpp_directory = "${config.xdg.configHome}/ncmpcpp";
+      lyrics_directory = "${config.xdg.configHome}/ncmpcpp/lyrics/";
 
       mpd_host = "localhost";
       mpd_port = "6600";
@@ -50,7 +57,7 @@
       visualizer_output_name = "mpd_visualizer";
       visualizer_in_stereo = "yes";
       visualizer_type = "spectrum";
-      #visualizer_look = " ";
+      # visualizer_look = " ";
       visualizer_fps = "75";
       visualizer_autoscale = "no";
       visualizer_color = "232, 256, 196, 160, 124, 88, 82, 46, 40";
