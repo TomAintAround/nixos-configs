@@ -7,7 +7,6 @@
     ./customOptions.nix
     ./des-wms/hyprland
     ./fish
-    ./lf
     ./mpv
     ./themes
     ./tmux

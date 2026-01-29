@@ -36,7 +36,6 @@
 
   brightness.enable = false;
   contentCreation.enable = true;
-  fileManager = "yazi";
   gaming.enable = true;
   gamedev.enable = false;
   openrazer.enable = true;

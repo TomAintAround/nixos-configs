@@ -285,7 +285,7 @@
         };
       }
       // (
-        if (config.fileManager == "yazi")
+        if (config.programs.yazi.enable)
         then {
           yazi = {
             description = "Open yazi and change directory";
@@ -302,22 +302,11 @@
         else {}
       );
 
-    shellAliases =
-      {
-        "cat" = "${pkgs.bat}/bin/bat --paging=never";
-        "less" = "${pkgs.bat}/bin/bat --paging=always";
-        "ls" = "${pkgs.eza}/bin/eza --git --icons=always --long --all --group --header --links --color=always --no-quotes --smart-group --group-directories-first --time-style='+%H:%m %d/%m/%y'";
-        "man" = "${pkgs.bat-extras.batman}/bin/batman";
-      }
-      // (
-        if (config.fileManager == "lf")
-        then
-          (
-            if (config.terminal == "alacritty" || config.programs.tmux.enable)
-            then {"lf" = "cd \"$(${config.xdg.configHome}/lf/lfimg -print-last-dir)\"";}
-            else {"lf" = "cd \"$(command lf -print-last-dir $argv)\"";}
-          )
-        else {}
-      );
+    shellAliases = {
+      "cat" = "${pkgs.bat}/bin/bat --paging=never";
+      "less" = "${pkgs.bat}/bin/bat --paging=always";
+      "ls" = "${pkgs.eza}/bin/eza --git --icons=always --long --all --group --header --links --color=always --no-quotes --smart-group --group-directories-first --time-style='+%H:%m %d/%m/%y'";
+      "man" = "${pkgs.bat-extras.batman}/bin/batman";
+    };
   };
 }

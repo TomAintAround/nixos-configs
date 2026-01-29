@@ -11,7 +11,7 @@
     IMAGE_EDITOR = "gimp";
     AUDIO_PLAYER = "mpv";
     VIDEO_PLAYER = "mpv";
-    FILE_MANAGER = config.fileManager;
+    FILE_MANAGER = "yazi";
 
     # Paths
     GOPATH = "${config.xdg.dataHome}/go";

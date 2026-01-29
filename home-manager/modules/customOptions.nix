@@ -14,13 +14,6 @@ in {
       default = false;
     };
 
-    fileManager = mkOption {
-      type = types.str;
-      description = "Chooses which file manager to install";
-      default = "yazi";
-      example = "All available options: yazi, lf";
-    };
-
     gamedev.enable = mkOption {
       type = types.bool;
       description = "Installs gamedev apps";
