@@ -1,31 +1,79 @@
-{lib, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   imports = [
     ./boot
-    ./boot/plymouth.nix
-    ./boot/secure-boot.nix
-    ./boot/systemd-boot.nix
-    ./hardware/disks.nix
-    ./hardware/graphics.nix
-    ./hardware/sound.nix
-    ./sddm
-    ./console.nix
-    ./fonts.nix
-    ./locales.nix
     ./networking.nix
-    ./nix.nix
-    ./openssh.nix
-    ./pkgs.nix
-    ./security.nix
-    ./xserver.nix
   ];
 
-  boot.kernelModules = ["uinput"];
+  environment = {
+    localBinInPath = true;
+    systemPackages = with pkgs; [
+      git
+      home-manager
+      nix-update
+      libnotify
+      libsecret
+    ];
+  };
 
-  system.stateVersion = "23.11";
+  programs.nix-ld.enable = true;
+
+  services = {
+    openssh.enable = true;
+    udisks2 = {
+      enable = true;
+      settings."mount_options.conf".defaults.umask = "0022";
+    };
+  };
 
   time.timeZone = "Europe/Lisbon";
 
   users.mutableUsers = false;
 
   documentation.man.generateCaches = lib.mkForce false;
+
+  nix = {
+    gc = {
+      automatic = true;
+      dates = "daily";
+      options = "--delete-older-than 14d";
+    };
+    optimise.automatic = true;
+    settings = {
+      auto-optimise-store = true;
+      experimental-features = ["nix-command" "flakes"];
+      substituters = [
+        "https://nix-community.cachix.org"
+      ];
+      trusted-public-keys = [
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      ];
+    };
+  };
+  nixpkgs.config.allowUnfree = true;
+
+  console = {
+    font = "Lat2-Terminus16";
+    useXkbConfig = true;
+  };
+
+  i18n = {
+    defaultLocale = "pt_PT.UTF-8";
+    extraLocales = [
+      "en_GB.UTF-8/UTF-8"
+      "pt_PT.UTF-8/UTF-8"
+      "es_ES.UTF-8/UTF-8"
+    ];
+  };
+
+  security = {
+    apparmor.enable = true;
+    tpm2.enable = true;
+    polkit.enable = true;
+  };
+
+  virtualisation.docker.enable = true;
 }

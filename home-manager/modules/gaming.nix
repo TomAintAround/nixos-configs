@@ -1,10 +1,4 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}:
-lib.mkIf config.gaming.enable {
+{pkgs, ...}: {
   home.packages = with pkgs; [
     (heroic.override {
       extraPkgs = pkgs: [

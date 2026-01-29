@@ -1,10 +1,4 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}:
-lib.mkIf config.gamedev.enable {
+{pkgs, ...}: {
   home.packages = with pkgs; [
     ardour
     aseprite

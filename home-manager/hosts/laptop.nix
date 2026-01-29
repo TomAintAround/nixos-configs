@@ -1,6 +1,9 @@
 {
   imports = [
     ../modules/base.nix
+    # ../modules/contentCreation.nix
+    # ../modules/gamedev.nix
+    # ../modules/gaming.nix
   ];
 
   monitors = [
@@ -23,10 +26,6 @@
   ];
 
   brightness.enable = true;
-  contentCreation.enable = false;
-  gaming.enable = false;
-  gamedev.enable = false;
   openrazer.enable = false;
   openrgb.enable = false;
-  terminal = "kitty";
 }

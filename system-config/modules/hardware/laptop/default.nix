@@ -3,7 +3,11 @@
   lib,
   ...
 }: {
-  boot.blacklistedKernelModules = lib.optionals (!config.hardware.enableRedistributableFirmware) ["ath3k"];
+  boot = {
+    blacklistedKernelModules = lib.optionals (!config.hardware.enableRedistributableFirmware) ["ath3k"];
+    kernelModules = lib.mkIf config.services.tlp.enable ["acpi_call"];
+    extraModulePackages = lib.mkIf config.services.tlp.enable (with config.boot.kernelPackages; [acpi_call]);
+  };
 
   # Gnome 40 introduced a new way of managing power, without tlp.
   # However, these 2 services clash when enabled simultaneously.

@@ -1,10 +1,4 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}:
-lib.mkIf (config.terminal == "kitty") {
+{pkgs, ...}: {
   programs.kitty = {
     enable = true;
     font = {
