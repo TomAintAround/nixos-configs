@@ -16,6 +16,4 @@ I want my systems to be multi-host and multi-user compatible. This means that it
 
 ## How to install?
 
-Even if you just want to copy what I do (like you probably should), I still recommend reading these guides. They can help you understand this configuration.
-- [Install system configuration](https://github.com/TomAintAround/nixos-configs/blob/main/system-config/README.md)
-- [Install Home Manager Configuration](https://github.com/TomAintAround/nixos-configs/blob/main/home-manager/README.md)
+If you read everything I said above, take at least 10 seconds to look at my configurations and have no idea how to install this, then you should absolutely learn about Nix first. There are a lot of YouTube videos teaching everything about Nix. I recommend starting there.
