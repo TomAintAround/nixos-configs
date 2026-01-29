@@ -58,7 +58,7 @@
 
   console = {
     font = "Lat2-Terminus16";
-    useXkbConfig = true;
+    keyMap = "pt-latin1";
   };
 
   i18n = {
