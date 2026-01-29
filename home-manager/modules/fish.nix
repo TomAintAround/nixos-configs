@@ -331,7 +331,7 @@
         };
       }
       // (
-        if (config.programs.yazi.enable)
+        if config.programs.yazi.enable
         then {
           yazi = {
             description = "Open yazi and change directory";
