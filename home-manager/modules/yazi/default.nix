@@ -27,7 +27,6 @@
 
       # Plugin dependencies
       rich-cli
-      exiftool
     ];
 
   programs.yazi = {
