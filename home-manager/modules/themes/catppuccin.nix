@@ -71,6 +71,11 @@ in {
       inherit accent flavor;
     };
 
+    lazygit = {
+      enable = true;
+      inherit accent flavor;
+    };
+
     librewolf = {
       enable = true;
       force = true;
