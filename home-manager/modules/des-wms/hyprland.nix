@@ -349,6 +349,10 @@
 
       "\$scriptsDir" = "${config.xdg.dataHome}/scripts";
       exec-once = [
+        # Set wallpaper
+        "${pkgs.swww}/bin/swww-daemon"
+        "wallpaper-change random"
+
         # Screensharing
         "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
 
@@ -370,10 +374,6 @@
 
         # Polkit
         "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
-
-        # Set wallpaper
-        "${pkgs.swww}/bin/swww-daemon"
-        "wallpaper-change random"
 
         # Generate Album Arts
         "\$scriptsDir/albumart.bash"
