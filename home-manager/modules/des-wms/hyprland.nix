@@ -4,11 +4,8 @@
   config,
   ...
 }: {
-  imports = [
-    ./wm
-    ./wayland
-    ./wayland/wm.nix
-  ];
+  displayServer.wayland.enable = true;
+  wm.enable = true;
 
   wayland.windowManager.hyprland = {
     enable = true;

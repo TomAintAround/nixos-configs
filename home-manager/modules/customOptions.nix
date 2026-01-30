@@ -100,5 +100,24 @@ in {
       description = "Enables OpenRGB related settings";
       default = false;
     };
+
+    displayServer = {
+      x11.enable = mkOption {
+        type = types.bool;
+        description = "Enables X11 related settings";
+        default = false;
+      };
+      wayland.enable = mkOption {
+        type = types.bool;
+        description = "Enables Wayland related settings";
+        default = false;
+      };
+    };
+
+    wm.enable = mkOption {
+      type = types.bool;
+      description = "Enables WM related settings";
+      default = false;
+    };
   };
 }

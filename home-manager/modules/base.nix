@@ -8,6 +8,7 @@
 }: {
   imports = [
     ./customOptions.nix
+    ./des-wms
     ./des-wms/hyprland.nix
     ./mpv
     ./themes

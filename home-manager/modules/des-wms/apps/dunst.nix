@@ -1,9 +1,10 @@
 {
   pkgs,
   lib,
+  config,
   ...
 }: {
-  services.dunst = {
+  services.dunst = lib.mkIf config.wm.enable {
     enable = true;
     settings = {
       global = {
