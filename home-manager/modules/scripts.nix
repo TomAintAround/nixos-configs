@@ -33,9 +33,10 @@
         set -euo pipefail
 
         wallpapersDir="${config.xdg.userDirs.pictures}/Wallpapers"
-        wallpaperSet="${config.xdg.cacheHome}/wallpaper-set"
+        cacheDir="${config.xdg.cacheHome}/swww"
+        wallpaperNum="$cacheDir/wallpaperNum"
         mkdir -p "$wallpapersDir"
-        touch "$wallpaperSet"
+        touch "$wallpaperNum"
 
         wallpapers=()
         while IFS= read -r -d ''' file; do
@@ -46,7 +47,7 @@
         	echo "No wallpapers found in $wallpapersDir." >&2
         	exit 1
         fi
-        selected=$(cat "$wallpaperSet" 2>/dev/null || echo "1")
+        selected=$(cat "$wallpaperNum" 2>/dev/null || echo "1")
 
         getNewIndex() {
         	local arg="''${1:-}"
@@ -71,6 +72,7 @@
         }
         new=$(getNewIndex "''${1:-}")
         wallpaper="''${wallpapers[$((new-1))]}"
+        ln -sf "$wallpaper" "$cacheDir/wallpaper"
 
         case "''${XDG_SESSION_TYPE:-}" in
         	wayland)
@@ -87,7 +89,7 @@
         		${pkgs.feh}/bin/feh --bg-fill "$wallpaper"
         esac
 
-        echo "$new" > "$wallpaperSet"
+        echo "$new" > "$wallpaperNum"
       '';
     };
 
