@@ -36,6 +36,14 @@
 
     mpd-mpris.enable = true;
     playerctld.enable = true;
+
+    mpdscribble = {
+      enable = true;
+      endpoints."last.fm" = {
+        username = "TomAintAround";
+        passwordFile = "${config.xdg.dataHome}/mpdscribblePass";
+      };
+    };
   };
 
   programs.ncmpcpp = {
