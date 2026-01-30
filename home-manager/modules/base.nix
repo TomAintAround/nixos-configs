@@ -110,7 +110,6 @@
       unar
       unrar-wrapper # Extrach RAR files
       unzip
-      vesktop
       virt-manager
       vscode
       wget
@@ -159,6 +158,17 @@
       enable = true;
       hidden = true;
       extraOptions = ["--color='always'"];
+    };
+
+    vesktop = {
+      enable = true;
+      settings = {
+        discordBranch = "stable";
+        minimizeToTray = false;
+        arRPC = true;
+        enableSplashScreen = false;
+        hardwareVideoAcceleration = true;
+      };
     };
 
     zoxide = {
