@@ -81,16 +81,16 @@
           "win, 0.3, 0.9, 0.5, 1.1"
           "winIn, 0.7, 1.1, 0.1, 1.1"
           "winOut, 0.35, -0.3, 0.25, 1"
-          "liner, 1, 1, 1, 1"
+          "linear, 1, 1, 0, 0"
         ];
         animation = [
           "windowsIn, 1, 3, winIn, gnomed"
           "windowsOut, 1, 5, winOut, gnomed"
           "windowsMove, 1, 5, win, gnomed"
           "layersIn, 1, 3, winIn, slide"
-          "layersOut, 1, 5, winOut, fade"
-          "border, 1, 4, liner"
-          "borderangle, 1, 30, liner, loop"
+          "layersOut, 1, 5, linear, fade"
+          "border, 1, 4, linear"
+          "borderangle, 1, 30, linear, loop"
           "workspaces, 1, 5, win, slidevert"
         ];
       };
