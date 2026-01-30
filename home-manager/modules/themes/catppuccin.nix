@@ -35,6 +35,11 @@ in {
       inherit flavor;
     };
 
+    cursors = {
+      enable = false;
+      inherit accent flavor;
+    };
+
     delta = {
       enable = true;
       inherit flavor;
@@ -56,6 +61,11 @@ in {
     };
 
     gtk.icon = {
+      enable = true;
+      inherit accent flavor;
+    };
+
+    hyprland = {
       enable = true;
       inherit accent flavor;
     };
@@ -235,8 +245,6 @@ in {
   '';
 
   wayland.windowManager.hyprland.settings = lib.mkIf config.wayland.windowManager.hyprland.enable {
-    source = ["${config.catppuccin.sources.hyprland}/${flavor}.conf"];
-
     general = {
       "col.inactive_border" = "\$base \$overlay0 45deg";
       "col.active_border" = "\$sky \$blue 45deg";
