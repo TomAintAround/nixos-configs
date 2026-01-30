@@ -86,6 +86,7 @@
 
     packages = with pkgs; [
       act
+      bottles
       brave
       cpu-x
       exiftool
