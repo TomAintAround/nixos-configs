@@ -141,11 +141,11 @@
           "SUPER SHIFT, Q, killactive,"
           "SUPER SHIFT, BackSpace, exit,"
           "SUPER, V, togglefloating,"
-          "SUPER, P, pseudo," # dwindle
+          "SUPER SHIFT, V, pseudo,"
           "SUPER, G, layoutmsg, addmaster"
-          "SUPER, Y, layoutmsg, removemaster"
+          "SUPER SHIFT, G, layoutmsg, removemaster"
           "SUPER, F, fullscreen, 0"
-          "SUPER, M, fullscreen, 1"
+          "SUPER SHIFT, F, fullscreen, 1"
           (let
             changeLayout = pkgs.writeShellScriptBin "changeLayout.bash" ''
               ###################################################################################################################
