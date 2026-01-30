@@ -125,31 +125,38 @@ in {
     };
   };
 
-  programs.mpv.scriptOpts = {
-    modernz = {
-      window_title_color = "#cdd6f4";
-      window_controls_color = "#cdd6f4";
-      windowcontrols_close_hover = "#f38ba8";
-      windowcontrols_max_hover = "#f9e2af";
-      windowcontrols_min_hover = "#a6e3a1";
-      title_color = "#cdd6f4";
-      cache_info_color = "#cdd6f4";
-      seekbarfg_color = "#89dceb";
-      seekbarbg_color = "#11111b";
-      seekbar_cache_color = "#181825";
-      time_color = "#cdd6f4";
-      chapter_title_color = "#cdd6f4";
-      side_buttons_color = "#cdd6f4";
-      middle_buttons_color = "#cdd6f4";
-      playpause_color = "#cdd6f4";
-      held_element_color = "#6c7086";
-      hover_effect_color = "#89dceb";
-      thumbnail_border_color = "#11111b";
-      thumbnail_border_outline = "#313244";
+  programs = {
+    mpv.scriptOpts = {
+      modernz = {
+        window_title_color = "#cdd6f4";
+        window_controls_color = "#cdd6f4";
+        windowcontrols_close_hover = "#f38ba8";
+        windowcontrols_max_hover = "#f9e2af";
+        windowcontrols_min_hover = "#a6e3a1";
+        title_color = "#cdd6f4";
+        cache_info_color = "#cdd6f4";
+        seekbarfg_color = "#89dceb";
+        seekbarbg_color = "#11111b";
+        seekbar_cache_color = "#181825";
+        time_color = "#cdd6f4";
+        chapter_title_color = "#cdd6f4";
+        side_buttons_color = "#cdd6f4";
+        middle_buttons_color = "#cdd6f4";
+        playpause_color = "#cdd6f4";
+        held_element_color = "#6c7086";
+        hover_effect_color = "#89dceb";
+        thumbnail_border_color = "#11111b";
+        thumbnail_border_outline = "#313244";
+      };
+      pause_indicator_lite = {
+        icon_color = "#cdd6f4";
+        icon_border_color = "#11111b";
+      };
     };
-    pause_indicator_lite = {
-      icon_color = "#cdd6f4";
-      icon_border_color = "#11111b";
+
+    vesktop.settings = {
+      splashColor = "rgb(205, 214, 244)";
+      splashBackground = "rgb(17, 17, 27)";
     };
   };
 
