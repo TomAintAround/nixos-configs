@@ -371,9 +371,6 @@
         # Polkit
         "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
 
-        # Notification Daemon
-        "${pkgs.systemd}/bin/systemctl --user start dunst.service"
-
         # Set wallpaper
         "${pkgs.swww}/bin/swww-daemon"
         "wallpaper-change random"
@@ -381,14 +378,8 @@
         # Generate Album Arts
         "\$scriptsDir/albumart.bash"
 
-        # MPD Playerctl Compatibility
-        "${pkgs.mpd-mpris}/bin/mpd-mpris"
-
         # Clipboard Manager
         "${pkgs.wl-clipboard}/bin/wl-paste -t text --watch clipman store --no-persist"
-
-        # Screenshot tool
-        "${pkgs.flameshot.override {enableWlrSupport = true;}}/bin/flameshot"
 
         # Software for Peripherals
         "${
@@ -401,12 +392,6 @@
           then "${pkgs.openrgb-with-all-plugins}/bin/openrgb --startminimized"
           else "echo no"
         }"
-
-        # Easyeffects
-        "${pkgs.systemd}/bin/systemctl --user start easyeffects.service"
-
-        # KDE Connect Indicator
-        "${pkgs.kdePackages.kdeconnect-kde}/bin/kdeconnect-indicator"
       ];
 
       windowrule = let
