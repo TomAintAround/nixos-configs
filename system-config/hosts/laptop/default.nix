@@ -13,7 +13,7 @@
     ../../modules/hardware/laptop
     # ../../modules/hardware/laptop/hdd.nix
     ../../modules/hardware/bluetooth.nix
-    #../../modules/hardware/fringerprint.nix
+    # ../../modules/hardware/fingerprint.nix
     #../../modules/hardware/openrazer.nix
     #../../modules/hardware/openrgb.nix
     # (
