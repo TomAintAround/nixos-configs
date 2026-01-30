@@ -147,19 +147,6 @@ in {
   };
 
   programs = {
-    hyprlock.settings = {
-      background.color = "$base";
-      input-field = {
-        outer_color = "$accent";
-        inner_color = "$base";
-        font_color = "$text";
-        check_color = "$yellow";
-        fail_color = "$red";
-        capslock = "$red";
-      };
-      label.color = "$text";
-    };
-
     mpv.scriptOpts = {
       modernz = {
         window_title_color = "#cdd6f4";
