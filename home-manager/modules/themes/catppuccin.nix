@@ -153,6 +153,11 @@ in {
     };
   };
 
+  services.flameshot.settings.General = {
+    contrastUiColor = "#89dceb";
+    uiColor = "#1e1e2e";
+  };
+
   # Script to copy the GTK theme to ~/.themes/ and the icon theme
   # to ~/.icons each time home-manager is updated for flatpak support
   home.activation.copy-themes = lib.hm.dag.entryAfter ["writeBoundary"] ''

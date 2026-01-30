@@ -90,7 +90,6 @@
       exiftool
       eza
       ffmpeg-full
-      (flameshot.override {enableWlrSupport = true;}) # Screenshot utility
       gimp
       imagemagick
       jq
@@ -174,6 +173,17 @@
     easyeffects = {
       enable = true;
       preset = "Default";
+    };
+
+    flameshot = {
+      enable = true;
+      package = pkgs.flameshot.override {enableWlrSupport = true;};
+      settings.General = {
+        drawColor = "#ff0000";
+        showDesktopNotification = false;
+        showStartupLaunchMessage = false;
+        useGrimAdapter = true;
+      };
     };
 
     kdeconnect = {
