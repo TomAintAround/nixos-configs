@@ -39,11 +39,9 @@
           ublock-origin
           bitwarden
           canvasblocker
-          darkreader
           firefox-color
           skip-redirect
           sponsorblock
-          stylus
           xbrowsersync
         ];
       };
