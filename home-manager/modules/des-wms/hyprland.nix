@@ -140,7 +140,7 @@
           # Hyprland keybinds
           "SUPER SHIFT, Q, killactive,"
           "SUPER SHIFT, BackSpace, exit,"
-          "SUPER SHIFT, L, exec, ${pkgs.hyprlock}/bin/hyprlock"
+          "SUPER SHIFT, D, exec, ${pkgs.hyprlock}/bin/hyprlock"
           "SUPER, V, togglefloating,"
           "SUPER SHIFT, V, pseudo,"
           "SUPER, G, layoutmsg, addmaster"
