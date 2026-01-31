@@ -30,6 +30,11 @@ in {
       inherit flavor;
     };
 
+    brave = {
+      enable = true;
+      inherit flavor;
+    };
+
     btop = {
       enable = true;
       inherit flavor;

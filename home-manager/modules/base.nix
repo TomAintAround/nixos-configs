@@ -22,7 +22,7 @@
     ./git.nix
     ./kitty.nix
     ./lazygit.nix
-    ./librewolf.nix
+    # ./librewolf.nix
     ./music.nix
     ./neovim.nix
     ./scripts.nix
@@ -70,7 +70,7 @@
       PAGER = "bat --paging=always";
       TERMINAL = "kitty";
       READER = "libreoffice --draw";
-      BROWSER = "librewolf";
+      BROWSER = "brave";
       IMAGE_EDITOR = "gimp";
       AUDIO_PLAYER = "mpv";
       VIDEO_PLAYER = "mpv";
@@ -128,8 +128,8 @@
     mimeApps = {
       enable = true;
       defaultApplications = {
-        "x-scheme-handler/http" = ["librewolf.desktop"];
-        "x-scheme-handler/https" = ["librewolf.desktop"];
+        "x-scheme-handler/http" = ["brave.desktop"];
+        "x-scheme-handler/https" = ["brave.desktop"];
       };
     };
   };
