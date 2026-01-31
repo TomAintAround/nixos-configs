@@ -14,7 +14,11 @@
       "gfx.webrender.all" = true;
       "media.ffmpeg.vaapi.enabled" = true;
       "widget.use-xdg-desktop-portal.settings" = 0;
+
       "privacy.resistFingerprinting.letterboxing" = true;
+      "privacy.resistFingerprinting" = false;
+      "privacy.fingerprintingProtection" = true;
+      "privacy.fingerprintingProtection.overrides" = "+AllTargets,-CSSPrefersColorScheme";
 
       "network.trr.mode" = 2;
       "network.trr.uri" = "https://dns10.quad9.net/dns-query";
