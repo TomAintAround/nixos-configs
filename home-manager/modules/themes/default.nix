@@ -39,6 +39,7 @@
       KRITA_NO_STYLE_OVERRIDE = 1;
       GDK_SCALE = scale;
       QT_AUTO_SCREEN_SCALE_FACTOR = toString (1.0 / scale);
+      QT_SCALE_FACTOR = toString (1.0 / scale);
     };
   };
 
