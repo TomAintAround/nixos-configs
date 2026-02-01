@@ -399,37 +399,37 @@
           height,
           x,
           y,
-        }: {
-          name = class;
-          "match:class" = class;
-          size = "${width} ${height}";
-          move = "${x} ${y}";
-          animation = "slide windows";
-          pin = true;
-          suppress_event = "fullscreen";
-        };
+        }: [
+          "match:class ^${class}$, float 1"
+          "match:class ^${class}$, size ${width} ${height}"
+          "match:class ^${class}$, move ${x} ${y}"
+          "match:class ^${class}$, animation slide windows"
+          "match:class ^${class}$, pin 1"
+          "match:class ^${class}$, suppress_event fullscreen"
+        ];
       in [
+        "match:class ^ueberzugpp.*, no_anim 1"
+        "match:class ^ueberzugpp.*, no_shadow 1"
+        "match:class ^ueberzugpp.*, border_size 0"
+        "match:class ^ueberzugpp.*, float 1"
+        "match:class ^ueberzugpp.*, no_initial_focus 1"
+        "match:class ^ueberzugpp.*, suppress_event fullscreen"
+
         (popup {
           class = "music";
-          width = "86%";
-          height = "660px";
-          x = "7%";
+          width = "(monitor_w*0.86)";
+          height = "660";
+          x = "(monitor_w*0.07)";
           y = "35";
         })
+
         (popup {
           class = "btop";
-          width = "80%";
-          height = "95%";
-          x = "10%";
+          width = "(monitor_w*0.8)";
+          height = "(monitor_h*0.95)";
+          x = "(monitor_w*0.1)";
           y = "35";
         })
-        {
-          name = "ueberzugpp";
-          "match:class" = "^ueberzugpp.*";
-          no_anim = true;
-          no_shadow = true;
-          border_size = 0;
-        }
       ];
     };
   };
