@@ -415,6 +415,13 @@
         "match:class ^ueberzugpp.*, no_initial_focus 1"
         "match:class ^ueberzugpp.*, suppress_event fullscreen"
 
+        "match:title ^flameshot$, no_anim 1"
+        "match:title ^flameshot$, float 1"
+        "match:title ^flameshot$, move 0 0"
+        "match:title ^flameshot$, pin 1"
+        "match:title ^flameshot$, border_size 0"
+        "match:title ^flameshot$, suppress_event fullscreen"
+
         (popup {
           class = "music";
           width = "(monitor_w*0.86)";
@@ -430,6 +437,10 @@
           x = "(monitor_w*0.1)";
           y = "35";
         })
+      ];
+
+      layerrule = [
+        "match:namespace ^hyprpicker$, no_anim 1"
       ];
     };
   };
