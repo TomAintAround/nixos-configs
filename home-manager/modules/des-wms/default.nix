@@ -7,6 +7,7 @@
   imports = [
     ./apps/dunst.nix
     ./apps/hyprlock.nix
+    ./apps/hyprsunset.nix
   ];
 
   home = {

@@ -310,12 +310,12 @@
         "${
           if config.brightness.enable
           then ",XF86MonBrightnessUp, exec, ${pkgs.brightnessctl}/bin/brightnessctl set 2%+"
-          else ",XF86MonBrightnessUp, exec,"
+          else ",XF86MonBrightnessUp, exec, hyprctl hyprsunset gamma +2"
         }"
         "${
           if config.brightness.enable
           then ",XF86MonBrightnessDown, exec, ${pkgs.brightnessctl}/bin/brightnessctl set 2%-"
-          else ",XF86MonBrightnessDown, exec,"
+          else ",XF86MonBrightnessDown, exec, hyprctl hyprsunset gamma -2"
         }"
       ];
       bindl = [
