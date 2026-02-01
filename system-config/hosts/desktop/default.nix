@@ -1,4 +1,8 @@
-{modulesPath, ...}: {
+{
+  modulesPath,
+  pkgs,
+  ...
+}: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     (import ./disko.nix {device = "/dev/nvme0n1";})
@@ -41,4 +45,5 @@
 
   networking.hostName = "desktop";
   system.stateVersion = "23.11";
+  boot.kernelPackages = pkgs.linuxKernel.kernels.linux_zen;
 }
