@@ -6,6 +6,7 @@
 }: {
   imports = [
     ./apps/dunst.nix
+    ./apps/hypridle.nix
     ./apps/hyprlock.nix
     ./apps/hyprsunset.nix
   ];
