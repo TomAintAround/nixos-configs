@@ -230,7 +230,10 @@
           # Zoom
           "SUPER, mouse_down, exec, hyprctl -q keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor -j | jq '.float * 1.1')"
           "SUPER, mouse_up, exec, hyprctl -q keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor -j | jq '(.float * 0.9) | if . < 1 then 1 else . end')"
-          "SUPER SHIFT, 0, exec, hyprctl -q keyword cursor:zoom_factor 1"
+          "SUPER SHIFT, minus, exec, hyprctl -q keyword cursor:zoom_factor 1"
+          "SUPER SHIFT, plus, exec, hyprctl -q keyword cursor:zoom_factor 1"
+          "SUPER SHIFT, KEYPAD_ADD, exec, hyprctl -q keyword cursor:zoom_factor 1"
+          "SUPER SHIFT, KEYPAD_SUBTRACT, exec, hyprctl -q keyword cursor:zoom_factor 1"
 
           # OBS
           "CTRL SHIFT, Home, pass, class:^(com\.obsproject\.Studio)$"
