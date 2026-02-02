@@ -14,11 +14,13 @@
       };
 
       listener = [
-        {
-          timeout = 150;
-          on-timeout = "brightnessctl -s set 10";
-          on-resume = "brightnessctl -r";
-        }
+        (
+          lib.mkIf config.brightness.enable {
+            timeout = 150;
+            on-timeout = "brightnessctl -s set 10";
+            on-resume = "brightnessctl -r";
+          }
+        )
 
         {
           timeout = 300;
