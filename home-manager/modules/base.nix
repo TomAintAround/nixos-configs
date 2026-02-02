@@ -2,7 +2,6 @@
   pkgs,
   lib,
   config,
-  inputs,
   userVars,
   ...
 }: {
@@ -35,7 +34,12 @@
     options = "--delete-older-than 14d";
   };
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    permittedInsecurePackages = [
+      "qtwebengine-5.15.19"
+    ];
+  };
 
   home = {
     username = "${userVars.username}";
@@ -107,7 +111,7 @@
       popsicle
       ripdrag # Drag-and-drop for the terminal
       ripgrep # Grep but better
-      inputs.stremioDowngrade.legacyPackages.${stdenv.hostPlatform.system}.stremio
+      stremio
       thunderbird
       unar
       unrar-wrapper # Extrach RAR files

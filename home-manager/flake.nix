@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:NixOs/nixpkgs/nixos-unstable";
-    stremioDowngrade.url = "github:NixOs/nixpkgs/f0eaec3bf29b96bf6f801cc602ed6827a9fa53ec";
 
     home-manager = {
       url = "github:nix-community/home-manager/master";
