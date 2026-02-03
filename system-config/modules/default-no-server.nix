@@ -55,4 +55,18 @@
   };
 
   security.polkit.enable = true;
+
+  networking = {
+    useDHCP = lib.mkDefault true;
+    firewall = let
+      kdeConnectPorts = {
+        from = 1714;
+        to = 1764;
+      };
+    in {
+      allowedTCPPortRanges = [kdeConnectPorts];
+      allowedUDPPortRanges = [kdeConnectPorts];
+    };
+    networkmanager.enable = true;
+  };
 }
