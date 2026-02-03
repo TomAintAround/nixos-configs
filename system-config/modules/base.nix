@@ -10,13 +10,7 @@
 
   environment = {
     localBinInPath = true;
-    systemPackages = with pkgs; [
-      git
-      home-manager
-      nix-update
-      libnotify
-      libsecret
-    ];
+    systemPackages = with pkgs; [git];
   };
 
   programs.nix-ld.enable = true;

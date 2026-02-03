@@ -102,10 +102,13 @@
       imagemagick
       jq
       killall
+      libnotify
       libreoffice
+      libsecret
       newsflash
       nh
       nix-tree # View all package dependencies
+      nix-update
       nurl # Query data from a Github repo
       obsidian
       p7zip
