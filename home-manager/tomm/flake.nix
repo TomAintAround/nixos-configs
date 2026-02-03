@@ -33,8 +33,6 @@
   outputs = {
     nixpkgs,
     home-manager,
-    nix-index-database,
-    catppuccin,
     ...
   } @ inputs: let
     userVars = {
@@ -52,26 +50,16 @@
     };
     extraSpecialArgs = {inherit inputs system userVars;};
     inherit (home-manager.lib) homeManagerConfiguration;
-    inherit (nix-index-database.homeModules) nix-index;
-    catppuccinModule = catppuccin.homeModules.catppuccin;
   in {
     homeConfigurations = {
       "tomm@desktop" = homeManagerConfiguration {
         inherit pkgs extraSpecialArgs;
-        modules = [
-          ./hosts/desktop.nix
-          nix-index
-          catppuccinModule
-        ];
+        modules = [./hosts/desktop.nix];
       };
 
       "tomm@laptop" = homeManagerConfiguration {
         inherit pkgs extraSpecialArgs;
-        modules = [
-          ./hosts/laptop.nix
-          nix-index
-          catppuccinModule
-        ];
+        modules = [./hosts/laptop.nix];
       };
     };
   };

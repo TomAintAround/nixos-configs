@@ -8,6 +8,8 @@
   ...
 }: {
   imports = [
+    inputs.nix-index-database.homeModules.default
+
     ./customOptions.nix
     ./des-wms
     ./des-wms/hyprland.nix
@@ -170,6 +172,9 @@
       hidden = true;
       extraOptions = ["--color='always'"];
     };
+
+    nix-index.enable = true;
+    nix-index-database.comma.enable = true;
 
     vesktop = {
       enable = true;

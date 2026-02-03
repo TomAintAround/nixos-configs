@@ -15,36 +15,21 @@
     };
   };
 
-  outputs = {
-    nixpkgs,
-    disko,
-    lanzaboote,
-    ...
-  } @ inputs: let
+  outputs = {nixpkgs, ...} @ inputs: let
     system = "x86_64-linux";
     secrets = import ./secrets.nix;
     specialArgs = {inherit inputs secrets;};
     inherit (nixpkgs.lib) nixosSystem;
-    diskoModule = disko.nixosModules.default;
-    lanzabooteModule = lanzaboote.nixosModules.lanzaboote;
   in {
     nixosConfigurations = {
       desktop = nixosSystem {
         inherit system specialArgs;
-        modules = [
-          ./hosts/desktop
-          diskoModule
-          lanzabooteModule
-        ];
+        modules = [./hosts/desktop];
       };
 
       laptop = nixosSystem {
         inherit system specialArgs;
-        modules = [
-          ./hosts/laptop
-          diskoModule
-          lanzabooteModule
-        ];
+        modules = [./hosts/laptop];
       };
     };
   };

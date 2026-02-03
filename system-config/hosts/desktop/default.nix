@@ -1,11 +1,15 @@
 {
   modulesPath,
   pkgs,
+  inputs,
   ...
 }: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-    (import ./disko.nix {device = "/dev/nvme0n1";})
+    (import ./disko.nix {
+      inherit inputs;
+      device = "/dev/nvme0n1";
+    })
     ../../modules/default-no-server.nix
     ../../modules/des-wms/awesome.nix
     ../../modules/des-wms/hyprland.nix
