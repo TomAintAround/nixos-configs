@@ -4,6 +4,10 @@
   config,
   ...
 }: {
+  # I'm absolutely not configuring neovim through nix,
+  # so the actual config is it's own repo:
+  # https://github.com/TomAintAround/neovim-config
+
   programs.neovim.enable = true;
 
   home = {
@@ -55,12 +59,7 @@
       vscode-extensions.vscjava.vscode-java-debug
     ];
 
-    # I'm absolutely not configuring neovim through nix,
-    # so here's my solution that doesn't rely on sourcing
-    # (which makes the configuration read-only)
-    sessionVariables = {
-      NVIM_APPNAME = "home-manager/modules/neovim";
-    };
+    sessionVariables.NVIM_APPNAME = "nvim";
 
     activation.link-debuggers = lib.hm.dag.entryAfter ["writeBoundary"] ''
       LOCATION=${config.xdg.stateHome}/"$NVIM_APPNAME"/debuggers
