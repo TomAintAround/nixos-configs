@@ -49,18 +49,16 @@
       overlays = [(import ./overlays/customPkgs.nix)];
     };
     extraSpecialArgs = {inherit inputs system userVars;};
-    inherit (home-manager.lib) homeManagerConfiguration;
+
+    mkHome = initialModule:
+      home-manager.lib.homeManagerConfiguration {
+        inherit pkgs extraSpecialArgs;
+        modules = [initialModule];
+      };
   in {
     homeConfigurations = {
-      "tomm@desktop" = homeManagerConfiguration {
-        inherit pkgs extraSpecialArgs;
-        modules = [./hosts/desktop.nix];
-      };
-
-      "tomm@laptop" = homeManagerConfiguration {
-        inherit pkgs extraSpecialArgs;
-        modules = [./hosts/laptop.nix];
-      };
+      "tomm@desktop" = mkHome ./hosts/desktop.nix;
+      "tomm@laptop" = mkHome ./hosts/laptop.nix;
     };
   };
 }

@@ -20,22 +20,21 @@
     };
   };
 
+  #TODO: add system to specialArgs and make mkHost function
   outputs = {nixpkgs, ...} @ inputs: let
     system = "x86_64-linux";
     secrets = import ./secrets.nix;
     specialArgs = {inherit inputs secrets;};
-    inherit (nixpkgs.lib) nixosSystem;
+
+    mkHost = initialModule:
+      nixpkgs.lib.nixosSystem {
+        inherit system specialArgs;
+        modules = [initialModule];
+      };
   in {
     nixosConfigurations = {
-      desktop = nixosSystem {
-        inherit system specialArgs;
-        modules = [./hosts/desktop];
-      };
-
-      laptop = nixosSystem {
-        inherit system specialArgs;
-        modules = [./hosts/laptop];
-      };
+      desktop = mkHost ./hosts/desktop;
+      laptop = mkHost ./hosts/laptop;
     };
   };
 }
