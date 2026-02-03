@@ -139,7 +139,8 @@
       "inputs": {
         "disko": "disko",
         "lanzaboote": "lanzaboote",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "sops-nix": "sops-nix"
       }
     },
     "rust-overlay": {
@@ -160,6 +161,26 @@
       "original": {
         "owner": "oxalica",
         "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "sops-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1770110318,
+        "narHash": "sha256-NUVGVtYBTC96WhPh4Y3SVM7vf0o1z5W4uqRBn9v1pfo=",
+        "owner": "Mic92",
+        "repo": "sops-nix",
+        "rev": "f990b0a334e96d3ef9ca09d4bd92778b42fd84f9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Mic92",
+        "repo": "sops-nix",
         "type": "github"
       }
     }

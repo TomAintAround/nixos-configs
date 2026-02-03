@@ -2,7 +2,6 @@
   modulesPath,
   pkgs,
   inputs,
-  secrets,
   ...
 }: {
   imports = [
@@ -11,6 +10,11 @@
       inherit inputs;
       device = "/dev/nvme0n1";
     })
+    (import ../../modules/secrets {
+      inherit pkgs inputs;
+      defaultSopsFile = ../../modules/secrets/desktop.yaml;
+    })
+
     ../../modules/default-no-server.nix
     ../../modules/des-wms/awesome.nix
     ../../modules/des-wms/hyprland.nix
@@ -51,9 +55,4 @@
   networking.hostName = "desktop";
   system.stateVersion = "23.11";
   boot.kernelPackages = pkgs.linuxKernel.kernels.linux_zen;
-
-  users.users = {
-    tomm.hashedPassword = secrets.passwords.desktop.tomm;
-    root.hashedPassword = secrets.passwords.desktop.root;
-  };
 }

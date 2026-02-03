@@ -1,7 +1,7 @@
 {
   modulesPath,
+  pkgs,
   inputs,
-  secrets,
   ...
 }: {
   imports = [
@@ -10,6 +10,11 @@
       inherit inputs;
       device = "/dev/nvme0n1";
     })
+    (import ../../modules/secrets {
+      inherit pkgs inputs;
+      defaultSopsFile = ../../modules/secrets/laptop.yaml;
+    })
+
     ../../modules/default-no-server.nix
     ../../modules/des-wms/awesome.nix
     ../../modules/des-wms/hyprland.nix
@@ -40,9 +45,4 @@
 
   networking.hostName = "laptop";
   system.stateVersion = "23.11";
-
-  users.users = {
-    tomm.hashedPassword = secrets.passwords.laptop.tomm;
-    root.hashedPassword = secrets.passwords.laptop.root;
-  };
 }

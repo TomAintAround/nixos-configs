@@ -1,7 +1,7 @@
 {
-  secrets,
   pkgs,
-  lib,
+  config,
+  secrets,
   ...
 }: {
   users.users.tomm = {
@@ -9,7 +9,7 @@
     description = secrets.names.tomm;
     isNormalUser = true;
     createHome = true;
-    hashedPassword = lib.mkDefault (throw "Must set a password");
+    hashedPasswordFile = config.sops.secrets."hashedPasswords/tomm".path;
     home = "/home/tomm";
     shell = pkgs.fish;
     extraGroups = [

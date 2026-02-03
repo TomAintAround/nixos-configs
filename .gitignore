@@ -1,1 +1,2 @@
-secrets.nix
+home-manager/tomm/secrets.nix
+system-config/secrets.nix
