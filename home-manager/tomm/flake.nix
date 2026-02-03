@@ -28,6 +28,12 @@
       url = "github:catppuccin/nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # This file is ignored by .gitignore, so this is the only way to use it without exposing it
+    secrets = {
+      url = "/home/tomm/Documents/Projects/Personal/nixos-configs/home-manager/tomm/secrets.nix";
+      flake = false;
+    };
   };
 
   outputs = {
@@ -39,7 +45,7 @@
       username = "tomm";
       gitUsername = "TomAintAround";
       email = let
-        secrets = import ./secrets.nix;
+        secrets = import inputs.secrets;
       in
         secrets.email;
     };

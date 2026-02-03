@@ -18,12 +18,18 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # This file is ignored by .gitignore, so this is the only way to use it without exposing it
+    secrets = {
+      url = "/home/tomm/Documents/Projects/Personal/nixos-configs/system-config/secrets.nix";
+      flake = false;
+    };
   };
 
   #TODO: add system to specialArgs and make mkHost function
   outputs = {nixpkgs, ...} @ inputs: let
     system = "x86_64-linux";
-    secrets = import ./secrets.nix;
+    secrets = import inputs.secrets;
     specialArgs = {inherit inputs secrets;};
 
     mkHost = initialModule:

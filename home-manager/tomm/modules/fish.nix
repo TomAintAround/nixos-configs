@@ -141,10 +141,7 @@
         packMgr = {
           description = "Package manager for NixOS and Flatpak";
           body = ''
-            set -g exportConfigs "${config.xdg.userDirs.documents}/Projects/Personal/nixos-configs/export"
-            set -g home ${config.xdg.configHome}/home-manager
-            set -g homeFlake ${config.xdg.userDirs.documents}/Projects/Personal/nixos-configs/home-manager
-            set -g system /etc/nixos
+            set -g homeFlake ${config.xdg.userDirs.documents}/Projects/Personal/nixos-configs/home-manager/tomm
             set -g systemFlake ${config.xdg.userDirs.documents}/Projects/Personal/nixos-configs/system-config
 
             function fzfSelect
@@ -155,16 +152,13 @@
 
             function nixOS
                 if test "$argv[2]" = Rebuild
-                    "$exportConfigs" system
-                    command ${pkgs.nh}/bin/nh os switch --ask "$system"
+                    command ${pkgs.nh}/bin/nh os switch --ask "$systemFlake"
                     commandline -f execute
                     return 1
                 end
 
                 if test "$argv[2]" = "Rebuild and upgrade"
-                    command nix flake update --flake "$systemFlake"
-                    "$exportConfigs" system
-                    command ${pkgs.nh}/bin/nh os switch --ask "$system"
+                    command ${pkgs.nh}/bin/nh os switch --ask --update "$systemFlake"
                     commandline -f execute
                     return 1
                 end
@@ -191,16 +185,13 @@
 
             function homeManager
                 if test "$argv[2]" = Rebuild
-                    "$exportConfigs" home
-                    command ${pkgs.nh}/bin/nh home switch --ask "$home"
+                    command ${pkgs.nh}/bin/nh home switch --ask "$homeFlake"
                     commandline -f execute
                     return 1
                 end
 
                 if test "$argv[2]" = "Rebuild and upgrade"
-                    command nix flake update --flake "$homeFlake"
-                    "$exportConfigs" home
-                    command ${pkgs.nh}/bin/nh home switch --ask "$home"
+                    command ${pkgs.nh}/bin/nh home switch --ask --update "$homeFlake"
                     commandline -f execute
                     return 1
                 end

@@ -139,7 +139,21 @@
         "helium": "helium",
         "home-manager": "home-manager",
         "nix-index-database": "nix-index-database",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "secrets": "secrets"
+      }
+    },
+    "secrets": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1770156360,
+        "narHash": "sha256-CQp7lYz9+jr9C9kRr8hAo7TDOOBLmjtJISg6QSjtmLg=",
+        "path": "/home/tomm/Documents/Projects/Personal/nixos-configs/home-manager/tomm/secrets.nix",
+        "type": "path"
+      },
+      "original": {
+        "path": "/home/tomm/Documents/Projects/Personal/nixos-configs/home-manager/tomm/secrets.nix",
+        "type": "path"
       }
     },
     "systems": {
