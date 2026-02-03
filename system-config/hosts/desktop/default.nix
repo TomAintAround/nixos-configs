@@ -2,6 +2,7 @@
   modulesPath,
   pkgs,
   inputs,
+  secrets,
   ...
 }: {
   imports = [
@@ -50,4 +51,9 @@
   networking.hostName = "desktop";
   system.stateVersion = "23.11";
   boot.kernelPackages = pkgs.linuxKernel.kernels.linux_zen;
+
+  users.users = {
+    tomm.hashedPassword = secrets.passwords.desktop.tomm;
+    root.hashedPassword = secrets.passwords.desktop.root;
+  };
 }

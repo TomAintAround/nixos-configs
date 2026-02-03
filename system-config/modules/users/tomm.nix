@@ -1,6 +1,7 @@
 {
   secrets,
   pkgs,
+  lib,
   ...
 }: {
   users.users.tomm = {
@@ -8,7 +9,7 @@
     description = secrets.names.tomm;
     isNormalUser = true;
     createHome = true;
-    hashedPassword = secrets.passwords.tomm;
+    hashedPassword = lib.mkDefault (throw "Must set a password");
     home = "/home/tomm";
     shell = pkgs.fish;
     extraGroups = [

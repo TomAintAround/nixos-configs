@@ -1,6 +1,7 @@
 {
   modulesPath,
   inputs,
+  secrets,
   ...
 }: {
   imports = [
@@ -39,4 +40,9 @@
 
   networking.hostName = "laptop";
   system.stateVersion = "23.11";
+
+  users.users = {
+    tomm.hashedPassword = secrets.passwords.laptop.tomm;
+    root.hashedPassword = secrets.passwords.laptop.root;
+  };
 }
