@@ -11,7 +11,7 @@ exportSystem() {
 exportHome() {
 	DST="$XDG_CONFIG_HOME/home-manager"
 	rm -rf "$DST"
-	cp -a "$SRC_DIR/home-manager" "$DST"
+	cp -a "$SRC_DIR/home-manager/tomm" "$DST"
 }
 
 if [ "$#" == 0 ]; then

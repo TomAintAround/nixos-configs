@@ -1,13 +1,16 @@
 {
   pkgs,
-  config,
   lib,
+  config,
+  inputs,
   ...
 }: let
   accent = "sky";
   flavor = "mocha";
 in {
-  imports = [./../trash-cli.nix];
+  imports = [
+    inputs.catppuccin.homeModules.catppuccin
+  ];
 
   gtk = {
     theme = {
