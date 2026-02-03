@@ -10,9 +10,7 @@ I'm absolutely not an expert at Nix, so there will be mistakes. This configurati
 
 ## Philosophy
 
-I want my systems to be multi-host and multi-user compatible. This means that it can be applied to multiple machines, which can contain multiple users. This means that:
-- [My system configurations](https://github.com/TomAintAround/nixos-configs/tree/main/system-config) are placed in `/etc/nixos/`. Therefore, to modify and update them, admin privileges are needed. If they were in a user's home directory, they wouldn't be accessible to everyone (who is in the wheel at least). Besides, some things should require admin privileges to be run, especially these configurations.
-- [My Home Manager configurations](https://github.com/TomAintAround/nixos-configs/tree/main/home-manager) are placed in `~/.config/home-manager/`. Therefore, they don't need admin privileges to be modified and updated. Also, apart from absolutely necessary packages, all packages are installed through home-manager, giving each user more freedom to define what packages they want.
+I want my systems to be multi-host and multi-user compatible. This means that it can be applied to multiple machines, which can contain multiple users. This means that the system configurations and each users' home-manager configurations are separate, each containing their own flakes. So while one user can update their packages every other nanosecond, the other can update them every 10 years.
 
 ## How to install?
 
