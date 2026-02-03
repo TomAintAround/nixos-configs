@@ -2,6 +2,8 @@
   pkgs,
   lib,
   config,
+  inputs,
+  system,
   userVars,
   ...
 }: {
@@ -74,7 +76,7 @@
       PAGER = "bat --paging=always";
       TERMINAL = "kitty";
       READER = "libreoffice --draw";
-      BROWSER = "brave";
+      BROWSER = "helium";
       IMAGE_EDITOR = "gimp";
       AUDIO_PLAYER = "mpv";
       VIDEO_PLAYER = "mpv";
@@ -91,12 +93,12 @@
     packages = with pkgs; [
       act
       bottles
-      brave
       cpu-x
       exiftool
       eza
       ffmpeg-full
       gimp
+      inputs.helium.packages.${system}.default
       imagemagick
       jq
       killall
@@ -132,8 +134,8 @@
     mimeApps = {
       enable = true;
       defaultApplications = {
-        "x-scheme-handler/http" = ["brave.desktop"];
-        "x-scheme-handler/https" = ["brave.desktop"];
+        "x-scheme-handler/http" = ["helium.desktop"];
+        "x-scheme-handler/https" = ["helium.desktop"];
       };
     };
   };

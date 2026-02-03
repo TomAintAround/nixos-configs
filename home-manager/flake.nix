@@ -4,6 +4,11 @@
   inputs = {
     nixpkgs.url = "github:NixOs/nixpkgs/nixos-unstable";
 
+    helium = {
+      url = "github:AlvaroParker/helium-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
