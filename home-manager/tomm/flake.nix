@@ -57,8 +57,8 @@
       };
   in {
     homeConfigurations = {
-      "tomm@desktop" = mkHome ./hosts/desktop.nix;
-      "tomm@laptop" = mkHome ./hosts/laptop.nix;
+      "${userVars.username}@desktop" = mkHome ./hosts/desktop.nix;
+      "${userVars.username}@laptop" = mkHome ./hosts/laptop.nix;
     };
   };
 }
