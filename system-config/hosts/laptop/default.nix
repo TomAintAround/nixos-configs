@@ -2,7 +2,7 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     (import ./disko.nix {device = "/dev/nvme0n1";})
-    ../../modules/base-no-server.nix
+    ../../modules/default-no-server.nix
     ../../modules/des-wms/awesome.nix
     ../../modules/des-wms/hyprland.nix
     ../../modules/hardware/cpu/amd

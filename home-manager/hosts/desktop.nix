@@ -1,6 +1,6 @@
 {
   imports = [
-    ../modules/base.nix
+    ../modules
     # ../modules/contentCreation.nix
     # ../modules/gamedev.nix
     ../modules/gaming.nix

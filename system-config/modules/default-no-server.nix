@@ -5,7 +5,7 @@
   ...
 }: {
   imports = [
-    ./base.nix
+    ./.
     ./hardware/graphics.nix
     ./hardware/sound.nix
     ./sddm
