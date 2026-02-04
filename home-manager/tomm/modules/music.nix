@@ -42,7 +42,7 @@
       enable = true;
       endpoints."last.fm" = {
         username = "TomAintAround";
-        passwordFile = "${config.xdg.dataHome}/mpdscribblePass";
+        passwordFile = config.sops.secrets.mpdscribblePassword.path;
       };
     };
   };

@@ -1,0 +1,13 @@
+keys: #TODO: add desktop public key
+  - &desktop
+  - &laptop age1k9jhceeq6ygnk9myeqmu692gun8t5kprgufkyrucpvueqqx0xu0qe70rlw
+creation_rules:
+  - path_regex: modules/secrets/desktop\.yaml$
+    key_groups:
+      - age:
+          - *desktop
+
+  - path_regex: modules/secrets/laptop\.yaml$
+    key_groups:
+      - age:
+          - *laptop

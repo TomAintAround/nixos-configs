@@ -29,6 +29,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # This file is ignored by .gitignore, so this is the only way to use it without exposing it
     secrets = {
       url = "/etc/nixos/home-manager/tomm/secrets.nix";

@@ -1,6 +1,15 @@
 {
+  pkgs,
+  config,
+  inputs,
+  ...
+}: {
   imports = [
     ../modules
+    (import ../modules/secrets/default.nix {
+      inherit pkgs config inputs;
+      defaultSopsFile = ../modules/secrets/laptop.yaml;
+    })
     # ../modules/contentCreation.nix
     # ../modules/gamedev.nix
     ../modules/gaming.nix
