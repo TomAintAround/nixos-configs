@@ -10,7 +10,9 @@ I'm absolutely not an expert at Nix, so there will be mistakes. This configurati
 
 ## Philosophy
 
-I want my systems to be multi-host and multi-user compatible. This means that it can be applied to multiple machines, which can contain multiple users. This means that the system configurations and each users' home-manager configurations are separate, each containing their own flakes. So while one user can update their packages every other nanosecond, the other can update them every 10 years.
+I want my systems to be multi-host and multi-user compatible. This means that it can be applied to multiple machines, which can contain multiple users and that the system configurations and each users' home-manager configurations are separate, each containing their own flakes. So while one user can update their packages every other nanosecond, the other can update them every 10 years.
+This repo is situated in `/etc/nixos`, with ownership set to nobody:wheel and permissions set to 775. This means that the only ones who can edit the configurations are part of the wheel group. The only exception are the directories in `home-manager`, whose ownerships are set to <username>:users and permissions are set to 755, meaning only the user can edit their home-manager files.
+This is all done through activation scripts.
 
 ## How to install?
 
