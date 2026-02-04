@@ -210,7 +210,7 @@
         	parentDir=$(dirname "$fileOrDir")
         	backupDir="$backupDrive""$parentDir"
         	mkdir -p "$backupDir"
-        	rsync -a --update "$HOME"/Backup/currentBackup"$fileOrDir" "$backupDir/" &
+        	sudo ${pkgs.rsync}/bin/rsync -a --update "$HOME"/Backup/currentBackup"$fileOrDir" "$backupDir/" &
         done < "$HOME/Backup/toBackup.txt"
         wait
       '';
