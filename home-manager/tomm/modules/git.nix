@@ -50,6 +50,7 @@
           key = config.programs.git.settings.user.signingKey;
           signByDefault = true;
         };
+        safe.directory = "/etc/nixos";
       };
     };
 

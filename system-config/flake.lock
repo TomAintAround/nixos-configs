@@ -170,11 +170,11 @@
       "locked": {
         "lastModified": 1770156276,
         "narHash": "sha256-RF1xdLe2+apHn9bclJKxSmdtij2d19gzUyBKRz2l5K0=",
-        "path": "/home/tomm/Documents/Projects/Personal/nixos-configs/system-config/secrets.nix",
+        "path": "/etc/nixos/system-config/secrets.nix",
         "type": "path"
       },
       "original": {
-        "path": "/home/tomm/Documents/Projects/Personal/nixos-configs/system-config/secrets.nix",
+        "path": "/etc/nixos/system-config/secrets.nix",
         "type": "path"
       }
     },

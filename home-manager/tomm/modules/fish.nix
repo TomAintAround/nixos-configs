@@ -141,8 +141,8 @@
         packMgr = {
           description = "Package manager for NixOS and Flatpak";
           body = ''
-            set -g homeFlake ${config.xdg.userDirs.documents}/Projects/Personal/nixos-configs/home-manager/tomm
-            set -g systemFlake ${config.xdg.userDirs.documents}/Projects/Personal/nixos-configs/system-config
+            set -g homeFlake /etc/nixos/home-manager/tomm
+            set -g systemFlake /etc/nixos/system-config
 
             function fzfSelect
                 command printf "%s\n" $argv | command ${pkgs.fzf}/bin/fzf \

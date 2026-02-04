@@ -138,8 +138,8 @@
       }
       {
         on = ["g" "n"];
-        run = "cd ${config.xdg.userDirs.documents}/Projects/Personal/nixos-configs/";
-        desc = "Go to NixOS's configs";
+        run = "cd /etc/nixos";
+        desc = "Go to NixOS's configurations";
       }
       {
         on = ["g" "h"];
@@ -149,7 +149,7 @@
       {
         on = ["g" "c"];
         run = "cd ${config.xdg.configHome}";
-        desc = "Go to the config directory";
+        desc = "Go to the configurations directory";
       }
       {
         on = ["g" "l"];

@@ -8,12 +8,15 @@
     ./networking.nix
   ];
 
-  environment = {
-    localBinInPath = true;
-    systemPackages = with pkgs; [git];
-  };
+  environment.localBinInPath = true;
 
-  programs.nix-ld.enable = true;
+  programs = {
+    git = {
+      enable = true;
+      config.safe.directory = "/etc/nixos";
+    };
+    nix-ld.enable = true;
+  };
 
   services = {
     openssh.enable = true;
@@ -70,4 +73,13 @@
   };
 
   virtualisation.docker.enable = true;
+
+  system.activationScripts.setPermissions.text = ''
+    chown -R nobody:wheel /etc/nixos
+    chmod -R g+s /etc/nixos
+    ${pkgs.acl}/bin/setfacl -d -m u::rwx,g::rwx,o::rx /etc/nixos
+    find /etc/nixos -type d -exec chmod 775 {} +
+    find /etc/nixos -type f -perm /u=x,g=x,o=x -exec chmod 775 {} +
+    find /etc/nixos -type f ! -perm /u=x,g=x,o=x -exec chmod 664 {} +
+  '';
 }

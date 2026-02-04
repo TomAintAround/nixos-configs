@@ -34,7 +34,7 @@
       bind-key -T root C-M-h previous-window
       bind-key -T root C-M-l next-window
       bind-key -T root C-M-n run-shell "tmux new-session -d"
-      bind-key -T root C-M-f run-shell "bash ${config.xdg.userDirs.documents}/Projects/Personal/nixos-configs/home-manager/tomm/modules/tmux/sessions.sh"
+      bind-key -T root C-M-f run-shell "bash /etc/nixos/home-manager/tomm/modules/tmux/sessions.sh"
     '';
   };
 }

@@ -31,7 +31,7 @@
 
     # This file is ignored by .gitignore, so this is the only way to use it without exposing it
     secrets = {
-      url = "/home/tomm/Documents/Projects/Personal/nixos-configs/home-manager/tomm/secrets.nix";
+      url = "/etc/nixos/home-manager/tomm/secrets.nix";
       flake = false;
     };
   };
