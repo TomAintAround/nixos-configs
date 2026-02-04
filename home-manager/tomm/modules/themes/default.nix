@@ -24,7 +24,10 @@
     };
 
     activation.link-fonts = lib.hm.dag.entryAfter ["writeBoundary"] ''
-      run ln -s /run/current-system/sw/share/X11/fonts ${config.xdg.dataHome}/fonts 2>/dev/null
+      fontLocation=${config.xdg.dataHome}/fonts
+      if [ ! -e "$fontLocation" ]; then
+      	run ln -sf /run/current-system/sw/share/X11/fonts "$fontLocation"
+      fi
     '';
 
     sessionVariables = let
