@@ -26,7 +26,7 @@
       mode = "700";
     };
 
-    "/var/lib/sops-nix/key.txt"."f" = {
+    "/var/lib/sops-nix/keys.txt"."f" = {
       user = "root";
       group = "root";
       mode = "600";

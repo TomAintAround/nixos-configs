@@ -5,7 +5,7 @@
 
       HeaderText = "Bem vindo!";
 
-      Background = "/etc/nixos/modules/sddm/Backgrounds/MountainsNight.jpg";
+      Background = "/etc/nixos/system-config/modules/sddm/Backgrounds/MountainsNight.jpg";
 
       HeaderTextColor = "#cdd6f4";
       DateTextColor = "#cdd6f4";

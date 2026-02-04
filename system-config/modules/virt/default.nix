@@ -37,15 +37,16 @@
       in [env];
       preStart = ''
         libvirtPath=/var/lib/libvirt
+        systemConfig=/etc/nixos/system-config
 
         mkdir -p $libvirtPath/hooks
         mkdir -p $libvirtPath/bin
         mkdir -p $libvirtPath/vgabios
 
-        ln -sf /etc/nixos/modules/virt/qemu $libvirtPath/hooks/qemu
-        ln -sf /etc/nixos/modules/virt/vfio-startup.sh $libvirtPath/bin/vfio-startup.sh
-        ln -sf /etc/nixos/modules/virt/vfio-teardown.sh $libvirtPath/bin/vfio-teardown.sh
-        ln -sf /etc/nixos/hosts/${config.networking.hostName}/patched.rom $libvirtPath/vgabios/patched.rom
+        ln -sf $systemConfig/modules/virt/qemu $libvirtPath/hooks/qemu
+        ln -sf $systemConfig/modules/virt/vfio-startup.sh $libvirtPath/bin/vfio-startup.sh
+        ln -sf $systemConfig/modules/virt/vfio-teardown.sh $libvirtPath/bin/vfio-teardown.sh
+        ln -sf $systemConfig/hosts/${config.networking.hostName}/patched.rom $libvirtPath/vgabios/patched.rom
 
         chmod +x $libvirtPath/hooks/qemu
         chmod +x $libvirtPath/bin/vfio-startup.sh
