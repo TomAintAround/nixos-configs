@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   home.packages = with pkgs; [
     ffmpeg-full # for video thumbnails
     atool
@@ -125,7 +129,7 @@
       {
         on = ["g" "r"];
         run = "cd /";
-        desc = "Go to /";
+        desc = "Go to the root directory";
       }
       {
         on = ["g" "e"];
@@ -134,18 +138,18 @@
       }
       {
         on = ["g" "n"];
-        run = "cd /etc/nixos";
-        desc = "Go to /etc/nixos";
+        run = "cd ${config.xdg.userDirs.documents}/Projects/Personal/nixos-configs/";
+        desc = "Go to NixOS's configs";
       }
       {
         on = ["g" "h"];
         run = "cd ~";
-        desc = "Go to ~";
+        desc = "Go to the home directory";
       }
       {
         on = ["g" "c"];
-        run = "cd ~/.config";
-        desc = "Go to ~/.config";
+        run = "cd ${config.xdg.configHome}";
+        desc = "Go to the config directory";
       }
       {
         on = ["g" "l"];
@@ -159,18 +163,18 @@
       }
       {
         on = ["g" "t"];
-        run = "cd ~/Documents";
-        desc = "Go to ~/Documents";
+        run = "cd ${config.xdg.userDirs.documents}";
+        desc = "Go to the Documents directory";
       }
       {
         on = ["g" "d"];
-        run = "cd ~/Downloads";
-        desc = "Go to ~/Downloads";
+        run = "cd ${config.xdg.userDirs.download}";
+        desc = "Go to the Downloads directory";
       }
       {
         on = ["g" "p"];
-        run = "cd ~/Pictures";
-        desc = "Go to ~/Pictures";
+        run = "cd ${config.xdg.userDirs.pictures}";
+        desc = "Go to the Pictures directory";
       }
 
       # Relative motions plugin
