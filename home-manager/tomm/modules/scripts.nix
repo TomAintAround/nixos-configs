@@ -109,7 +109,7 @@
           src="$1"
           dest="$2"
           mkdir -p "$dest"
-          ${pkgs.rsync}/bin/rsync -a --update "$src" "$dest/"
+          sudo ${pkgs.rsync}/bin/rsync -a --update "$src" "$dest/"
         }
 
         if [[ "''${1:-}" != "dontMove" ]]; then
