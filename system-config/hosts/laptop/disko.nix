@@ -24,24 +24,16 @@
             };
           };
 
-          swap = {
-            name = "swap";
-            size = "20G";
-            content = {
-              type = "swap";
-              randomEncryption = true;
-              priority = 100;
-            };
-          };
-
           root = {
             name = "root";
             size = "100G";
             content = {
               type = "luks";
               name = "cryptedroot";
-              settings.allowDiscards = true;
-              passwordFile = "/tmp/secret.key";
+              settings = {
+                allowDiscards = true;
+                keyFile = "/tmp/secret.key";
+              };
               content = {
                 type = "btrfs";
                 extraArgs = ["-f"];
@@ -55,6 +47,11 @@
                     mountpoint = "/nix";
                     mountOptions = ["compress=zstd" "noatime"];
                   };
+
+                  "@swap" = {
+                    mountpoint = "/.swapvol";
+                    swap.swapfile.size = "20G";
+                  };
                 };
               };
             };
@@ -66,8 +63,10 @@
             content = {
               type = "luks";
               name = "cryptedhome";
-              settings.allowDiscards = true;
-              passwordFile = "/tmp/secret.key";
+              settings = {
+                allowDiscards = true;
+                keyFile = "/tmp/secret.key";
+              };
               content = {
                 type = "btrfs";
                 extraArgs = ["-f"];
