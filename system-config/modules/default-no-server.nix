@@ -11,6 +11,8 @@
     ./sddm
   ];
 
+  environment.systemPackages = with pkgs; [home-manager];
+
   programs = {
     gamemode.enable = true;
     gamescope.enable = true;
