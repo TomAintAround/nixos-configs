@@ -23,6 +23,7 @@
       ]
       ++ lib.optionals config.wm.enable [
         gnome-disk-utility
+        networkmanagerapplet
         pavucontrol
         polkit_gnome
         rofi
