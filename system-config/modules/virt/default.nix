@@ -73,6 +73,7 @@
     dnsmasq
     libguestfs
     lsof
+    virt-manager
   ];
 
   hardware.enableRedistributableFirmware = lib.mkDefault true;

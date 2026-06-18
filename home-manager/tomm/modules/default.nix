@@ -123,7 +123,6 @@
       unar
       unrar-wrapper # Extrach RAR files
       unzip
-      virt-manager
       vscode
       wget
       zip
