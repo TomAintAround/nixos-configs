@@ -6,13 +6,13 @@
 }:
 buildLua rec {
   pname = "pause_indicator_lite";
-  version = "0.2.9";
+  version = "0.3.3";
 
   src = fetchFromGitHub {
     owner = "Samillion";
     repo = "ModernZ";
     rev = "v${version}";
-    hash = "sha256-ocsThwgCeWUSCs1ZD2pwNIvKQZtGQXrvceaMRvgmFPA=";
+    hash = "sha256-cz6yb0jQiqmzRPo1YSsnPWLshGPzBeq39DhBv7tGJqs=";
   };
   sourceRoot = "source/extras/${builtins.replaceStrings ["_"] ["-"] pname}";
 
