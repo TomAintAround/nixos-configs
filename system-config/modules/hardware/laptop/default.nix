@@ -32,8 +32,8 @@
         TLP_DEFAULT_MODE = "BAT";
         TLP_PERSISTENT_DEFAULT = 1;
 
-        START_CHARGE_THRESH_BAT0 = 40;
-        STOP_CHARGE_THRESH_BAT0 = 80;
+        STOP_CHARGE_THRESH_BAT0 = 1;
+        RESTORE_THRESHOLDS_ON_BAT = 1;
       };
     };
 
