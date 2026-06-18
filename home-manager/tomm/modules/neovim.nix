@@ -34,8 +34,9 @@
       marksman
       nixd
       kdePackages.qtdeclarative
-      vscode-langservers-extracted
+      sqls
       taplo # TOML
+      vscode-langservers-extracted
       yaml-language-server
       lemminx # xml
       cmake-language-server
@@ -49,6 +50,7 @@
       alejandra # Nix
       libxml2
       cmake-format
+      sql-formatter
 
       # Debuggers
       # bashdb
