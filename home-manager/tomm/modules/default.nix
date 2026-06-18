@@ -118,6 +118,7 @@
       popsicle
       ripdrag # Drag-and-drop for the terminal
       ripgrep # Grep but better
+      sshfs
       stremio
       thunderbird
       unar
