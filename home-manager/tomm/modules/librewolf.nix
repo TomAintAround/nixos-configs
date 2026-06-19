@@ -1,6 +1,6 @@
 {
-  pkgs,
   inputs,
+  system,
   ...
 }: {
   programs.librewolf = {
@@ -35,7 +35,7 @@
       id = 0;
       extensions = {
         force = true;
-        packages = with inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system}; [
+        packages = with inputs.firefox-addons.packages.${system}; [
           ublock-origin
           bitwarden
           canvasblocker

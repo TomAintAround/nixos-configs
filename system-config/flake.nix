@@ -26,11 +26,10 @@
     };
   };
 
-  #TODO: add system to specialArgs and make mkHost function
   outputs = {nixpkgs, ...} @ inputs: let
     system = "x86_64-linux";
     secrets = import inputs.secrets;
-    specialArgs = {inherit inputs secrets;};
+    specialArgs = {inherit inputs secrets system;};
 
     mkHost = initialModule:
       nixpkgs.lib.nixosSystem {
