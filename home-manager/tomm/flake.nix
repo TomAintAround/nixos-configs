@@ -57,7 +57,7 @@
     system = "x86_64-linux";
     pkgs = import nixpkgs {
       inherit system;
-      overlays = [(import ./overlays/customPkgs.nix)];
+      overlays = [(import ./overlays)];
     };
     extraSpecialArgs = {inherit inputs system userVars;};
 
