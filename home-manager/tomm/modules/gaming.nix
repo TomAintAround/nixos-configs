@@ -11,7 +11,7 @@
     protonup-ng
     rpcs3
     steam
-    wineWowPackages.stable
+    wineWow64Packages.stable
   ];
 
   programs.lutris = {
