@@ -8,7 +8,7 @@
     ../modules
     (import ../modules/secrets/default.nix {
       inherit pkgs config inputs;
-      defaultSopsFile = ../modules/secrets/laptop.yaml;
+      defaultSopsFile = ../modules/secrets/desktop.yaml;
     })
     # ../modules/contentCreation.nix
     # ../modules/gamedev.nix
