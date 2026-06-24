@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 SESSION_NAME="aoc2024lua"
-SESSION_PATH="$XDG_DOCUMENTS_DIR/Projects/Personal/adventOfCode2024-Lua"
+SESSION_PATH="$XDG_PROJECTS_DIR/Personal/adventOfCode2024-Lua"
 
 if ! tmux has-session -t $SESSION_NAME 2>/dev/null; then
 	tmux new-session -d -s $SESSION_NAME -n "editor" -c "$SESSION_PATH"
