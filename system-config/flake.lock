@@ -168,7 +168,7 @@
     "secrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1770156276,
+        "lastModified": 1770606480,
         "narHash": "sha256-RF1xdLe2+apHn9bclJKxSmdtij2d19gzUyBKRz2l5K0=",
         "path": "/etc/nixos/system-config/secrets.nix",
         "type": "path"

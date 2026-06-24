@@ -1,5 +1,5 @@
-keys: #TODO: add desktop public key
-  - &desktop
+keys:
+  - &desktop age1rm2v2jwkdsr2eatptkxn4p4ee9tjf60ulca639pzmm8jwxvmducqyhsnas
   - &laptop age1k9jhceeq6ygnk9myeqmu692gun8t5kprgufkyrucpvueqqx0xu0qe70rlw
 creation_rules:
   - path_regex: modules/secrets/desktop\.yaml$
