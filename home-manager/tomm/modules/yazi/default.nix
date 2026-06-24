@@ -175,7 +175,7 @@
         desc = "Go to ~/.var/app";
       }
       {
-        on = ["g" "t"];
+        on = ["g" "o"];
         run = "cd ${config.xdg.userDirs.documents}";
         desc = "Go to the Documents directory";
       }
@@ -186,6 +186,11 @@
       }
       {
         on = ["g" "p"];
+        run = "cd ${config.xdg.userDirs.projects}";
+        desc = "Go to the Projects directory";
+      }
+      {
+        on = ["g" "i"];
         run = "cd ${config.xdg.userDirs.pictures}";
         desc = "Go to the Pictures directory";
       }
