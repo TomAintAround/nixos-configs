@@ -53,6 +53,6 @@
   ];
 
   networking.hostName = "desktop";
-  boot.kernelPackages = pkgs.linuxKernel.kernels.linux_zen;
   system.stateVersion = "25.11";
+  boot.kernelPackages = pkgs.linuxPackages_zen;
 }
