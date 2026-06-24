@@ -23,6 +23,9 @@ in {
   };
 
   catppuccin = {
+    enable = true;
+    autoEnable = false;
+
     alacritty = {
       enable = true;
       inherit flavor;
@@ -74,7 +77,8 @@ in {
     };
 
     hyprland = {
-      enable = true;
+      #TODO: turn this on when i switch hyprland's config to lua
+      enable = false;
       inherit accent flavor;
     };
 
@@ -164,9 +168,11 @@ in {
         windowcontrols_min_hover = "#a6e3a1";
         title_color = "#cdd6f4";
         cache_info_color = "#cdd6f4";
+        seekbar_cache_color = "#181825";
         seekbarfg_color = "#89dceb";
         seekbarbg_color = "#11111b";
-        seekbar_cache_color = "#181825";
+        seek_handle_color = "#89dceb";
+        seek_handle_border_color = "#89dceb";
         time_color = "#cdd6f4";
         chapter_title_color = "#cdd6f4";
         side_buttons_color = "#cdd6f4";
@@ -174,8 +180,11 @@ in {
         playpause_color = "#cdd6f4";
         held_element_color = "#6c7086";
         hover_effect_color = "#89dceb";
-        thumbnail_border_color = "#11111b";
-        thumbnail_border_outline = "#313244";
+        thumbnail_box_color = "#11111b";
+        thumbnail_box_outline = "#313244";
+        nibble_color = "#cdd6f4";
+        nibble_current_color = "#89dceb";
+        ab_loop_color = "#a6e3a1";
       };
       pause_indicator_lite = {
         icon_color = "#cdd6f4";
@@ -260,8 +269,12 @@ in {
 
   wayland.windowManager.hyprland.settings = lib.mkIf config.wayland.windowManager.hyprland.enable {
     general = {
-      "col.inactive_border" = "\$base \$overlay0 45deg";
-      "col.active_border" = "\$sky \$blue 45deg";
+      #TODO: turn this on when i switch hyprland's config to lua
+
+      # "col.inactive_border" = "\$base \$overlay0 45deg";
+      # "col.active_border" = "\$sky \$blue 45deg";
+      "col.inactive_border" = "rgb(30,30,46) rgb(108,112,134) 45deg";
+      "col.active_border" = "rgb(137,220,235) rgb(137,180,250) 45deg";
     };
 
     plugin.hyprbars = {

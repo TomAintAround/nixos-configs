@@ -23,6 +23,7 @@
       keep-open = true;
       save-position-on-quit = true;
       write-filename-in-watch-later-config = true;
+      watch-later-options-remove = "sub-pos";
       save-watch-history = true;
       vd-queue-enable = true;
 
@@ -110,10 +111,10 @@
     };
 
     scriptOpts.modernz = {
+      window_top_bar = false;
       loop_button = true;
       shuffle_button = true;
       speed_button = true;
-      loop_in_pause = false;
     };
   };
 

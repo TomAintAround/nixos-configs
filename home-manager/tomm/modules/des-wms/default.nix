@@ -18,7 +18,7 @@
       ]
       ++ lib.optionals (config.displayServer.wayland.enable && config.wm.enable) [
         clipman # Clipboard manager
-        swww # Wallpaper manager
+        awww # Wallpaper manager
         wl-clipboard # Copy/Paste
       ]
       ++ lib.optionals config.wm.enable [

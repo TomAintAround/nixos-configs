@@ -1,5 +1,6 @@
 {
   pkgs,
+  lib,
   config,
   ...
 }: {
@@ -24,6 +25,7 @@
 
   programs.yazi = {
     enable = true;
+    shellWrapperName = "y";
     plugins = with pkgs.yaziPlugins; {
       inherit chmod full-border git relative-motions rich-preview compress;
     };
@@ -42,10 +44,21 @@
         scrolloff = 8;
         title_format = "{cwd}";
       };
-      preview = {
+      preview = let
+        activeMonitors = builtins.filter (m: m.enable) config.monitors;
+        max_width =
+          (lib.lists.foldl (m: x:
+            if m.width > x
+            then m
+            else x) (lib.lists.head activeMonitors) (lib.lists.tail activeMonitors)).width;
+        max_height =
+          (lib.lists.foldl (m: x:
+            if m.height > x
+            then m
+            else x) (lib.lists.head activeMonitors) (lib.lists.tail activeMonitors)).height;
+      in {
         wrap = "no";
-        max_width = 1920;
-        max_height = 1080;
+        inherit max_width max_height;
         tab_size = 4;
       };
       opener.play = [
@@ -59,23 +72,23 @@
       plugin = {
         prepend_previewers = [
           {
-            name = "*.csv";
+            url = "*.csv";
             run = "rich-preview";
           }
           {
-            name = "*.md";
+            url = "*.md";
             run = "rich-preview";
           }
           {
-            name = "*.rst";
+            url = "*.rst";
             run = "rich-preview";
           }
           {
-            name = "*.ipynb";
+            url = "*.ipynb";
             run = "rich-preview";
           }
           {
-            name = "*.json";
+            url = "*.json";
             run = "rich-preview";
           }
           {
@@ -85,14 +98,14 @@
         ];
         prepend_fetchers = [
           {
-            id = "git";
-            name = "*";
+            url = "*";
             run = "git";
+            group = "git";
           }
           {
-            id = "git";
-            name = "*/";
+            url = "*";
             run = "git";
+            group = "git";
           }
         ];
       };

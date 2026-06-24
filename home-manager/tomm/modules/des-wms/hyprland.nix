@@ -8,9 +8,11 @@
 }: {
   displayServer.wayland.enable = true;
   wm.enable = true;
+  xdg.configFile."uwsm/evn".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
 
   wayland.windowManager.hyprland = {
     enable = true;
+    configType = "hyprlang";
 
     settings = {
       env = [
@@ -126,7 +128,7 @@
       xwayland.force_zero_scaling = true;
 
       cursor = {
-        no_hardware_cursors = true;
+        no_hardware_cursors = false;
         default_monitor = let
           monitor = builtins.elemAt (builtins.filter (m: m.default) config.monitors) 0;
         in
@@ -144,7 +146,6 @@
           "SUPER SHIFT, BackSpace, exit,"
           "SUPER SHIFT, D, exec, ${pkgs.hyprlock}/bin/hyprlock"
           "SUPER, V, togglefloating,"
-          "SUPER SHIFT, V, pseudo,"
           "SUPER, G, layoutmsg, addmaster"
           "SUPER SHIFT, G, layoutmsg, removemaster"
           "SUPER, F, fullscreen, 0"
@@ -360,7 +361,7 @@
       "\$scriptsDir" = "${config.xdg.dataHome}/scripts";
       exec-once = [
         # Set wallpaper
-        "${pkgs.swww}/bin/swww-daemon"
+        "${pkgs.awww}/bin/awww-daemon"
         "wallpaper-change random"
 
         # Screensharing

@@ -18,7 +18,7 @@
       };
 
       background = {
-        path = "${config.xdg.cacheHome}/swww/wallpaper";
+        path = "${config.xdg.cacheHome}/wallpaper";
         blur_passes = 2;
         blur_size = 7;
       };

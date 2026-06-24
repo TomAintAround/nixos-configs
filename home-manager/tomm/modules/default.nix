@@ -119,7 +119,7 @@
       ripdrag # Drag-and-drop for the terminal
       ripgrep # Grep but better
       sshfs
-      stremio
+      stremio-linux-shell
       thunderbird
       unar
       unrar-wrapper # Extrach RAR files
@@ -135,6 +135,7 @@
     userDirs = {
       enable = true;
       createDirectories = true;
+      setSessionVariables = true;
     };
     mimeApps = {
       enable = true;

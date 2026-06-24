@@ -3,7 +3,9 @@
   config,
   lib,
   ...
-}: {
+}: let
+  polarity = "Dark";
+in {
   imports = [./catppuccin.nix];
 
   gtk = {
@@ -13,6 +15,7 @@
       size = 11.0;
       package = pkgs.inter;
     };
+    gtk4.theme = config.gtk.theme;
   };
 
   home = {
@@ -40,8 +43,7 @@
       HYPRCURSOR_SIZE = 20;
       KRITA_NO_STYLE_OVERRIDE = 1;
       GDK_SCALE = scale;
-      QT_AUTO_SCREEN_SCALE_FACTOR = toString (1.0 / scale);
-      QT_SCALE_FACTOR = toString (1.0 / scale);
+      QT_AUTO_SCREEN_SCALE_FACTOR = 1;
     };
   };
 
@@ -49,10 +51,11 @@
     enable = true;
     platformTheme.name = "qtct";
     style.name = "kvantum";
+    kvantum.enable = true;
     qt6ctSettings = {
       Appearance = {
         style = "kvantum";
-        icon_theme = config.gtk.iconTheme.name;
+        icon_theme = "Papirus-${polarity}";
         standar_dialogs = "xdgdesktopportal";
       };
       Fonts = {

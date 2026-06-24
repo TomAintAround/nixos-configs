@@ -18,22 +18,54 @@
         lib.mkDefault ((lib.versionOlder (lib.versions.majorMinor lib.version) "21.05")
           || !config.services.power-profiles-daemon.enable);
       settings = {
+        TLP_DEFAULT_MODE = "BAT";
+        TLP_PERSISTENT_DEFAULT = 1;
+        TLP_AUTO_SWITCH = 1;
+
         CPU_SCALING_GOVERNOR_ON_AC = "performance";
         CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+        CPU_SCALING_GOVERNOR_ON_SAV = "powersave";
 
-        CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
-        CPU_ENERGY_PERF_POLICY_ON_BAT = "powersave";
+        CPU_ENERGY_PERF_POLICY_ON_AC = "balance_performance";
+        CPU_ENERGY_PERF_POLICY_ON_BAT = "balance_power";
+        CPU_ENERGY_PERF_POLICY_ON_SAV = "power";
 
         CPU_MIN_PERF_ON_AC = 0;
         CPU_MAX_PERF_ON_AC = 100;
         CPU_MIN_PERF_ON_BAT = 0;
-        CPU_MAX_PERF_ON_BAT = 20;
+        CPU_MAX_PERF_ON_BAT = 50;
+        CPU_MIN_PERF_ON_SAV = 0;
+        CPU_MAX_PERF_ON_SAV = 30;
 
-        TLP_DEFAULT_MODE = "BAT";
-        TLP_PERSISTENT_DEFAULT = 1;
+        CPU_BOOST_ON_AC = 1;
+        CPU_BOOST_ON_BAT = 0;
+        CPU_BOOST_ON_SAV = 0;
+        CPU_HWP_DYN_BOOST_ON_AC = 1;
+        CPU_HWP_DYN_BOOST_ON_BAT = 0;
+        CPU_HWP_DYN_BOOST_ON_SAV = 0;
+
+        CPU_SCALING_MIN_FREQ_ON_AC = 0;
+        CPU_SCALING_MAX_FREQ_ON_AC = 0;
+        CPU_SCALING_MIN_FREQ_ON_BAT = 0;
+        CPU_SCALING_MAX_FREQ_ON_BAT = 0;
+
+        DISK_APM_LEVEL_ON_AC = "254 254";
+        DISK_APM_LEVEL_ON_BAT = "128 128";
+        DISK_SPINDOWN_TIMEOUT_ON_AC = "0 0";
+        DISK_SPINDOWN_TIMEOUT_ON_BAT = "60 60";
+
+        SATA_LINKPWR_ON_AC = "max_performance";
+        SATA_LINKPWR_ON_BAT = "min_power";
+        SATA_LINKPWR_ON_SAV = "min_power";
+
+        USB_AUTOSUSPEND = 1;
+        USB_BLACKLIST = "";
 
         STOP_CHARGE_THRESH_BAT0 = 1;
         RESTORE_THRESHOLDS_ON_BAT = 1;
+
+        DISABLE_ON_AC = 0;
+        DISABLE_ON_BAT = 0;
       };
     };
 

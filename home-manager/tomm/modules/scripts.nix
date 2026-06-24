@@ -33,7 +33,7 @@
         set -euo pipefail
 
         wallpapersDir="${config.xdg.userDirs.pictures}/Wallpapers"
-        cacheDir="${config.xdg.cacheHome}/swww"
+        cacheDir="${config.xdg.cacheHome}"
         wallpaperNum="$cacheDir/wallpaperNum"
         mkdir -p "$wallpapersDir"
         touch "$wallpaperNum"
@@ -76,11 +76,11 @@
 
         case "''${XDG_SESSION_TYPE:-}" in
         	wayland)
-        		if pgrep swww-daemon &>/dev/null; then
+        		if pgrep awww-daemon &>/dev/null; then
         			printf "\033[0;32m[INFO]\033[0m Selecting wallpaper %s\n" "$wallpaper"
-        			${pkgs.swww}/bin/swww img "$wallpaper" --transition-step 150 --transition-type wipe --transition-bezier .33,1,.67,1
+        			${pkgs.awww}/bin/awww img "$wallpaper" --transition-step 150 --transition-type wipe --transition-bezier .33,1,.67,1
         		else
-        			echo "Error: swww-daemon is not initialized" >&2
+        			echo "Error: awww-daemon is not initialized" >&2
         			exit 1
         		fi
         		;;

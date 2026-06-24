@@ -8,10 +8,10 @@
   # so the actual config is it's own repo:
   # https://github.com/TomAintAround/neovim-config
 
-  programs.neovim.enable = true;
-
   home = {
     packages = with pkgs; [
+      neovim
+
       # Requirements
       curl
       fd
@@ -19,7 +19,6 @@
       gnumake
       man-pages
       ripgrep
-      python3
       lua51Packages.lua
       luajitPackages.luarocks
 

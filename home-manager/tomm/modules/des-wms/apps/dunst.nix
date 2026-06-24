@@ -26,7 +26,7 @@
         hide_duplicate_count = false;
 
         width = "(100, 400)";
-        height = "300";
+        height = "(0, 300)";
         origin = "top-right";
         offset = "40x10";
         scale = 0;
