@@ -8,7 +8,8 @@
     ./.
     ./hardware/graphics.nix
     ./hardware/sound.nix
-    ./sddm
+    # ./sddm
+    ./gdm.nix
   ];
 
   environment.systemPackages = with pkgs; [home-manager];
