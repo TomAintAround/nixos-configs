@@ -139,6 +139,7 @@
         "x-scheme-handler/https" = ["helium.desktop"];
       };
     };
+    configFile."monitorsConfig.json".text = builtins.toJSON config.monitors;
   };
 
   programs = {

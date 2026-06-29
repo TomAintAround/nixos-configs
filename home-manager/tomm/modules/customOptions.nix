@@ -21,14 +21,14 @@ in {
           width = mkOption {
             type = types.int;
             description = "Width of the monitor";
-            default = " ";
+            default = 0;
             example = "1920";
           };
 
           height = mkOption {
             type = types.int;
             description = "Height of the monitor";
-            default = " ";
+            default = 0;
             example = "1080";
           };
 
