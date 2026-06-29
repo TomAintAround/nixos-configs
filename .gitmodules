@@ -1,0 +1,3 @@
+[submodule "neovim-config"]
+	path = home-manager/tomm/modules/neovim
+	url = git@github.com:TomAintAround/neovim-config.git

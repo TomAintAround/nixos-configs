@@ -8,6 +8,8 @@
   # so the actual config is it's own repo:
   # https://github.com/TomAintAround/neovim-config
 
+  xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/home-manager/tomm/modules/neovim";
+
   home = {
     packages = with pkgs; [
       neovim
