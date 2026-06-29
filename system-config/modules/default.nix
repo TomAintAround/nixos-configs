@@ -70,6 +70,13 @@
   security = {
     apparmor.enable = true;
     tpm2.enable = true;
+    sudo = {
+      execWheelOnly = true;
+      extraConfig = ''
+        Defaults insults
+        Defaults env_reset,pwfeedback
+      '';
+    };
   };
 
   virtualisation.docker.enable = true;
