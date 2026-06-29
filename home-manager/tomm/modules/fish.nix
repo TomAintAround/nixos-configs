@@ -152,13 +152,13 @@
 
             function nixOS
                 if test "$argv[2]" = Rebuild
-                    command ${pkgs.nh}/bin/nh os switch --ask "$systemFlake"
+                    command ${pkgs.nh}/bin/nh os switch --ask "$systemFlake" --show-activation-logs
                     commandline -f execute
                     return 1
                 end
 
                 if test "$argv[2]" = "Rebuild and upgrade"
-                    command ${pkgs.nh}/bin/nh os switch --ask --update "$systemFlake"
+                    command ${pkgs.nh}/bin/nh os switch --ask --update "$systemFlake" --show-activation-logs
                     commandline -f execute
                     return 1
                 end
@@ -185,13 +185,13 @@
 
             function homeManager
                 if test "$argv[2]" = Rebuild
-                    command ${pkgs.nh}/bin/nh home switch --ask "$homeFlake"
+                    command ${pkgs.nh}/bin/nh home switch --ask "$homeFlake" --show-activation-logs
                     commandline -f execute
                     return 1
                 end
 
                 if test "$argv[2]" = "Rebuild and upgrade"
-                    command ${pkgs.nh}/bin/nh home switch --ask --update "$homeFlake"
+                    command ${pkgs.nh}/bin/nh home switch --ask --update "$homeFlake" --show-activation-logs
                     commandline -f execute
                     return 1
                 end
