@@ -38,12 +38,7 @@
     options = "--delete-older-than 14d";
   };
 
-  nixpkgs.config = {
-    allowUnfree = true;
-    permittedInsecurePackages = [
-      "qtwebengine-5.15.19"
-    ];
-  };
+  nixpkgs.config.allowUnfree = true;
 
   home = {
     username = "${userVars.username}";
