@@ -5,7 +5,7 @@ root="$(readlink --canonicalize -- "$(dirname -- "$0")")"
 
 # Mock nixpkgs
 trap 'rm -f "$root/default.nix"' EXIT; cat > "$root/default.nix" << NIX
-{}: import <nixpkgs> { overlays = [ (import $root/overlays/customPkgs.nix) ]; }
+{}: import <nixpkgs> { overlays = [ (import $root/overlays) ]; }
 NIX
 
 while read -r pkg; do
