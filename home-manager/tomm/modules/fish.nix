@@ -8,6 +8,7 @@
 
     interactiveShellInit = ''
       ${pkgs.bash}/bin/bash "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" 2>/dev/null
+      set -gx BW_SESSION (command cat ${config.sops.secrets."bwSession".path})
 
       # Greeting
       set fish_greeting ""

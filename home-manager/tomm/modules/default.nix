@@ -89,6 +89,7 @@
 
     packages = with pkgs; [
       act
+      bitwarden-cli
       bottles
       cpu-x
       exiftool

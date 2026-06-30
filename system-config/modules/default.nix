@@ -25,6 +25,7 @@
       settings."mount_options.conf".defaults.umask = "0022";
     };
     fail2ban.enable = true;
+    gnome.gnome-keyring.enable = true;
   };
 
   time.timeZone = "Europe/Lisbon";
