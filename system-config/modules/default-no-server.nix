@@ -37,6 +37,7 @@
   };
 
   fonts = {
+    enableDefaultPackages = true;
     packages = with pkgs; [
       liberation_ttf
       noto-fonts
@@ -49,9 +50,10 @@
     fontconfig = {
       enable = true;
       defaultFonts = {
-        monospace = ["JetBrainsMono Regular Nerd Font"];
+        monospace = ["JetBrainsMono Nerd Font"];
         serif = ["Noto Serif" "Source Han Serif"];
         sansSerif = ["Noto Sans" "Source Han Sans"];
+        emoji = ["Noto Color Emoji"];
       };
     };
     fontDir.enable = true;
