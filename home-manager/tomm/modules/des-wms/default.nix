@@ -31,7 +31,18 @@
       ++ lib.optionals config.brightness.enable [
         brightnessctl
       ];
-    sessionVariables.NIXOS_OZONE_WL = lib.mkIf config.displayServer.wayland.enable 1;
+    sessionVariables =
+      {
+        NIXOS_OZONE_WL = lib.mkIf config.displayServer.wayland.enable 1;
+      }
+      // lib.optionals (config.displayServer.wayland.enable) {
+        GDK_BACKEND = "wayland,x11,*";
+        QT_QPA_PLATFORM = "wayland;xcb";
+        SDL_VIDEODRIVER = "wayland";
+        CLUTTER_BACKEND = "wayland";
+
+        XDG_SESSION_TYPE = "wayland";
+      };
   };
 
   services.network-manager-applet.enable = lib.mkDefault config.wm.enable;

@@ -8,30 +8,19 @@
 }: {
   displayServer.wayland.enable = true;
   wm.enable = true;
-  xdg.configFile."uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
+
+  xdg.configFile = {
+    "uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
+    "uwsm/env-hyprland".text = ''
+      export HYPRLAND_TRACE=1
+    '';
+  };
 
   wayland.windowManager.hyprland = {
     enable = true;
     configType = "hyprlang";
 
     settings = {
-      env = [
-        # Toolkit Backend
-        "GDK_BACKEND=wayland,x11,*"
-        "QT_QPA_PLATFORM=wayland;xcb"
-        "SDL_VIDEODRIVER=wayland" # if experiencing issues, replace with "x11"
-        "SDL_VIDEO_DRIVER=wayland" # if experiencing issues, replace with "x11"
-        "CLUTTER_BACKEND=wayland"
-
-        # XDG Variables
-        "XDG_CURRENT_DESKTOP,Hyprland"
-        "XDG_SESSION_TYPE,wayland"
-        "XDG_SESSION_DESKTOP,Hyprland"
-
-        # Hyprland
-        "HYPRLAND_TRACE,1"
-      ];
-
       monitorv2 = map (m: let
         mode = "${toString m.width}x${toString m.height}@${toString m.refreshRate}";
         position = "${toString m.x}x${toString m.y}";
