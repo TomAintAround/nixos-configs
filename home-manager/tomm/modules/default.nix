@@ -114,6 +114,7 @@
       popsicle
       ripdrag # Drag-and-drop for the terminal
       ripgrep # Grep but better
+      seahorse # Secrets manager
       sshfs
       stremio-linux-shell
       thunderbird
