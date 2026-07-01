@@ -68,7 +68,7 @@ in {
 
     fzf = {
       enable = true;
-      inherit accent flavor;
+      inherit flavor;
     };
 
     gtk.icon = {
@@ -286,4 +286,7 @@ in {
       ];
     };
   };
+
+  # FIX: make sure to remove this when the fix is sent to upstream
+  qt.kvantum.settings.General.theme = "catppuccin-${flavor}-${accent}";
 }
