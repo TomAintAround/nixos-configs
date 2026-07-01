@@ -427,6 +427,7 @@
 
       layerrule = [
         "match:namespace ^hyprpicker$, no_anim 1"
+        "match:namespace ^awww-daemon$, no_anim 1"
       ];
     };
   };
