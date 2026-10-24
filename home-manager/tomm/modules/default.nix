@@ -9,6 +9,7 @@
 }: {
   imports = [
     inputs.nix-index-database.homeModules.default
+    inputs.helium.homeModules.default
 
     ./customOptions.nix
     ./des-wms
@@ -96,7 +97,6 @@
       ffmpeg-full
       file
       gimp
-      inputs.helium.packages.${system}.default
       imagemagick
       jq
       killall
@@ -171,6 +171,21 @@
       enable = true;
       hidden = true;
       extraOptions = ["--color='always'"];
+    };
+
+    helium = {
+      enable = true;
+      package = inputs.helium.packages.${system}.default;
+      policies.ClearBrowsingDataOnExitList = [
+        "browsing_history"
+        "download_history"
+        # "cookies_and_other_site_data"
+        "cached_images_and_files"
+        "password_signin"
+        "autofill"
+        # "site_settings"
+        "hosted_app_data"
+      ];
     };
 
     nix-index.enable = true;
