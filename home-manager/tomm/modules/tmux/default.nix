@@ -19,6 +19,7 @@
       set -g focus-events on
       set -g status-position top
       set -g allow-passthrough on
+      set -g visual-activity off
       set -ga update-environment TERM
       set -ga update-environment TERM_PROGRAM
 
