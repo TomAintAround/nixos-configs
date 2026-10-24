@@ -14,7 +14,7 @@ if ! tmux has-session -t $SESSION_NAME 2>/dev/null; then
 	tmux send-keys -t $SESSION_NAME:git "lazygit" C-m
 
 	tmux new-window -t $SESSION_NAME -n "mipsSession" -c "$SESSION_PATH"
-	tmux send-keys -t $SESSION_NAME:mipsSession "./startDocker && sleep 1 && ssh mipsServer" C-m
+	tmux send-keys -t $SESSION_NAME:mipsSession "./startDocker && sleep 1 && ssh -p 5555 -oHostKeyAlgorithms=+ssh-rsa user@localhost" C-m
 
 	tmux new-window -t $SESSION_NAME -n "cli" -c "$SESSION_PATH"
 
