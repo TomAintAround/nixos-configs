@@ -71,6 +71,11 @@
           '';
         };
 
+        checkArgs = {
+          description = "Check how arguments expand";
+          body = "echo \"$argv\"";
+        };
+
         flatclean = {
           description = "Removes orphaned flatpaks";
           wraps = "${pkgs.flatpak}/bin/flatpak uninstall --unused";
@@ -339,6 +344,19 @@
         }
         else {}
       );
+
+    completions.checkArgs.body = ''
+      function checkArgsComplete
+          set -l tokens (commandline -xpc)
+          set -l cmd $tokens[2]
+
+          if test -n "$cmd"
+              complete -C "$cmd "(commandline -ct)
+          end
+      end
+
+      complete -c checkArgs -a '(checkArgsComplete)'
+    '';
 
     shellAliases = {
       "cat" = "${pkgs.bat}/bin/bat --paging=never";
