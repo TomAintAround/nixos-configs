@@ -38,8 +38,6 @@
     options = "--delete-older-than 14d";
   };
 
-  nixpkgs.config.allowUnfree = true;
-
   home = {
     username = "${userVars.username}";
     homeDirectory = "/home/${userVars.username}";
