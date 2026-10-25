@@ -33,6 +33,9 @@
       bind \cg 'commandline -f kill-whole-line && ${pkgs.lazygit}/bin/lazygit && commandline -f execute'
       bind -M insert \cg 'commandline -f kill-whole-line && ${pkgs.lazygit}/bin/lazygit && commandline -f execute'
       bind -M visual \cg 'commandline -f kill-whole-line && ${pkgs.lazygit}/bin/lazygit && commandline -f execute'
+      bind alt-a 'fish_commandline_prepend checkArgs'
+      bind -M insert alt-a 'fish_commandline_prepend checkArgs'
+      bind -M visual alt-a 'fish_commandline_prepend checkArgs'
 
       # Done Plugin
       set -a __done_exclude '^pgrep'
