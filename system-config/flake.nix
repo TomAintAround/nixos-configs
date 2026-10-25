@@ -29,7 +29,7 @@
   outputs = {nixpkgs, ...} @ inputs: let
     system = "x86_64-linux";
     secrets = import inputs.secrets;
-    specialArgs = {inherit inputs secrets system;};
+    specialArgs = {inherit inputs secrets;};
 
     mkHost = initialModule:
       nixpkgs.lib.nixosSystem {
