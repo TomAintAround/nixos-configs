@@ -53,6 +53,30 @@
       }
     '';
 
+    # TODO: add when possible
+    # binds = {
+    #   fileManager = {
+    #     name = "\\cf";
+    #     command = "commandline -f kill-whole-line && $FILE_MANAGER && commandline -f execute";
+    #   };
+    #   editor = {
+    #     name = "\\ce";
+    #     command = "commandline -f kill-whole-line && $EDITOR && commandline -f execute";
+    #   };
+    #   packMgr = {
+    #     name = "\\cp";
+    #     command = "commandline -f kill-whole-line && packMgr && commandline -f execute";
+    #   };
+    #   lazygit = {
+    #     name = "\\cg";
+    #     command = "commandline -f kill-whole-line && ${pkgs.lazygit}/bin/lazygit && commandline -f execute";
+    #   };
+    #   checkArgs = {
+    #     name = "alt-a";
+    #     command = "fish_commandline_prepend checkArgs";
+    #   };
+    # };
+
     functions =
       {
         reload = {
