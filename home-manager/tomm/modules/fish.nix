@@ -84,6 +84,22 @@
           body = "clear && exec fish";
         };
 
+        asciiValue = {
+          description = "Check how arguments expand";
+          body = ''
+            if test (count "$argv") -lt 1
+                echo "Expected an argument"
+                return 1
+            end
+
+            if test (string length "$argv[1]") -gt 1
+                echo "Warning: only considering the first character"
+            end
+
+            printf '%d\n' \'"$argv[1]"
+          '';
+        };
+
         arduino-eject = {
           description = "Compile and upload arduino file into Arduino and open the serial monitor";
           body = ''
@@ -371,18 +387,22 @@
         else {}
       );
 
-    completions.checkArgs.body = ''
-      function checkArgsComplete
-          set -l tokens (commandline -xpc)
-          set -l cmd $tokens[2]
+    completions = {
+      asciiValue.body = "complete -c asciiValue -f";
 
-          if test -n "$cmd"
-              complete -C "$cmd "(commandline -ct)
-          end
-      end
+      checkArgs.body = ''
+        function checkArgsComplete
+            set -l tokens (commandline -xpc)
+            set -l cmd $tokens[2]
 
-      complete -c checkArgs -a '(checkArgsComplete)'
-    '';
+            if test -n "$cmd"
+                complete -C "$cmd "(commandline -ct)
+            end
+        end
+
+        complete -c checkArgs -a '(checkArgsComplete)'
+      '';
+    };
 
     shellAliases = {
       "cat" = "${pkgs.bat}/bin/bat --paging=never";
