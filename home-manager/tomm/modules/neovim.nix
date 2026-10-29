@@ -3,8 +3,7 @@
   lib,
   config,
   ...
-}: let
-in {
+}: {
   # I'm absolutely not configuring neovim through nix,
   # so the actual config is it's own repo:
   # https://github.com/TomAintAround/neovim-config
