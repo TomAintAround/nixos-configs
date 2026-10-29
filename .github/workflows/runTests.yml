@@ -1,0 +1,30 @@
+name: Run tests
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    outputs:
+      lint-success: ${{ steps.build-result.outputs.success }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@main
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+
+      - name: Run tests
+        run: |
+          if bash ./runTests.sh; then
+            echo "success=true" >> $GITHUB_ENV
+          else
+              echo "success=false" >> $GITHUB_ENV
+          fi
+
+      - name: Determine final result
+        id: build-result
+        run: echo "success=${{ env.success }}" >> $GITHUB_OUTPUT
