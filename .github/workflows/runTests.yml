@@ -1,6 +1,16 @@
 name: Run tests
 
-on: [push, pull_request]
+on:
+  push:
+    paths:
+      - "**/*.nix"
+      - "tests/**"
+      - "runTests.sh"
+  pull_request:
+    paths:
+      - "**/*.nix"
+      - "tests/**"
+      - "runTests.sh"
 
 permissions:
   contents: read
