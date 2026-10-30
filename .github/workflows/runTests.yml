@@ -29,11 +29,7 @@ jobs:
       - name: Run tests
         run: |
           if bash ./runTests.sh; then
-            echo "success=true" >> $GITHUB_ENV
+            echo "success=true" >> $GITHUB_OUTPUT
           else
-              echo "success=false" >> $GITHUB_ENV
+              echo "success=false" >> $GITHUB_OUTPUT
           fi
-
-      - name: Determine final result
-        id: build-result
-        run: echo "success=${{ env.success }}" >> $GITHUB_OUTPUT
