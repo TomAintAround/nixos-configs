@@ -12,12 +12,11 @@ on:
       - "tests/**"
       - "runTests.sh"
 
-permissions:
-  contents: read
-
 jobs:
   lint:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     outputs:
       lint-success: ${{ steps.build-result.outputs.success }}
     steps:
