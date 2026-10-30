@@ -13,12 +13,12 @@ on:
       - "runTests.sh"
 
 jobs:
-  lint:
+  runTests:
     runs-on: ubuntu-latest
     permissions:
       contents: read
     outputs:
-      lint-success: ${{ steps.build-result.outputs.success }}
+      success: ${{ steps.build-result.outputs.success }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@main
