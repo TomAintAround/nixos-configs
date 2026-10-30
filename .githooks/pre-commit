@@ -2,7 +2,7 @@
 
 printf "\033[0;33mRunning pre-commit checks...\033[0m\n"
 bash ./runTests.sh || {
-	printf "\033[0;31mPre-commit check failed  \033[0m\n"
+	printf "\033[0;31mPre-commit check failed  \033[0m\n"
 	exit 1
 }
-printf "\033[0;32mPre-commit check was successful  \033[0m\n"
+printf "\033[0;32mPre-commit check was successful  \033[0m\n"
