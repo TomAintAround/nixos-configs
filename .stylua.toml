@@ -1,0 +1,6 @@
+column_width = 80
+indent_type = "Tabs"
+indent_width = 4
+quote_style = "ForceDouble"
+call_parentheses = "Always"
+space_after_function_names = "Never"
