@@ -32,7 +32,12 @@ function get_current_directory()
 	if mp.get_property("path") == nill then
 		return ""
 	else
-		return utils.split_path(utils.join_path(mp.get_property("working-directory"), mp.get_property("path")))
+		return utils.split_path(
+			utils.join_path(
+				mp.get_property("working-directory"),
+				mp.get_property("path")
+			)
+		)
 	end
 end
 
@@ -40,7 +45,7 @@ function select_multimedia_files()
 	return invoke_zenity({
 		"--file-selection",
 		"--filename=" .. get_current_directory(),
-		'--title="Select Files"',
+		"--title=\"Select Files\"",
 		"--window-icon=mpv",
 		"--multiple",
 		"--separator=\n",
@@ -84,7 +89,7 @@ function select_folders()
 		"--file-selection",
 		"--directory",
 		"--filename=" .. get_current_directory(),
-		'--title="Select Folders"',
+		"--title=\"Select Folders\"",
 		"--window-icon=mpv",
 		"--multiple",
 		"--separator=\n",
